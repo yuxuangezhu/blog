@@ -8,7 +8,7 @@ subtitle:
 description:
 author: yuxuan
 language: zh-CN
-timezone: shana
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: shana
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
