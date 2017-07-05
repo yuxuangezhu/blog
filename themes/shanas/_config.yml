@@ -56,7 +56,7 @@ gaymenu_item:
 
 # 社交链接
 social:
-- url: http://github.com/yuxuangezhu
+- url: https://github.com/yuxuangezhu
   name: Github
 
 # 友情链接
@@ -64,7 +64,7 @@ social:
 link_title: 友情链接
 links:
   A1ie2: https://weixiaochu.cn/
-  轻言: http://tiantang-tt.github.io/
+  轻言: https://tiantang-tt.github.io/
 
 
 # Sidebar Avatar
