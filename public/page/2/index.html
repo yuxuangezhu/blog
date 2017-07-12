@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不靠谱学长">
+<meta property="og:type" content="website">
+<meta property="og:title" content="宇轩阁">
+<meta property="og:url" content="https://itbugs.cn/page/2/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="不靠谱学长">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宇轩阁">
+<meta name="twitter:description" content="不靠谱学长">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-touch-event" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/26/touch-event/" class="article-date">
+  <time class="post-time" datetime="2015-08-26T03:57:22.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/26/touch-event/">关于移动开发touch滑动的简单实现</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在写页面，用到了触摸滑动，百度了下，发现框架有很多，但是没什么单独的，想到对于只用上下触摸事件的我来说，引入一个框架总感觉有点鸡肋，于是尝试着自己写了一种方法，感觉还不错。</p>
+<p>代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageY=<span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> pageY1=<span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> pageY2=<span class="number">0</span>;</div><div class="line">$(<span class="built_in">document</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="comment">//获取点击时的鼠标坐标</span></div><div class="line">    <span class="comment">//$("p").text(e.pageX + ", " + e.pageY);</span></div><div class="line">    pageY1 = e.pageY;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="built_in">document</span>).mouseup(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="comment">//获取鼠标松开时的鼠标坐标</span></div><div class="line">    <span class="comment">//$("p").text(e.pageX + ", " + e.pageY);</span></div><div class="line">    pageY2 = e.pageY;</div><div class="line">    pageY = pageY1-pageY2;</div><div class="line">    <span class="keyword">if</span> (pageY == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pageY &lt; <span class="number">10</span>) &#123;</div><div class="line">        moveDown();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pageY &gt; <span class="number">-10</span>) &#123;</div><div class="line">        moveUp();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/08/26/touch-event/" data-id="cj4ru1x3x0004zffya7a42m02" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-sublime-e5-bf-ab-e6-8d-b7-e9-94-ae" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/13/sublime-e5-bf-ab-e6-8d-b7-e9-94-ae/" class="article-date">
+  <time class="post-time" datetime="2015-07-13T03:14:57.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/13/sublime-e5-bf-ab-e6-8d-b7-e9-94-ae/">sublime快捷键</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table><br><tbody><br><tr><br><th width="342">快捷键</th><br><th width="351">功能</th><br></tr><br><tr><br><td>ctrl+shift+n</td><br><td>打开新Sublime</td><br></tr><br><tr><br><td>ctrl+shift+w</td><br><td>关闭Sublime，关闭所有打开文件</td><br></tr><br><tr><br><td>ctrl+shift+t</td><br><td>重新打开最近关闭文件</td><br></tr><br><tr><br><td>ctrl+n</td><br><td>新建文件</td><br></tr><br><tr><br><td>ctrl+s</td><br><td>保存</td><br></tr><br><tr><br><td>ctrl+shift+s</td><br><td>另存为</td><br></tr><br><tr><br><td>ctrl+f4</td><br><td>关闭文件</td><br></tr><br><tr><br><td>ctrl+w</td><br><td>关闭</td><br></tr><br><tr><br><td>ctrl+k, ctrl+b</td><br><td>切换侧边栏显示状态</td><br></tr><br><tr><br><td>f11</td><br><td>切换全屏状态</td><br></tr><br><tr><br><td>shift+f11</td><br><td>免打扰模式状态切换</td><br></tr><br><tr><br><td>backspace</td><br><td>删除左侧</td><br></tr><br><tr><br><td>shift+backspace</td><br><td>左侧删除</td><br></tr><br><tr><br><td>ctrl+shift+backspace</td><br><td>左侧全部删除</td><br></tr><br><tr><br><td>delete</td><br><td>右侧删除</td><br></tr><br><tr><br><td>enter</td><br><td>插入</td><br></tr><br><tr><br><td>shift+enter</td><br><td>插入</td><br></tr><br><tr><br><td>ctrl+z</td><br><td>撤消</td><br></tr><br><tr><br><td>ctrl+shift+z</td><br><td>重做</td><br></tr><br><tr><br><td>ctrl+y</td><br><td>重做或重复</td><br></tr><br><tr><br><td>ctrl+u</td><br><td>软撤消</td><br></tr><br><tr><br><td>ctrl+shift+u</td><br><td>软重做</td><br></tr><br><tr><br><td>ctrl+shift+v</td><br><td>粘贴并格式化</td><br></tr><br><tr><br><td>shift+delete</td><br><td>剪切</td><br></tr><br><tr><br><td>ctrl+insert</td><br><td>拷贝</td><br></tr><br><tr><br><td>shift+insert</td><br><td>粘贴</td><br></tr><br><tr><br><td>ctrl+x</td><br><td>剪切</td><br></tr><br><tr><br><td>ctrl+c</td><br><td>拷贝</td><br></tr><br><tr><br><td>ctrl+v</td><br><td>粘贴</td><br></tr><br><tr><br><td>left</td><br><td>移动</td><br></tr><br><tr><br><td>right</td><br><td>移动</td><br></tr><br><tr><br><td>up</td><br><td>移动</td><br></tr><br><tr><br><td>down</td><br><td>移动</td><br></tr><br><tr><br><td>shift+left</td><br><td>移动并选择</td><br></tr><br><tr><br><td>shift+right</td><br><td>移动并选择</td><br></tr><br><tr><br><td>shift+up</td><br><td>移动并选择</td><br></tr><br><tr><br><td>shift+down</td><br><td>移动并选择</td><br></tr><br><tr><br><td>ctrl+left</td><br><td>按\w规则移动（跳跃）</td><br></tr><br><tr><br><td>ctrl+right</td><br><td>按\w规则移动（跳跃）</td><br></tr><br><tr><br><td>ctrl+shift+left</td><br><td>按\w规则移动并选择（跳跃）</td><br></tr><br><tr><br><td>ctrl+shift+right</td><br><td>按\w规则移动并选择（跳跃）</td><br></tr><br><tr><br><td>alt+left</td><br><td>按单词移动</td><br></tr><br><tr><br><td>alt+right</td><br><td>按单词移动</td><br></tr><br><tr><br><td>alt+shift+left</td><br><td>按单词移动并选择</td><br></tr><br><tr><br><td>alt+shift+right</td><br><td>按单词移动并选择</td><br></tr><br><tr><br><td>ctrl+alt+up</td><br><td>选择多行进行编辑</td><br></tr><br><tr><br><td>ctrl+alt+down</td><br><td>选择多行进行编辑</td><br></tr><br><tr><br><td>pageup</td><br><td>移动</td><br></tr><br><tr><br><td>pagedown</td><br><td>移动</td><br></tr><br><tr><br><td>shift+pageup</td><br><td>移动+选择</td><br></tr><br><tr><br><td>shift+pagedown</td><br><td>移动+选择</td><br></tr><br><tr><br><td>home</td><br><td>移动到行首</td><br></tr><br><tr><br><td>end</td><br><td>移动到行尾</td><br></tr><br><tr><br><td>shift+home</td><br><td>选择到行首</td><br></tr><br><tr><br><td>shift+end</td><br><td>选择到行尾</td><br></tr><br><tr><br><td>ctrl+home</td><br><td>移动到页首行头</td><br></tr><br><tr><br><td>ctrl+end</td><br><td>移动到页尾行尾</td><br></tr><br><tr><br><td>ctrl+shift+home</td><br><td>选择到页首行头</td><br></tr><br><tr><br><td>ctrl+shift+end</td><br><td>选择到页尾行尾</td><br></tr><br><tr><br><td>ctrl+up</td><br><td>滚动行</td><br></tr><br><tr><br><td>ctrl+down</td><br><td>滚动行</td><br></tr><br><tr><br><td>ctrl+pagedown</td><br><td>下一视图（视觉位置）</td><br></tr><br><tr><br><td>ctrl+pageup</td><br><td>前一视图</td><br></tr><br><tr><br><td>ctrl+tab</td><br><td>栈中下一视图（打开顺序）</td><br></tr><br><tr><br><td>ctrl+shift+tab</td><br><td>栈中前一视图</td><br></tr><br><tr><br><td>ctrl+a</td><br><td>全选</td><br></tr><br><tr><br><td>ctrl+shift+l</td><br><td>选择多行编辑</td><br></tr><br><tr><br><td>escape</td><br><td>单个选择</td><br></tr><br><tr><br><td>escape</td><br><td>清除字段</td><br></tr><br><tr><br><td>escape</td><br><td>清除字段</td><br></tr><br><tr><br><td>escape</td><br><td>隐藏面板</td><br></tr><br><tr><br><td>escape</td><br><td>hide overlay</td><br></tr><br><tr><br><td>escape</td><br><td>hide auto complete</td><br></tr><br><tr><br><td>tab</td><br><td>insert best completion</td><br></tr><br><tr><br><td>tab</td><br><td>insert best completion</td><br></tr><br><tr><br><td>tab</td><br><td>replace completion with next completion</td><br></tr><br><tr><br><td>tab</td><br><td>reindent</td><br></tr><br><tr><br><td>tab</td><br><td>indent</td><br></tr><br><tr><br><td>tab</td><br><td>next field</td><br></tr><br><tr><br><td>tab</td><br><td>commit completion</td><br></tr><br><tr><br><td>shift+tab</td><br><td>insert</td><br></tr><br><tr><br><td>shift+tab</td><br><td>unindent</td><br></tr><br><tr><br><td>shift+tab</td><br><td>unindent</td><br></tr><br><tr><br><td>shift+tab</td><br><td>unindent</td><br></tr><br><tr><br><td>shift+tab</td><br><td>prev field</td><br></tr><br><tr><br><td>ctrl+]</td><br><td>缩进</td><br></tr><br><tr><br><td>ctrl+[</td><br><td>不缩进</td><br></tr><br><tr><br><td>insert</td><br><td>toggle overwrite</td><br></tr><br><tr><br><td>ctrl+l</td><br><td>选择行，重复可依次增加选择下一行</td><br></tr><br><tr><br><td>ctrl+d</td><br><td>选择单词，重复可增加选择下一个相同的单词</td><br></tr><br><tr><br><td>ctrl+k, ctrl+d</td><br><td>find under expand skip</td><br></tr><br><tr><br><td>ctrl+shift+space</td><br><td>expand selection</td><br></tr><br><tr><br><td>ctrl+shift+m</td><br><td>expand selection</td><br></tr><br><tr><br><td>ctrl+m</td><br><td>跳转到对应括号</td><br></tr><br><tr><br><td>ctrl+shift+j</td><br><td>expand selection</td><br></tr><br><tr><br><td>ctrl+shift+a</td><br><td>expand selection</td><br></tr><br><tr><br><td>alt+.</td><br><td>close tag</td><br></tr><br><tr><br><td>ctrl+q</td><br><td>toggle record macro</td><br></tr><br><tr><br><td>ctrl+shift+q</td><br><td>run macro</td><br></tr><br><tr><br><td>ctrl+enter</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+shift+enter</td><br><td>在当前行前插入新行</td><br></tr><br><tr><br><td>enter</td><br><td>commit completion</td><br></tr><br><tr><br><td>ctrl+p</td><br><td>搜索项目中的文件</td><br></tr><br><tr><br><td>ctrl+shift+p</td><br><td>打开命令面板</td><br></tr><br><tr><br><td>ctrl+alt+p</td><br><td>prompt select project</td><br></tr><br><tr><br><td>ctrl+r</td><br><td>前往Method</td><br></tr><br><tr><br><td>ctrl+g</td><br><td>跳转到第几行</td><br></tr><br><tr><br><td>ctrl+;</td><br><td>show overlay</td><br></tr><br><tr><br><td>ctrl+i</td><br><td>show panel</td><br></tr><br><tr><br><td>ctrl+shift+i</td><br><td>show panel</td><br></tr><br><tr><br><td>ctrl+f</td><br><td>查找</td><br></tr><br><tr><br><td>ctrl+h</td><br><td>查找替换</td><br></tr><br><tr><br><td>ctrl+shift+h</td><br><td>查找替换下一个</td><br></tr><br><tr><br><td>f3</td><br><td>下一个匹配项</td><br></tr><br><tr><br><td>shift+f3</td><br><td>上一个匹配项</td><br></tr><br><tr><br><td>ctrl+f3</td><br><td>下一个匹配项</td><br></tr><br><tr><br><td>ctrl+shift+f3</td><br><td>find under prev</td><br></tr><br><tr><br><td>alt+f3</td><br><td>find all under</td><br></tr><br><tr><br><td>ctrl+e</td><br><td>slurp find string</td><br></tr><br><tr><br><td>ctrl+shift+e</td><br><td>slurp replace string</td><br></tr><br><tr><br><td>ctrl+shift+f</td><br><td>show panel</td><br></tr><br><tr><br><td>f4</td><br><td>next result</td><br></tr><br><tr><br><td>shift+f4</td><br><td>prev result</td><br></tr><br><tr><br><td>f6</td><br><td>toggle setting</td><br></tr><br><tr><br><td>ctrl+f6</td><br><td>next misspelling</td><br></tr><br><tr><br><td>ctrl+shift+f6</td><br><td>prev misspelling</td><br></tr><br><tr><br><td>ctrl+shift+up</td><br><td>swap line up</td><br></tr><br><tr><br><td>ctrl+shift+down</td><br><td>swap line down</td><br></tr><br><tr><br><td>ctrl+backspace</td><br><td>delete word</td><br></tr><br><tr><br><td>ctrl+shift+backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+delete</td><br><td>delete word</td><br></tr><br><tr><br><td>ctrl+shift+delete</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+/</td><br><td>当前行注释状态切换</td><br></tr><br><tr><br><td>ctrl+shift+/</td><br><td>当前位置注释状态切换</td><br></tr><br><tr><br><td>ctrl+j</td><br><td>选择标签内容，将后继行附加到行尾</td><br></tr><br><tr><br><td>ctrl+shift+d</td><br><td>duplicate line</td><br></tr><br><tr><br><td>ctrl+`</td><br><td>show panel</td><br></tr><br><tr><br><td>ctrl+space</td><br><td>auto complete</td><br></tr><br><tr><br><td>ctrl+space</td><br><td>replace completion with auto complete</td><br></tr><br><tr><br><td>ctrl+alt+shift+p</td><br><td>show scope name</td><br></tr><br><tr><br><td>f7</td><br><td>build</td><br></tr><br><tr><br><td>ctrl+b</td><br><td>build</td><br></tr><br><tr><br><td>ctrl+shift+b</td><br><td>build</td><br></tr><br><tr><br><td>ctrl+break</td><br><td>exec</td><br></tr><br><tr><br><td>ctrl+t</td><br><td>transpose</td><br></tr><br><tr><br><td>f9</td><br><td>行排序</td><br></tr><br><tr><br><td>ctrl+f9</td><br><td>行排序</td><br></tr><br><tr><br><td colspan="2">// Auto-pair quotes</td><br></tr><br><tr><br><td>\</td><br><td>insert snippet</td><br></tr><br><tr><br><td>\</td><br><td>insert snippet</td><br></tr><br><tr><br><td>\</td><br><td>move</td><br></tr><br><tr><br><td>backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td colspan="2">// Auto-pair single quotes</td><br></tr><br><tr><br><td>‘</td><br><td>insert snippet</td><br></tr><br><tr><br><td>‘</td><br><td>insert snippet</td><br></tr><br><tr><br><td>‘</td><br><td>move</td><br></tr><br><tr><br><td>backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td colspan="2">// Auto-pair brackets</td><br></tr><br><tr><br><td>(</td><br><td>insert snippet</td><br></tr><br><tr><br><td>(</td><br><td>insert snippet</td><br></tr><br><tr><br><td>)</td><br><td>move</td><br></tr><br><tr><br><td>backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td colspan="2">// Auto-pair square brackets</td><br></tr><br><tr><br><td>[</td><br><td>insert snippet</td><br></tr><br><tr><br><td>[</td><br><td>insert snippet</td><br></tr><br><tr><br><td>]</td><br><td>move</td><br></tr><br><tr><br><td>backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td colspan="2">// Auto-pair curly brackets</td><br></tr><br><tr><br><td>{</td><br><td>insert snippet</td><br></tr><br><tr><br><td>{</td><br><td>insert snippet</td><br></tr><br><tr><br><td>}</td><br><td>move</td><br></tr><br><tr><br><td>backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td>enter</td><br><td>run macro file</td><br></tr><br><tr><br><td>shift+enter</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+1</td><br><td>focus group</td><br></tr><br><tr><br><td>ctrl+2</td><br><td>focus group</td><br></tr><br><tr><br><td>ctrl+3</td><br><td>focus group</td><br></tr><br><tr><br><td>ctrl+4</td><br><td>focus group</td><br></tr><br><tr><br><td>ctrl+shift+1</td><br><td>move to group</td><br></tr><br><tr><br><td>ctrl+shift+2</td><br><td>move to group</td><br></tr><br><tr><br><td>ctrl+shift+3</td><br><td>move to group</td><br></tr><br><tr><br><td>ctrl+shift+4</td><br><td>move to group</td><br></tr><br><tr><br><td>ctrl+0</td><br><td>focus side bar</td><br></tr><br><tr><br><td>alt+1</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+2</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+3</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+4</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+5</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+6</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+7</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+8</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+9</td><br><td>select by index</td><br></tr><br><tr><br><td>alt+0</td><br><td>select by index</td><br></tr><br><tr><br><td>f2</td><br><td>next bookmark</td><br></tr><br><tr><br><td>shift+f2</td><br><td>prev bookmark</td><br></tr><br><tr><br><td>ctrl+f2</td><br><td>标记状态切换</td><br></tr><br><tr><br><td>ctrl+shift+f2</td><br><td>clear bookmarks</td><br></tr><br><tr><br><td>alt+f2</td><br><td>select all bookmarks</td><br></tr><br><tr><br><td>ctrl+shift+k</td><br><td>run macro file</td><br></tr><br><tr><br><td>alt+q</td><br><td>wrap lines</td><br></tr><br><tr><br><td>ctrl+k, ctrl+u</td><br><td>upper case</td><br></tr><br><tr><br><td>ctrl+k, ctrl+l</td><br><td>lower case</td><br></tr><br><tr><br><td>ctrl+k, ctrl+space</td><br><td>set mark</td><br></tr><br><tr><br><td>ctrl+k, ctrl+a</td><br><td>select to mark</td><br></tr><br><tr><br><td>ctrl+k, ctrl+w</td><br><td>delete to mark</td><br></tr><br><tr><br><td>ctrl+k, ctrl+x</td><br><td>swap with mark</td><br></tr><br><tr><br><td>ctrl+k, ctrl+y</td><br><td>yank</td><br></tr><br><tr><br><td>ctrl+k, ctrl+k</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+k, ctrl+backspace</td><br><td>run macro file</td><br></tr><br><tr><br><td>ctrl+k, ctrl+g</td><br><td>clear bookmarks</td><br></tr><br><tr><br><td>ctrl+k, ctrl+c</td><br><td>show at center</td><br></tr><br><tr><br><td>ctrl++</td><br><td>increase font size</td><br></tr><br><tr><br><td>ctrl+=</td><br><td>increase font size</td><br></tr><br><tr><br><td>ctrl+keypad plus</td><br><td>increase font size</td><br></tr><br><tr><br><td>ctrl+-</td><br><td>decrease font size</td><br></tr><br><tr><br><td>ctrl+keypad minus</td><br><td>decrease font size</td><br></tr><br><tr><br><td>alt+shift+w</td><br><td>insert snippet</td><br></tr><br><tr><br><td>ctrl+shift+[</td><br><td>折叠(代码)</td><br></tr><br><tr><br><td>ctrl+shift+]</td><br><td>不折叠</td><br></tr><br><tr><br><td>ctrl+k, ctrl+1</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+2</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+3</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+4</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+5</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+6</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+7</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+8</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+9</td><br><td>按层级折叠(代码），数字是层级数</td><br></tr><br><tr><br><td>ctrl+k, ctrl+0</td><br><td>unfold all</td><br></tr><br><tr><br><td>ctrl+k, ctrl+j</td><br><td>unfold all</td><br></tr><br><tr><br><td>ctrl+k, ctrl+t</td><br><td>fold tag attributes</td><br></tr><br><tr><br><td>context menu</td><br><td>context menu</td><br></tr><br><tr><br><td>alt+c</td><br><td>toggle case sensitive</td><br></tr><br><tr><br><td>alt+r</td><br><td>toggle regex</td><br></tr><br><tr><br><td>alt+w</td><br><td>toggle whole word</td><br></tr><br><tr><br><td>alt+a</td><br><td>toggle preserve case</td><br></tr><br><tr><br><td colspan="2">// 查找面板的按键绑定</td><br></tr><br><tr><br><td>enter</td><br><td>向后查找</td><br></tr><br><tr><br><td>shift+enter</td><br><td>向前查找</td><br></tr><br><tr><br><td>alt+enter</td><br><td>查找全部</td><br></tr><br><tr><br><td colspan="2">// 替换面板的按键绑定</td><br></tr><br><tr><br><td>enter</td><br><td>查找下一个</td><br></tr><br><tr><br><td>shift+enter</td><br><td>查找前一个</td><br></tr><br><tr><br><td>alt+enter</td><br><td>查找全部</td><br></tr><br><tr><br><td>ctrl+alt+enter</td><br><td>替换全部</td><br></tr><br><tr><br><td colspan="2">// Incremental find panel key bindings</td><br></tr><br><tr><br><td>enter</td><br><td>hide panel</td><br></tr><br><tr><br><td>shift+enter</td><br><td>find prev</td><br></tr><br><tr><br><td>alt+enter</td><br><td>find all</td><br></tr><br></tbody><br></table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/07/13/sublime-e5-bf-ab-e6-8d-b7-e9-94-ae/" data-id="cj4r5cqav002hc3wy03gm3qix" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/" class="article-date">
+  <time class="post-time" datetime="2015-04-14T02:21:05.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/">nodejs运行稳定性提高方法</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在写websocket的即时通讯工具，后台用nodejs写的，测试的时候开着ssh运行着也没多大问题，但是随着项目慢慢结尾，就出现问题了，工具需要node在后台持续运行着，但是我一关闭ssh链接，过一会，node就崩了，完全没法用啊，于是请教了万能的度娘，找到了下面这个方法；</p>
+<p>用node启动server后，发现服务器不稳定，经常crash。我是用ssh远程登录的，ssh远程通道中断，或者Ctrl+C,都会使nodejs server崩溃掉。</p>
+<p><strong>nohup的解决办法</strong></p>
+<p><strong>1，启动node server</strong></p>
+<pre>[root@yuxuan nodejs]# nohup node server.js &gt;&gt; /var/log/nodejs/server_port_8020.log &amp;</pre>
+启动node server，并放到后台执行，并且记录log日志，注意：这样记录日志，时间长了，日志文件会比较大，要自己写一个shell脚本，控制文件大小。
+<pre>[root@yuxuna nodejs]# nohup node server.js 1&gt;/dev/null 2&gt;&amp;1 &amp;   //这种方式，不记录log日志。</pre>
+注意：用nohup的方法，node server是没有守护进程的，放到后台运行，如果node server崩溃掉，web一样不能访问。
+
+**2，关闭node server**
+<pre>[root@yuxuan ~]# ps aux|grep node    //查看node server
+root     10680  0.0  0.3 826308 14556 pts/6    Sl   12:20   0:00 node server.js
+root     15765  0.0  0.7 1031248 30144 ?       Sl   Feb25   0:01 node scripts/web-server.js
+root     19648  0.0  0.0 103240   872 pts/3    S+   13:57   0:00 grep node
+
+[root@yuxuan ~]# kill 10680   //关闭10680的node server
+
+[root@hatch ~]# ps aux|grep node
+root     15765  0.0  0.7 1031248 30144 ?       Sl   Feb25   0:01 node scripts/web-server.js
+root     19653  0.0  0.0 103240   872 pts/3    S+   13:57   0:00 grep node</pre>
+**三，forever工具**
+
+**1，安装forever**
+<pre># npm install forever</pre>
+forever目前只支持到node 0.8，如果装了node 0.10的，forever工具就不能用了。安装的时候会报出 warning forever wants 0.8, but has 0.10 ，虽然能安装成功，但是用不了。
+
+**2，forever参数和用法**
+<pre># forever [start | stop | stopall | list] [options] SCRIPT [script options]</pre>
+**3，forever实例**
+<pre># forever start server.js    //启动node server
+
+# forever list                    //查看启动的node server
+  0 server.js [ 24597, 24596 ]
+
+# forever stop 0                  //停止第0个node server
+Forever stopped process:
+  0 server.js [ 24611, 24596 ]
+
+关于**forever**的安装，目测可能会出现两个错误
+1、npm ERR! Error: SSL Error: CERT_UNTRUSTED
+解决方案：升级您的版本的NPM</pre>
+
+<pre><code>&lt;span&gt;npm install npm -g --ca=&quot;&quot;&lt;/span&gt;`&lt;/pre&gt;
+&lt;pre&gt;–或–
+告诉你的当前版本的NPM使用已知的&lt;/pre&gt;
+&lt;pre&gt;`&lt;span&gt;npm config set ca &quot;&quot;
+
+2、Error: No compatible version found:×××××
+&lt;/span&gt;`&lt;/pre&gt;
+如果在Linux系统中，通过一条命令更新npm可以解决。
+&lt;pre&gt;`npm install -g npm`&lt;/pre&gt;
+在Window环境中，必须升级NPM到1.4.10以上的版本，我重新安装了node-v0.10.31-x64.msi，对应的NPM为1.4.23，再此运行npm install命令，依赖包下载运行正常。
+&lt;pre&gt;`&lt;span&gt; &lt;/span&gt;
+</code></pre><pre>
+持续运行的问题解决了，不过新的问题来了，万一node运行的时候挂了，怎么重启呢，继续挠头去。。。</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/" data-id="cj4r5cqag0023c3wy4uvv18r9" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-window-location-e6-93-8d-e4-bd-9curl-e5-b1-9e-e6-80-a7-e7-9a-84-e5-87-bd-e6-95-b0" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/10/window-location-e6-93-8d-e4-bd-9curl-e5-b1-9e-e6-80-a7-e7-9a-84-e5-87-bd-e6-95-b0/" class="article-date">
+  <time class="post-time" datetime="2015-04-10T09:46:34.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/10/window-location-e6-93-8d-e4-bd-9curl-e5-b1-9e-e6-80-a7-e7-9a-84-e5-87-bd-e6-95-b0/">window.location操作URL属性的函数</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在做网站的时候，为了提高URL信息的利用,需要对url数据进行操作,于是百度了下发现主要就是<strong>获取当前URL的详细信息</strong>，就可以进行判断了，这就需要用到<strong>下列函数</strong></p>
+<p>设置或获取对象指定的文件名或路径。<br>window.location.pathname</p>
+<p>设置或获取整个 URL 为字符串。<br>window.location.href</p>
+<p>设置或获取与 URL 关联的端口号码。<br>window.location.port</p>
+<p>设置或获取 URL 的协议部分。<br>window.location.protocol</p>
+<p>设置或获取 href 属性中在井号“#”后面的分段。<br>window.location.hash</p>
+<p>设置或获取 location 或 URL 的 hostname 和 port 号码。<br>window.location.host</p>
+<p>设置或获取 href 属性中跟在问号后面的部分。<br>window.location.search</p>
+<h2 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a><a name="t1"></a>window.location</h2><table width="100%" border="0" cellspacing="0" cellpadding="0"><br><thead><br><tr><br><th align="left">属性</th><br><th align="left">描述</th><br></tr><br></thead><br><tbody><br><tr><br><td>hash</td><br><td>设置或获取 href 属性中在井号“#”后面的分段。</td><br></tr><br><tr><br><td>host</td><br><td>设置或获取 location 或 URL 的 hostname 和 port 号码。</td><br></tr><br><tr><br><td>hostname</td><br><td>设置或获取 location 或 URL 的主机名称部分。</td><br></tr><br><tr><br><td>href</td><br><td>设置或获取整个 URL 为字符串。</td><br></tr><br><tr><br><td>pathname</td><br><td>设置或获取对象指定的文件名或路径。</td><br></tr><br><tr><br><td>port</td><br><td>设置或获取与 URL 关联的端口号码。</td><br></tr><br><tr><br><td>protocol</td><br><td>设置或获取 URL 的协议部分。</td><br></tr><br><tr><br><td>search</td><br><td>设置或获取 href 属性中跟在问号后面的部分。</td><br></tr><br></tbody><br></table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/04/10/window-location-e6-93-8d-e4-bd-9curl-e5-b1-9e-e6-80-a7-e7-9a-84-e5-87-bd-e6-95-b0/" data-id="cj4r5cqb1002nc3wyi91petwb" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-websocket-exit" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/09/websocket-exit/" class="article-date">
+  <time class="post-time" datetime="2015-04-09T06:40:44.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">09</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/09/websocket-exit/">页面关闭或刷新触发事件</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在研究websocket,想在用户关闭或切换页面时向服务器发送一个用户id,并提醒用户要离开,</p>
+<p>网上有很多代码,这里我在百度的代码里找到了一段。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onbeforeunload = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> message = &#123;</div><div class="line">        <span class="string">"user"</span>:localStorage.userName,</div><div class="line">        <span class="string">"uid"</span>:uid,</div><div class="line">        <span class="string">"messType"</span>:<span class="string">"pageClose"</span></div><div class="line">    &#125;</div><div class="line">    socket.send(message); <span class="comment">//发送信息到服务器</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="number">1111</span>)</div><div class="line">    <span class="keyword">return</span> <span class="string">"提示文本"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/04/09/websocket-exit/" data-id="cj4s6h7fz00061tfy3a47avrk" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-https" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/01/https/" class="article-date">
+  <time class="post-time" datetime="2015-04-01T06:55:34.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/01/https/">免费https证书申请</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天刷微博,无意中看到一篇介绍https的文章,看完后决定给自己的博客升升级,也整个https高大上一下.</p>
+<p>于是开始百度免费的ssl证书提供商,发现大家都在说国内的好点,于是点了一个看着还不错的国内网站 <a href="https://buy.wosign.com/" target="_blank" rel="external">https://buy.wosign.com/</a> ,看了一下,百度经验的文章已然过期了,网站流程改了,没发现能免费申请,页面上挂的那么多好几千的吓得我赶紧就要叉掉它,就在这时突然发现了一个暴漫</p>
+<p><img src="https://buy.wosign.com/images/V2/a4.jpg" alt=""></p>
+<p>暴漫底下有这么一块货</p>
+<p><img src="https://buy.wosign.com/images/V2/a3.jpg" alt=""></p>
+<p>这尼玛不就是免费的吗,果断注册去领(领完才发现直接给的是个不知道咋用的邮件证书),至于我们最关心的网站证书,要去个人中心点下上方的购买证书,然后拉到最低有个免费的DV SSL证书的申请,点击申请就好了,一步一步的个人感觉没啥特殊要求的话直接默认各个选项就好</p>
+<p>签名算法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SHA1 (按照国际标准规定,SHA1证书有效期不能超过2017年1月1日.)</div><div class="line"></div><div class="line">SHA2 (更安全，但W<span class="keyword">in</span>XP SP2不支持)</div></pre></td></tr></table></figure></p>
+<p>这一块的话,<code>SHA1</code>支持度比较好,<code>SHA2</code>是新标准,有些地方支持度不是很好,我要求不高,又嫌麻烦,所以果断选了一次申请三年的SHA2</p>
+<p>工作时间申请完了大约10分钟就能接到结果,通过邮件取回生成的证书,取回证书时需要填写一个密码,这个密码是用来下载之后解压的,拿到压缩包之后会发现有多种服务器的证书版本,我用的<code>Nginx</code>服务器,于是就选了for Nginx的版本,把压缩包里的两个文件上传到服务器,我是放在<code>/home/ssl/</code>里面的,具体放哪随意,文件夹和文件要<code>www</code>权限.</p>
+<p>下面是具体的安装过程，当然<code>SSL证书</code>的安装跟博客程序（不管是<code>wordpress</code>或者<code>typecho</code>等等）无关，只是跟服务器的类型（比如<code>Nginx</code>、<code>Apache</code>或者<code>IIS</code>等）有关。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">----------操作说明----------               </div><div class="line">系统：            CentOS 6.5</div><div class="line">环境：            LNMP（只需配置Nginx服务器就行）</div><div class="line">操作工具：        linux 终端</div><div class="line">博客程序：        wordpress</div></pre></td></tr></table></figure></p>
+<p>我们需要修改Nginx的配置文件<br><code>/usr/local/nginx/conf/nginx.conf</code><br>来让<code>Nginx</code>启用<code>https</code>协议，示例如下：<br>执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vi nginx.conf</span></div></pre></td></tr></table></figure></p>
+<p>按下面对文件进行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">###### 新增一个“server”，保留原80端口，并强制将http协议转换到https协议 </span></div><div class="line"></div><div class="line">server &#123;</div><div class="line">  listen 80;</div><div class="line">  server_name itbugs.cn;</div><div class="line">  rewrite ^(.*) https://<span class="variable">$server_name</span><span class="variable">$1</span> permanent; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在原“server”中，启用支持https协议的443端口，并配置相关信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">  listen 443; server_name itbugs.cn;</div><div class="line">  index index.html index.htm index.php default.html default.htm default.php;</div><div class="line">  root /home/www/yuxuan;</div><div class="line">  ssl on;</div><div class="line">  <span class="comment"># 下载的.crt文件</span></div><div class="line">  ssl_certificate /home/ssl/typecodes_last.crt;</div><div class="line">  <span class="comment">#下载的.key文件</span></div><div class="line">  ssl_certificate_key /home/ssl/typecodes.key;</div><div class="line">  ssl_session_cache shared:SSL:10m;</div><div class="line">  ssl_session_timeout 10m;</div><div class="line">  ssl_ciphers ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM; </div><div class="line">  ssl_protocols SSLv3 TLSv1;</div><div class="line">  ssl_prefer_server_ciphers on;</div><div class="line">***************省略其它不变的部分****************</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>重启Nginx服务<br>这时访问 <a href="http://itbugs.cn">http://itbugs.cn</a> 都会自动跳转到 <a href="https://itbugs.cn">https://itbugs.cn</a> 了。因此，大功告成！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/04/01/https/" data-id="cj4ru03qu0002zffyxij97m7s" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-ubuntu-e6-90-9c-e7-8b-97-e8-be-93-e5-85-a5-e6-b3-95-e5-b4-a9-e6-ba-83-fcitx-e5-b4-a9-e6-ba-83-e6-97-a0-e7-97-9b-e9-87-8d-e5-90-af-e6-96-b9-e6-b3-95" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/ubuntu-e6-90-9c-e7-8b-97-e8-be-93-e5-85-a5-e6-b3-95-e5-b4-a9-e6-ba-83-fcitx-e5-b4-a9-e6-ba-83-e6-97-a0-e7-97-9b-e9-87-8d-e5-90-af-e6-96-b9-e6-b3-95/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T09:17:13.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/17/ubuntu-e6-90-9c-e7-8b-97-e8-be-93-e5-85-a5-e6-b3-95-e5-b4-a9-e6-ba-83-fcitx-e5-b4-a9-e6-ba-83-e6-97-a0-e7-97-9b-e9-87-8d-e5-90-af-e6-96-b9-e6-b3-95/">UBUNTU 搜狗输入法崩溃 FCITX崩溃无痛重启方法</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ubuntu的搜狗输入法bug还是多多啊，比如总有那么几次，fcitx的cpu占用率到了100%，就听到cpu风扇呼呼呼地转。或者偶尔直接提示你崩掉了，让你重启。</p>
+<p>注销有时能解决问题，可是一旦注销了，所有打开的程序都关了。这里给一种无伤的重启fcitx方法。</p>
+<p>&nbsp;</p>
+<p>1首先top，列出进程表，找到fcitx的pid</p>
+<p>或者直接pidof fcitx</p>
+<p>2 sudo kill 掉fcitx</p>
+<p>3  fcitx &amp;  这里的意思是后台跑fcitx，等出现loader time之类的字样的时候，就可以Ctrl+C终止了，</p>
+<p>4  sogou-qimpanel &amp;  同样，后台启动搜狗输入法面板,同样可以Ctrl+C终止</p>
+<p>此时就可以切换输入法试试看了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/ubuntu-e6-90-9c-e7-8b-97-e8-be-93-e5-85-a5-e6-b3-95-e5-b4-a9-e6-ba-83-fcitx-e5-b4-a9-e6-ba-83-e6-97-a0-e7-97-9b-e9-87-8d-e5-90-af-e6-96-b9-e6-b3-95/" data-id="cj4r5cqaj0029c3wy4iub9x0c" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:29:44.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/">Linux版OpenVPN安装、配置教程</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文将以目前最新的<mark>openvpn-2.3.4.tar.gz</mark>(更新于2014-5-2，<a href="http://www.softown.cn/soft/openvpn/linux" target="_blank" rel="external">下载地址</a>)为例来介绍如何在Linux系统中安装、配置及使用OpenVPN。</p>
+<p>在这里，我们选用了一台预装<mark>CentOS 6.5 64位</mark>系统的计算机作为OpenVPN服务器，一台预装<mark>Ubuntu 14.04 64位</mark>系统的计算机作为OpenVPN客户端，来演示Linux版OpenVPN的安装配置操作过程。实际上，OpenVPN并不区分Linux发行版本，几乎所有的配置都是一样的，因此Red Hat、Fedora、SUSE等Linux发行版均可参考本文。</p>
+<h3 id="安装OpenVPN的前提条件"><a href="#安装OpenVPN的前提条件" class="headerlink" title="安装OpenVPN的前提条件"></a>安装OpenVPN的前提条件</h3><p>在安装OpenVPN之前你必须确保你已经安装了C编译器(例如gcc)、OpenSSL、LZO(一种无损压缩算法)、PAM(一种可插入式的身份验证模块)。如果你安装了yum，可以使用如下命令来安装这些工具(选择性地安装之前没有安装的软件包即可)：</p>
+<pre>#安装gcc、openssl、lzo、pam
+yum install -y gcc openssl-devel lzo-devel pam-devel</pre>
+> Ubuntu、Debian等系统使用apt-get进行安装，安装命令请[参考这里](http://www.softown.cn/post/142.html)。
+
+### 安装Linux版OpenVPN
+
+首先，我们需要先下载OpenVPN安装程序，上面已经给出了Linux版OpenVPN的下载地址，在这里我们就不多说了。
+
+在这里，我们将下载的安装文件移动到<mark>/usr/local/</mark>文件夹中(你也可以自行移动到其他目录)。
+
+[![OpenVPN安装文件](http://img.softown.cn/attach/image/201405/linux-install-openvpn-1.png "OpenVPN安装文件")](http://img.softown.cn/attach/image/201405/linux-install-openvpn-1.png "OpenVPN安装文件")
+
+接着，我们使用`tar`命令，将该压缩文件解压到当前目录，完整命令为：`tar zxf openvpn-2.3.4.tar.gz`。
+
+[![解压后的OpenVPN目录](http://img.softown.cn/attach/image/201405/linux-install-openvpn-2.png "解压后的OpenVPN目录")](http://img.softown.cn/attach/image/201405/linux-install-openvpn-2.png "解压后的OpenVPN目录")
+
+接着，我们依次执行如下命令：
+<pre>#跳转到解压后的openvpn目录
+cd openvpn-2.3.4
+#调用configure
+./configure
+#编译
+make
+#安装
+make install</pre>
+
+<h3 id="OpenVPN配置"><a href="#OpenVPN配置" class="headerlink" title="OpenVPN配置"></a>OpenVPN配置</h3><p>安装OpenVPN完毕后，接下来就应该配置OpenVPN，以便于其能正常工作。配置OpenVPN主要有两个步骤：一是生成服务器和客户端所需的各种证书，二是编写服务器和客户端所需的配置文件。</p>
+<h4 id="下载easy-rsa"><a href="#下载easy-rsa" class="headerlink" title="下载easy-rsa"></a>下载easy-rsa</h4><p>想要生成各种证书和密钥，我们还要用到easy-rsa(只有服务器端需要easy-rsa，客户端无需安装)。坑爹的是，OpenVPN 2.3.x并没有自带这个东西，我们还需要去<a href="https://github.com/OpenVPN/easy-rsa" target="_blank" rel="external">GitHub下载easy-rsa</a>。更坑爹的是，GitHub上的easy-rsa已经升级到了3.0版本，该版本几乎重写了之前所有的程序代码，连使用方法都全变了，然而OpenVPN的官方文档并没有作相应更新，其中介绍的仍然是easy-rsa 2.0的操作方法。为了避免不必要的麻烦，我们推荐下载2.0版本的easy-rsa，你也可以直接<a href="http://pan.baidu.com/s/1o66Yaz4" target="_blank" rel="external">点击这里</a>下载。</p>
+<p>在这里我们将下载的<mark>easy-rsa-release-2.x.zip</mark>文件放在/root目录中。我们依次执行如下命令：</p>
+<p><pre>#转到easy-rsa安装文件所在目录<br>cd /root/</pre></p>
+<p>#解压该安装文件<br>unzip -q easy-rsa-release-2.x.zip<br>执行结果如下图所示(其中的ls命令用于查看文件列表)：</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png" title="解压easy-rsa" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png" alt="解压easy-rsa" title="解压easy-rsa"></a></p>
+<p>接着，我们将上图中所标注的<mark>easy-rsa-release-2.x/easy-rsa</mark>文件夹复制到OpenVPN的解压目录中，命令如下：</p>
+<p><pre>#复制解压后的easy-rsa目录到OpenVPN解压目录下<br>cp -r easy-rsa-release-2.x/easy-rsa /usr/local/openvpn-2.3.4</pre><br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-4.png" title="复制easy-rsa" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-4.png" alt="复制easy-rsa" title="复制easy-rsa"></a></p>
+<p>然后，我们执行命令<code>cd /usr/local/openvpn-2.3.4/easy-rsa/2.0</code>从而进入OpenVPN下的<mark>easy-rsa/2.0</mark>目录。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-5.png" title="easy-rsa的2.0目录文件列表" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-5.png" alt="easy-rsa的2.0目录文件列表" title="easy-rsa的2.0目录文件列表"></a></p>
+<blockquote>
+<p>上面说了这么多，实际上就只是下载了easy-rsa 2.0，并将解压后的<mark>easy-rsa</mark>子目录复制到了OpenVPN的主目录下。这里的文件夹<mark>2.0</mark>就是我们以后生成各种证书和密钥的根据地了。</p>
+</blockquote>
+<h4 id="使用easy-rsa生成CA证书"><a href="#使用easy-rsa生成CA证书" class="headerlink" title="使用easy-rsa生成CA证书"></a>使用easy-rsa生成CA证书</h4><p>在生成证书之前，我们建议你对<mark>2.0</mark>目录中的<mark>vars</mark>文件稍作修改。<mark>vars</mark>文件存储的是一些用户变量设置信息，每次生成证书都会使用到其中的某些变量。如下图所示，我们着重建议你关注红色矩形框内的变量，并选择性地对其进行修改(你可以不修改这些参数，但不要把这些参数留空)。</p>
+<blockquote>
+<p>KEY_SIZE：表示密钥的长度，一般为1024或2048(长度越长，性能耗费越多)。</p>
+<p>#下面是一些用户相关信息配置</p>
+<p>KEY_COUNTRY：所在国家</p>
+<p>KEY_PROVINCE：所在省</p>
+<p>KEY_CITY：所在城市</p>
+<p>KEY_ORG：所在组织</p>
+<p>KEY_EMAIL：邮箱地址</p>
+<p>KEY_OU：机构单位或部门名称<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-6.png" title="vars文件部分内容" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-6.png" alt="vars文件部分内容" title="vars文件部分内容"></a></p>
+</blockquote>
+<p>下面，我们就开始来生成证书了。保持当前目录为<mark>OpenVPN根目录/easy-rsa/2.0</mark>。然后依次执行下列命令：</p>
+<p><pre>#初始化命令，用于设置后续命令所需的相关变量信息<br>. ./vars</pre></p>
+<p>#清除之前创建的所有证书和密钥<br>./clean-all</p>
+<p>#生成CA证书和密钥<br>./build-ca</p>
+<blockquote>
+<p>注意：证书的用户信息可以根据需要自行输入。如果不输入、直接回车，则表示该字段使用”[]”中的默认值(也就是前面vars文件中设置的参数值)；如果输入”.”，则表示该字段留空。在这里需要注意<mark>Common Name</mark>字段，这相当于证书的”用户名”，请确保每个证书的<mark>Common Name</mark>字段是唯一的。<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-7.png" title="执行初始化命令并创建CA证书" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-7.png" alt="执行初始化命令并创建CA证书" title="执行初始化命令并创建CA证书"></a></p>
+</blockquote>
+<p>到这里，我们的CA证书和密钥就已经生成成功了，生成的证书和密码默认均存放在当前目录的子文件夹<mark>keys</mark>中。</p>
+<h4 id="生成服务器端证书"><a href="#生成服务器端证书" class="headerlink" title="生成服务器端证书"></a>生成服务器端证书</h4><p>接下来，我们为服务器和客户端生成各自所需的证书和密钥(所有的证书和密钥都必须由OpenVPN服务器上的easy-rsa生成)。</p>
+<p>我们可以执行命令<code>./build-key-server server</code>来生成服务器端所需的证书和密钥。如下图所示，与创建CA证书一样，我们先输入证书的相关信息，并在最后输入两次”y”确认生成即可。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-8.png" title="生成server端证书和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-8.png" alt="生成server端证书和密钥" title="生成server端证书和密钥"></a></p>
+<h4 id="生成客户端证书"><a href="#生成客户端证书" class="headerlink" title="生成客户端证书"></a>生成客户端证书</h4><p>与创建服务器端证书类似，我们可以使用命令./build-key clientName来生成客户端证书和密钥，其中clientName为自定义的客户端名称(例如：client1、client2、jim、tom)。如果需要为多个客户端生成证书，只需要分别执行多次即可。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-9.png" title="生成客户端证书和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-9.png" alt="生成客户端证书和密钥" title="生成客户端证书和密钥"></a></p>
+<h4 id="生成迪菲·赫尔曼交换密钥"><a href="#生成迪菲·赫尔曼交换密钥" class="headerlink" title="生成迪菲·赫尔曼交换密钥"></a>生成迪菲·赫尔曼交换密钥</h4><p>此外，我们还需要为OpenVPN的服务器端创建迪菲·赫尔曼交换密钥，命令为<code>./build-dh</code>(无需额外输入，耐心等待生成完毕即可)。迪菲·赫尔曼交换密钥是一种安全协议，用以对数据进行加密。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-10.png" title="生成迪菲·赫尔曼交换密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-10.png" alt="生成迪菲·赫尔曼交换密钥" title="生成迪菲·赫尔曼交换密钥"></a></p>
+<h4 id="生成TLS-auth密钥"><a href="#生成TLS-auth密钥" class="headerlink" title="生成TLS-auth密钥"></a>生成TLS-auth密钥</h4><p>这一步骤是可选操作。OpenVPN提供了TLS-auth功能，可以用来抵御Dos、UDP端口淹没攻击。出于安全考虑，你可以启用该功能；启用该功能，你需要执行命令<code>openvpn --genkey --secret keys/ta.key</code>来生成TLS-auth所需的密钥文件。</p>
+<p>到这里，我们的证书生成就告一段落了。如果你以后想要生成新的客户端或执行其他操作，只需要先执行命令<code>. ./vars</code>，然后执行相应的命令即可，例如<code>./build-key client2</code>。</p>
+<p>最后，我们来看看我们一共生成了哪些证书和密钥。</p>
+<blockquote>
+<p>编号①：CA证书和密钥</p>
+<p>编号②：客户端client1的证书和密钥，</p>
+<p>编号③：迪菲·赫尔曼交换密钥 (如果你的KEY_SIZE=1024，则该文件名称为dh1024.pem)。</p>
+<p>编号④：服务器端证书和密钥。</p>
+<p>编号⑤：启用tls-auth所需的文件。<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-11.png" title="生成的所有证书文件和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-11.png" alt="生成的所有证书文件和密钥" title="生成的所有证书文件和密钥"></a></p>
+</blockquote>
+<h4 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h4><p>众所周知，OpenVPN虽然可以分为客户端和服务器，不过它们的安装程序是完全一样的，只是通过不同的证书和配置文件来进行区分。在这里，我们先在OpenVPN主目录下创建一个<mark>config</mark>目录，并将其所需的证书和密钥文件拷贝到该目录中。</p>
+<p>其中，服务器端需要用到的文件有：</p>
+<p><pre>ca.crt<br>ca.key<br>dh2048.pem (如果最初的变量KEY_SIZE设为1024，这里就是dh1024.pem)<br>server.crt<br>server.key<br>ta.key (如果不开启tls-auth，则无需该文件)</pre><br>客户端client1需要用到的文件有：</p>
+<p><pre>ca.crt<br>client1.crt<br>client1.key (名称client1根据个人设置可能有所不同)<br>ta.key (如果不开启tls-auth，则无需该文件)</pre><br>在这里，我们以OpenVPN服务器端为例来演示上述操作流程。</p>
+<p><pre>#创建config目录<br>mkdir /usr/local/openvpn-2.3.4/config</pre></p>
+<p>#复制证书和密钥文件到config目录<br>cp keys/ca.crt keys/ca.key keys/server.crt keys/server.key keys/dh2048.pem keys/ta.key /usr/local/openvpn-2.3.4/config<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-12.png" title="拷贝证书和密钥文件" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-12.png" alt="拷贝证书和密钥文件" title="拷贝证书和密钥文件"></a></p>
+<p>此外，我们还需要为服务器和每个客户端的<mark>config</mark>目录分别编写一个配置文件，服务器端的配置文件为<mark>server.conf</mark>，客户端的配置文件为<mark>client.conf</mark>。</p>
+<p>这两个配置文件该如何编写呢？OpenVPN已经在<mark>sample/sample-config-files</mark>子目录中为我们提供了相关的示例文件<mark>server.conf</mark>和<mark>client.conf</mark>，并且配置文件中的每个配置选项均有详细的英文说明(配置文件中”#”或”;”开头的均为注释内容)。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-13.png" title="OpenVPN提供的示例配置文件" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-13.png" alt="OpenVPN提供的示例配置文件" title="OpenVPN提供的示例配置文件"></a></p>
+<p>现在，我们先将<mark>server.conf</mark>文件拷贝到<mark>config</mark>目录中，然后再对其进行修改。</p>
+<p><pre>#转到simple-config-files目录<br>cd /usr/local/openvpn-2.3.4/sample/sample-config-files</pre></p>
+<p>#复制server.conf到config目录中<br>cp server.conf /usr/local/openvpn-2.3.4/config<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-14.png" title="复制到config目录中" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-14.png" alt="复制到config目录中" title="复制到config目录中"></a></p>
+<p>在这里，我们先给出<mark>server.conf</mark>的详细配置，并注明每项配置的作用。</p>
+<p><pre>local 192.168.1.106     #指定监听的本机IP(因为有些计算机具备多个IP地址)，该命令是可选的，默认监听所有IP地址。<br>port 1194             #指定监听的本机端口号<br>proto udp             #指定采用的传输协议，可以选择tcp或udp<br>dev tun               #指定创建的通信隧道类型，可选tun或tap<br>ca ca.crt             #指定CA证书的文件路径<br>cert server.crt       #指定服务器端的证书文件路径<br>key server.key    #指定服务器端的私钥文件路径<br>dh dh2048.pem         #指定迪菲赫尔曼参数的文件路径<br>server 10.0.0.0 255.255.255.0   #指定虚拟局域网占用的IP地址段和子网掩码，此处配置的服务器自身占用10.0.0.1。<br>ifconfig-pool-persist ipp.txt   #服务器自动给客户端分配IP后，客户端下次连接时，仍然采用上次的IP地址(第一次分配的IP保存在ipp.txt中，下一次分配其中保存的IP)。<br>tls-auth ta.key 0     #开启TLS-auth，使用ta.key防御攻击。服务器端的第二个参数值为0，客户端的为1。<br>keepalive 10 120      #每10秒ping一次，连接超时时间设为120秒。<br>comp-lzo              #开启VPN连接压缩，如果服务器端开启，客户端也必须开启<br>client-to-client      #允许客户端与客户端相连接，默认情况下客户端只能与服务器相连接<br>persist-key<br>persist-tun           #持久化选项可以尽量避免访问在重启时由于用户权限降低而无法访问的某些资源。<br>status openvpn-status.log    #指定记录OpenVPN状态的日志文件路径<br>verb 3                #指定日志文件的记录详细级别，可选0-9，等级越高日志内容越详细</pre><br>接着是客户端配置文件<mark>client.conf</mark>。</p>
+<p><pre>client         #指定当前VPN是客户端<br>dev tun        #必须与服务器端的保持一致<br>proto udp      #必须与服务器端的保持一致<br>remote 192.168.1.106 1194      #指定连接的远程服务器的实际IP地址和端口号<br>resolv-retry infinite    #断线自动重新连接，在网络不稳定的情况下(例如：笔记本电脑无线网络)非常有用。<br>nobind         #不绑定特定的本地端口号<br>persist-key<br>persist-tun<br>ca ca.crt      #指定CA证书的文件路径<br>cert client1.crt       #指定当前客户端的证书文件路径<br>key client1.key    #指定当前客户端的私钥文件路径<br>ns-cert-type server      #指定采用服务器校验方式<br>tls-auth ta.key 1     #如果服务器设置了防御DoS等攻击的ta.key，则必须每个客户端开启；如果未设置，则注释掉这一行；<br>comp-lzo              #与服务器保持一致<br>verb 3                #指定日志文件的记录详细级别，可选0-9，等级越高日志内容越详细</pre></p>
+<blockquote>
+<p>实际上，将两个模板文件中与IP地址有关的配置修改一下，就可以直接拿来使用。</p>
+<p>关于OpenVPN配置文件的更多信息请参考<a href="http://www.softown.cn/post/137.html" target="_blank" rel="external">server.conf配置详解</a>和<a href="http://www.softown.cn/post/138.html" target="_blank" rel="external">client.conf配置详解</a>。</p>
+</blockquote>
+<h4 id="启动OpenVPN"><a href="#启动OpenVPN" class="headerlink" title="启动OpenVPN"></a>启动OpenVPN</h4><p>当我们把服务器和客户端所需的证书、密钥和配置文件都分配完毕之后，我们就可以尝试启动OpenVPN来检查我们的工作成果了。</p>
+<p>在Linux中，我们可以直接执行以下命令来启动OpenVPN：</p>
+<p><pre>openvpn 配置文件路径</pre><br>如果你是服务器端，就指定<mark>server.conf</mark>文件的路径，如果你是客户端就指定<mark>client.conf</mark>文件的路径。</p>
+<p>请注意：</p>
+<ol>
+<li>配置文件中的文件路径涉及到相对路径的，均以启动OpenVPN时的所在目录为准。由于我们在配置文件中设置的文件路径都是相对<mark>config</mark>目录的路径，因此我们也只能在<mark>config</mark>目录下才能正常启动OpenVPN。如果你想在任何地方都能使用上述命令启动OpenVPN，建议你将配置文件与文件路径相关的部分全部改为绝对路径。</li>
+<li>OpenVPN服务器所在计算机必须允许OpenVPN通过防火墙，你可以禁用掉防火墙，或者将OpenVPN设为可信程序，或者开放1194端口。</li>
+<li>启动服务器和客户端都需要一定的权限，建议用<mark>root</mark>账户或<code>sudo</code>命令进行启动。<br>以下就是OpenVPN服务器的启动效果：</li>
+</ol>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-15.png" title="启动OpenVPN服务器成功" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-15.png" alt="启动OpenVPN服务器成功" title="启动OpenVPN服务器成功"></a></p>
+<p>客户端的启动效果如下：</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-16.png" title="启动OpenVPN客户端成功" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-16.png" alt="启动OpenVPN客户端成功" title="启动OpenVPN客户端成功"></a></p>
+<p>我们在客户端尝试<code>ping</code>服务器的虚拟IP地址10.0.0.1，顺利<code>ping</code>通。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-17.png" title="OpenVPN客户端ping服务器IP地址" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-17.png" alt="OpenVPN客户端ping服务器IP地址" title="OpenVPN客户端ping服务器IP地址"></a></p>
+<p>作者：<a href="http://www.softown.cn/post/140.html" target="_blank" rel="external">软件指南针</a>(<a href="http://www.softown.cn)，转载请保留出处！" target="_blank" rel="external">http://www.softown.cn)，转载请保留出处！</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/" data-id="cj4r5cqa0001nc3wy3p6qctrv" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-linux-c-a6-e4-b8-b2" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/linux-c-a6-e4-b8-b2/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:25:15.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/17/linux-c-a6-e4-b8-b2/">linux 查找目录下的所有文件中是否含有某个字符串</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>查找目录下的所有文件中是否含有某个字符串<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri <span class="string">"IBM"</span></div></pre></td></tr></table></figure></p>
+<p>查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri <span class="string">"IBM"</span> <span class="_">-l</span></div></pre></td></tr></table></figure></p>
+<p>1.正则表达式<br>（1）正则表达式一般用来描述文本模式的特殊用法，由普通字符（例如字符a-z）以及特殊字符（称为元字符，如/、<em>、?等）组成。<br>（2）基本元字符集及其含义<br><code>^</code> ：只匹配行首。   如^a 匹配以a开头的行abc,a2e,a12,aaa,……<br><code>$</code> ：只匹配行尾。   如^a 匹配以a结尾的行bca,12a,aaa,…….<br>`</em><code>：匹配0个或多个此单字符。 如(a)* 匹配 空，a,aa,aaa,....</code>[]<code>：只匹配[]内字符。可以是一个单字符，也可以是字符序列，用&quot;,&quot;将里面要匹配的不同字符串分开。也可以使用-来表示[]内字符序列的范围，如[1-5]表示[12345]</code>` ：只用来屏蔽一个元字符的特殊含义。 如<code>\*,\&#39;,\&quot;,\|,\+,\^,\</code>. 等<br><code>.</code>：（点）只匹配任意单字符。<br><code>pattern\{n\}</code>：只用来匹配前面pattern出现的次数.n为次数。如a{2}匹配aa.<br><code>pattern\{n,\}</code>：含义同上，但次数最少为n.如a{2,}匹配aa,aaa,aaaa,…..<br><code>pattern\{n,m\}</code>：含义同上，但次数在n和m之间。如a{2,4}匹配aa,aaa,aaaa三个<br>(3)举例说明：<br><code>^$</code> ：匹配空行<br><code>^.$</code> ：匹配包含一个字符的行<br><code>\*\.pas</code> ：匹配以*.pas结尾的所有字符或文件<br><code>[0123456789]或[0-9]</code> ：假定要匹配任意一个数字<br><code>[a-z]</code> ：任意小写字母<br><code>[A-Za-z]</code> ：任意大小写字母<br><code>[S,s]</code> ：匹配大小写S<br><code>[0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}</code> ：匹配IP地址 [0-9]{3}三个0-9组成的字符串；.<br><code>：</code>匹配点（注意这里点是特殊的字符，所以要用”\”来屏蔽其含义）<br>2.find介绍   （1）查找具有某些特征文件的命令，可遍历当前目录甚至于整个文件系统来查看某些文件或目录，其遍历大的文件系统时一般放在后台执行。<br>（2）find命令的一般形式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">find pathname -options [-print -exec -ok]</div><div class="line">	-pathname :find命令所查找的目录路径。如用<span class="string">"."</span>来表示当前的目录，用/来表示系统根目录</div><div class="line">	-print :find命令将匹配的文件输出到标准输出</div><div class="line">	-exec: find命令对匹配的文件执行该参数所给出的shell命令，相应的命令形式为</div><div class="line">	<span class="string">'command'</span>&#123;&#125; \; (注意&#123;&#125;和\之间的空格)</div><div class="line">	-ok 和 -exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</div><div class="line">	options有如下几种：</div><div class="line">	-name ：按照文件名查找文件</div><div class="line">	-perm ：按照文件权限来查找文件</div><div class="line">	-user ：按照文件属主来查找文件</div><div class="line">	-group ：按照文件所属的组来查找文件</div><div class="line">	-mtime -n +n 按照文件的更改时间来查找文件，-n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前。find命令还有-atime 和-ctime选项，但它们都和-mtime选项相似。</div><div class="line">	-size n[c]查找文件长度为n块的文件，带有c时表示文件长度以字节计。</div><div class="line">	-nogroup 查找无有效所属组的文件，即该文件所属的组在/etc/groups中不存在</div><div class="line">	-newer file1 !file2查找更改时间比文件file1新但比文件file2旧的文件</div><div class="line">	-depth 先查找指定目录有无匹配文件，若无则再在子目录中查找</div><div class="line">	-type 查找某一类型的文件，如</div><div class="line">	b :块设备文件</div><div class="line">	d：目录</div><div class="line">	e：字符设备文件</div><div class="line">	p；管道文件</div><div class="line">	l：符号链接文件</div><div class="line">	f：普通文件</div></pre></td></tr></table></figure></p>
+<p>（3）find命令举例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">find -name <span class="string">"*.txt"</span> -print 查找txt结尾的文件并输出到屏幕上</div><div class="line">find /cmd <span class="string">".sh"</span> -print 查找/cmd目录下所有sh文件，并输出</div><div class="line">find . -perm 755 -print 查找当前目录下权限为755的文件，并输出</div><div class="line">find `<span class="built_in">pwd</span>` -user root -print 查找当前目录下属主为root的文件，并输出</div><div class="line">find ./ -group sunwill -print 查找当前目录下所属主是sunwill的文件</div><div class="line">find /var -mtime -5 -print 查找/var目录下更改时间为5天内的所有文件</div><div class="line">find /var -mtime +5 -print 查找/var目录下更改时间为5天以前的所有文件</div><div class="line">find /var -newer <span class="string">"myfile1"</span> ! -newer <span class="string">"myfile2"</span> -print 查找/var目录下比myfile1新，但是比myfile2旧的所有文件。</div><div class="line">find /var -type d -print 查找/var目录下所有目录</div><div class="line">find /var -type l -print 查找/var目录下所有的符号链接文件。</div><div class="line">find . -size +1000000c -print 查找当前目录下大于1000000字节的文件</div><div class="line">find / -name <span class="string">"con.file"</span> -depth -print 查找根目录下有无<span class="string">"con.file"</span>,若无则在其子目录中查找</div><div class="line">find . -type f -exec ls <span class="_">-l</span> &#123;&#125; \; 查找当前目录下是否有普通文件，若有则执行ls <span class="_">-l</span></div></pre></td></tr></table></figure></p>
+<p>（4）xargs命令<br>在 使用find命令的-exec选项处理匹配到的文件时，find命令将所有匹配到的文件一起传递给exec。不幸的是，有些系统对能够传递给exec的命 令长度有限制，这样find命令运行几分钟之后就算出现溢出错误。错误信息通常是“参数列太长”或“参数列溢出”。这就是xargs的用处所在，特别是与 find命令一起使用,exec会发起多个进程，而xargs会多个，只有一个<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find ./ -perm -7 -print | xargs chmod o-w</div></pre></td></tr></table></figure></p>
+<p>查找权限为7的文件并传递给chmod处理<br>3.grep介绍<br>(1)grep 的一般格式为 <code>grep [options]</code> 基本正则表达式 [文件]<br>字符串参数最好采用是双引号括，一是以防被误解为shell命令，二是可以用来查找多个单词组成的字符串<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-c：只输出匹配行的记数</div><div class="line">-i：不区分大小写（只适用于单个字符）</div><div class="line">-h：查询多个文件时不显示文件名</div><div class="line">-H：只显示文件名</div><div class="line"><span class="_">-l</span>：查询多文件时只输出包含匹配字符的文件名</div><div class="line">-n：只显示匹配行及其行号</div><div class="line"><span class="_">-s</span>：不显示不存在或无匹配文本的错误信息。</div><div class="line">-v：显示不包含匹配文本的所有行。</div></pre></td></tr></table></figure></p>
+<p>（2）举例说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">grep ^[^210] myfile 匹配myfile中以非2、1、0开头的行</div><div class="line">grep <span class="string">"[5-8][6-9][0-3]"</span> myfile 匹配myfile中第一位为5|6|7|8，第二位6|7|8|9，第三位为0|1|2|3的三个字符的行</div><div class="line">grep <span class="string">"4\&#123;2,4\&#125;"</span> myfile 匹配myfile中含有44,444或4444的行</div><div class="line">grep <span class="string">"\?"</span> myfile匹配myfile中含有任意字符的行</div></pre></td></tr></table></figure></p>
+<p>（3）grep命令类名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[[:upper:]]   表示[A-Z]</div><div class="line">[[:alnum:]]   表示[0-9a-zA-Z]</div><div class="line">[[:lower:]]   表示[a-z]</div><div class="line">[[:space:]]   表示空格或者tab键</div><div class="line">[[:digit:]]   表示[0-9]</div><div class="line">[[:alpha:]]   表示[a-zA-Z]</div></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"5[[:digit:]][[:digit:]]"</span> myfile</div></pre></td></tr></table></figure></p>
+<p>匹配myfile中含有5开头接下去两位都是数字的行。<br>4.awk介绍<br>可以从文件或字符串中基于指定规则浏览和抽取信息，是一种自解释的变成语言。<br>（1）awk命令行方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk [-F filed-spearator] <span class="string">'command'</span> input-files</div></pre></td></tr></table></figure></p>
+<p>awk脚本：所有awk命令插入一个文件，并使awk程序可执行，然后用awk命令解释器作为脚本的首行，以便通过键入脚本名称来调用它。awk脚本是由各种操作和模式组成。<br>模式部分决定动作语句何时触发及触发事件。（BEGIN,END）<br>动作对数据进行处理，放在{}内指明（print）<br>（2）分隔符、域和记录<br>awk执行时，其浏览域标记为$1,$2,…$n.这种方法成为域标识。$0为所有域。<br>（3）举例说明:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;print $0&#125;'</span> test.txt |tee test.out 输出test.txt中所有行<span class="variable">$0</span>表示所有域</div><div class="line">awk -F : <span class="string">'&#123;print $1&#125; test.txt |tee test.out'</span>   同上。。只是分隔符为<span class="string">":"</span></div><div class="line">awk <span class="string">'BEGIN &#123;print "IPDate\n"&#125;&#123;print $1 "\t" $4&#125; END&#123;print "end-of-report"&#125;'</span> test.txt</div></pre></td></tr></table></figure></p>
+<p>开始时打印“IPDate”结束时打印“end-of-report”中间打印主体信息，比如总共匹配三条信息，则输出如下：<br>IPDate<br>1 first<br>2 second<br>3 third<br>end-of-report<br>（4）匹配操作符 ~ 匹配,!~ 不匹配<br>cat test.txt |awk ‘$0~/210.34.0.13/‘ 匹配test.txt中为210.34.0.13的行<br>awk ‘$0!~/210.34.0.13’ test.txt     匹配test.txt中不是210.34.0.13的行<br>awk ‘{if($1==”210.34.0.13”) print $0}’ test.txt 匹配 test.txt中第一个域为210.34.0.13的行。<br>5.sed介绍     sed不与初始化文件打交道，它操作的只是一个拷贝，然后所有的改动如果没有重定向到一个文件，将输出到屏幕。<br>sed是一种很重要的文本过滤工具，使用一行命令或者使用管道与grep与awk相结合。是一种非交互性文本流编辑。<br>（1）调用sed的三种方式<br>使用sed命令行格式为：sed [options] sed命令 输入文件<br>使用sed脚本文件格式为：sed[options] -f sed脚本文件 输入文件<br>sed脚本文件[options] 输入文件<br>–不管是使用shell命令行方式或脚本文件方式，如果没有指定输入文件，sed从标准输入中接受输入，一般是键盘或重定向结果。<br>（2）sed 命令的options如下<br>-n：不打印<br>-c：下一命令是编辑命令<br>-f：如果正在调用sed脚本文件<br>（3）sed在文件中查询文本的方式<br>–使用行号，可以是一个简单的数字，或是一个行号的范围<br>–使用正则表达式<br>（4）读取文本的方式<br>x       x为一行号<br>x,y       表示行号范围从x到y<br>/pattern/     查询包含模式的行<br>/pattern/pattern/ 查询包含两个模式的行<br>pattern/,x   在给定的行号上查询包含模式的行<br>x,/pattern/   通过行号和模式查询匹配行<br>x,y!       查询不包含指定行号x和y的行<br>（5）基本sed编辑命令<br>p   打印匹配行<br>d   删除匹配行<br>=   显示文件行号<br>a\   在定位行号后附加新文本信息<br>i\   在定位行号后插入新文本信息<br>c\   用新文本替换定位文本<br>s     使用替换模式替换相应模式<br>r     从另一个文件中读文件<br>w   写文本到一个文件<br>q     第一个模式匹配完成后推出或立即退出<br>l     显示与八禁止ASCII代码等价的控制字符<br>{}   在定位行执行的命令组<br>n     从另一个文件中读文本下一行，并附加在下一行<br>g     将模式2粘贴到/pattern n/<br>y     传送字符<br>（6）举例说明：<br>sed -n ‘2p’ test.txt 打印第二行的信息(注意：-n是不打印不匹配的信息，若没加-n，则打印文件的所有信息而不是匹配信息)<br>sed -n ‘1,4p’ test.txt 打印第一行到第四行的信息<br>sed -n ‘/los/p’ test.txt模式匹配los，并打印出来<br>sed -n ‘2,/los/p’ test.txt 从第二行开始。。知道匹配第一个los<br>sed -n ‘/^$/p’ test.txt 匹配空行<br>sed -n -e ‘/^$/p’ -e ‘/^$/=’ test.txt 打印空行及行号<br>sed -n ‘/good/a\morning’ test.txt 在匹配到的good后面附加morning<br>sed -n ‘/good/i\morning’ test.txt 在匹配到的good前面插入morning<br>sed -n ‘/good/c\morning’ test.txt 将匹配到的good替换成morning<br>sed ‘1,2d’ test.txt 删除第1和2行<br>sed ‘s/good/good morning/g’ test.txt 匹配good并替换成goodmorning<br>send ‘s/good/&amp; hello /p’ test.txt 匹配到good就在其后面加上hello<br>send ‘s/good/ hello &amp;/p’ test.txt 匹配到good就在其前面加上hello<br>6.合并与分割（sort,uniq,join,cut,paste,split）     (1)sot命令<br>sort [options] files 许多不同的域按不同的列顺序排序<br>-c 测试文件是否已经排序<br>-m 合并两个排序文件<br>-u 删除所有同样行<br>-o 存储sort结果的输出文件名<br>-t 域分隔符，用非空格或tab开始排序<br>+n ：n 为列号，使用此列号开始排序<br>-n 指定排序是域上的数字分类项<br>-r 比较求逆<br>sort -c test.txt 测试文件是否分类过<br>sort -u test.txt 排序并合并一样的行<br>sort -r test.txt 以相反的顺序排列<br>sort -t “/“ +2 test.txt 以”/“分隔，第二个域开始分类<br>（2）uniq命令<br>uniq [options ] files 从一个文本文件中去除或禁止重复行<br>-u 只显示不重复行<br>-d 只显示有重复数据行，每种重复行只显示其中一行<br>-c 打印每一重复行出现次数<br>-f ：n为数字，前n个域被忽略<br>uniq -f 2 test.txt 忽略前2个域<br>（3）join 命令<br>join [options] file1 file2 用来将来自两个分类文本文件的行连在一起<br>-an，n为一数字，用于连接时从文件n中显示不匹配行<br>-onm ，连接域，n为文件号，m为域号<br>-jnm，n为文件号，m为域号，使用其他域作连接域<br>-t ，域分隔符。用来设置非空格或tab键的域分隔符。<br>（4）split命令<br>split -output_file_size intput_filename output_filename<br>用来将大文件分割成小文件。<br>-b n，每个分割文件的大小n<br>-C n，每个分割文件一行最多n字节<br>-l n，每个分割文件的行数<br>-n，同-l n<br>split -10 test.txt 将test.txt分割成10行的小文件<br>（5）cut 命令<br>cut -c n1-n2 filename 显示每行从开头算起 n1 到 n2 的文字。<br>cut -c 3-5 test.txt 显示test.txt中每行从第3到第5个字符</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/linux-c-a6-e4-b8-b2/" data-id="cj4se0w9x0002dyfy8gmwi3i3" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:23:36.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/">VI命令使用(查找替换) </a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>esc:   命令模式与插入模式的切换</strong></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;"><strong><span style="color: #3366ff;">一、vi查找:  </span></strong>  当你用vi打开一个文件后，因为文件太长，如何才能找到你所要查找的关键字呢？在vi里可没有菜单-〉查找，</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              不过没关系,</span><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">你在命令模式下敲斜杆(/)这时在状态栏（也就是屏幕左下脚）就出现了 “/”然后输入你要查找的关键字</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              敲回车就可以了。如果你要继续查找此关键字，敲字符n就可以继续查找了。值得注意的是“/”是向下查找，而“?”</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              是向上查找，而在键盘定义上“?”刚好是“/”的上档符.</span></p>
+<p><strong><span style="color: #3366ff;">二、VI替换：</span></strong>vi/vim 中可以使用 ：s 命令来替换字符串§以前只会使用一种格式来全文替换，今天发现该命令有很多种写法（vi 真是强大啊飕还有很多需要学习），记录几种在此，方便以后查询§</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/vivian/sky/ 替换当前行第一个 vivian 为 sky<br>：s/vivian/sky/g 替换当前行所有 vivian 为 sky<br>：n，$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky<br>：n，$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky<br>n 为数字，若 n 为 .，表示从当前行开始到最后一行<br>：%s/vivian/sky/（等同于 ：g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky<br>：%s/vivian/sky/g（等同于 ：g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</td><br><br><br><br>可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s#vivian/#sky/# 替换当前行第一个 vivian/ 为 sky/<br>：%s+/oradata/apras/+/user01/apras1+ （使用+ 来 替换 / ）： /oradata/apras/替换成/user01/apras1/</td><br><br><br><br>&nbsp;<br><strong>               1.：s/vivian/sky/ 替换当前行第一个 vivian 为 sky</strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/vivian/sky/g 替换当前行所有 vivian 为 sky</td><br><br><br><br>&nbsp;</p>
+<p><strong>               2. ：n，$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：n，$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky<br>（n 为数字，若 n 为 .，表示从当前行开始到最后一行）</td><br><br><br><br>&nbsp;</p>
+<p><strong>               3. ：%s/vivian/sky/（等同于 ：g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：%s/vivian/sky/g（等同于 ：g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</td><br><br><br><br>&nbsp;</p>
+<p><strong>               4. 可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符 </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s#vivian/#sky/# 替换当前行第一个 vivian/ 为 sky/</td><br><br><br><br>&nbsp;</p>
+<p><strong>               5. 删除文本中的^M </strong><br>问题描述：对于换行，window下用回车换行（0A0D）来表示，linux下是回车（0A）来表示§这样，</p>
+<p>将window上的文件拷到unix上用时，总会有个^M.请写个用在unix下的过滤windows文件的换行符（0D）</p>
+<p>的shell或c程序§</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>§ 使用命令：cat filename1 | tr -d “^V^M” &gt; newfile；<br>§ 使用命令：sed -e “s/^V^M//” filename &gt; outputfilename.需要注意的是在1、2两种方法中，^V和^M指的是Ctrl+V和Ctrl+M.你必须要手工进行输入，而不是粘贴§<br>§ 在vi中处理：首先使用vi打开文件，然后按ESC键，接着输入命令：%s/^V^M//.<br>§ ：%s/^M$//g</td><br><br><br><br>如果上述方法无用，则正确的解决办法是：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>§ tr -d \”\r\” &lt; src &gt;dest<br>§ tr -d \”\015\” dest<br>§ strings A&gt;B</td><br><br><br><br><strong>              6. 其它</strong><br>利用 ：s 命令可以实现字符串的替换§具体的用法包括：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/str1/str2/ 用字符串 str2 替换行中首次出现的字符串 str1<br>：s/str1/str2/g 用字符串 str2 替换行中所有出现的字符串 str1<br>：§，$ s/str1/str2/g 用字符串 str2 替换正文当前行到末尾所有出现的字符串 str1<br>：1，$ s/str1/str2/g 用字符串 str2 替换正文中所有出现的字符串 str1<br>：g/str1/s//str2/g 功能同上</td><br><br><br><br>&nbsp;</p>
+<p>从上述替换命令可以看到：g 放在命令末尾，表示对搜索字符串的每次出现进行替换；不加 g，</p>
+<p>表示只对搜索字符串的首次出现进行替换；g 放在命令开头，表示对正文中所有包含搜索字符</p>
+<p>串的行进行替换操作§</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/" data-id="cj4r5cqam002fc3wy7kg0nxlo" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

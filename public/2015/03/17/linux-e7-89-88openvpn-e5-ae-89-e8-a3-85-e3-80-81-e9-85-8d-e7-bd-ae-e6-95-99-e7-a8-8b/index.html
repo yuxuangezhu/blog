@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux版OpenVPN安装、配置教程 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文将以目前最新的openvpn-2.3.4.tar.gz(更新于2014-5-2，下载地址)为例来介绍如何在Linux系统中安装、配置及使用OpenVPN。 在这里，我们选用了一台预装CentOS 6.5 64位系统的计算机作为OpenVPN服务器，一台预装Ubuntu 14.04 64位系统的计算机作为OpenVPN客户端，来演示Linux版OpenVPN的安装配置操作过程。实际上，OpenV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux版OpenVPN安装、配置教程">
+<meta property="og:url" content="https://itbugs.cn/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="本文将以目前最新的openvpn-2.3.4.tar.gz(更新于2014-5-2，下载地址)为例来介绍如何在Linux系统中安装、配置及使用OpenVPN。 在这里，我们选用了一台预装CentOS 6.5 64位系统的计算机作为OpenVPN服务器，一台预装Ubuntu 14.04 64位系统的计算机作为OpenVPN客户端，来演示Linux版OpenVPN的安装配置操作过程。实际上，OpenV">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-4.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-5.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-6.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-7.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-8.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-9.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-10.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-11.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-12.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-13.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-14.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-15.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-16.png">
+<meta property="og:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-17.png">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux版OpenVPN安装、配置教程">
+<meta name="twitter:description" content="本文将以目前最新的openvpn-2.3.4.tar.gz(更新于2014-5-2，下载地址)为例来介绍如何在Linux系统中安装、配置及使用OpenVPN。 在这里，我们选用了一台预装CentOS 6.5 64位系统的计算机作为OpenVPN服务器，一台预装Ubuntu 14.04 64位系统的计算机作为OpenVPN客户端，来演示Linux版OpenVPN的安装配置操作过程。实际上，OpenV">
+<meta name="twitter:image" content="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:29:44.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux版OpenVPN安装、配置教程
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文将以目前最新的<mark>openvpn-2.3.4.tar.gz</mark>(更新于2014-5-2，<a href="http://www.softown.cn/soft/openvpn/linux" target="_blank" rel="external">下载地址</a>)为例来介绍如何在Linux系统中安装、配置及使用OpenVPN。</p>
+<p>在这里，我们选用了一台预装<mark>CentOS 6.5 64位</mark>系统的计算机作为OpenVPN服务器，一台预装<mark>Ubuntu 14.04 64位</mark>系统的计算机作为OpenVPN客户端，来演示Linux版OpenVPN的安装配置操作过程。实际上，OpenVPN并不区分Linux发行版本，几乎所有的配置都是一样的，因此Red Hat、Fedora、SUSE等Linux发行版均可参考本文。</p>
+<h3 id="安装OpenVPN的前提条件"><a href="#安装OpenVPN的前提条件" class="headerlink" title="安装OpenVPN的前提条件"></a>安装OpenVPN的前提条件</h3><p>在安装OpenVPN之前你必须确保你已经安装了C编译器(例如gcc)、OpenSSL、LZO(一种无损压缩算法)、PAM(一种可插入式的身份验证模块)。如果你安装了yum，可以使用如下命令来安装这些工具(选择性地安装之前没有安装的软件包即可)：</p>
+<pre>#安装gcc、openssl、lzo、pam
+yum install -y gcc openssl-devel lzo-devel pam-devel</pre>
+> Ubuntu、Debian等系统使用apt-get进行安装，安装命令请[参考这里](http://www.softown.cn/post/142.html)。
+
+### 安装Linux版OpenVPN
+
+首先，我们需要先下载OpenVPN安装程序，上面已经给出了Linux版OpenVPN的下载地址，在这里我们就不多说了。
+
+在这里，我们将下载的安装文件移动到<mark>/usr/local/</mark>文件夹中(你也可以自行移动到其他目录)。
+
+[![OpenVPN安装文件](http://img.softown.cn/attach/image/201405/linux-install-openvpn-1.png "OpenVPN安装文件")](http://img.softown.cn/attach/image/201405/linux-install-openvpn-1.png "OpenVPN安装文件")
+
+接着，我们使用`tar`命令，将该压缩文件解压到当前目录，完整命令为：`tar zxf openvpn-2.3.4.tar.gz`。
+
+[![解压后的OpenVPN目录](http://img.softown.cn/attach/image/201405/linux-install-openvpn-2.png "解压后的OpenVPN目录")](http://img.softown.cn/attach/image/201405/linux-install-openvpn-2.png "解压后的OpenVPN目录")
+
+接着，我们依次执行如下命令：
+<pre>#跳转到解压后的openvpn目录
+cd openvpn-2.3.4
+#调用configure
+./configure
+#编译
+make
+#安装
+make install</pre>
+
+<h3 id="OpenVPN配置"><a href="#OpenVPN配置" class="headerlink" title="OpenVPN配置"></a>OpenVPN配置</h3><p>安装OpenVPN完毕后，接下来就应该配置OpenVPN，以便于其能正常工作。配置OpenVPN主要有两个步骤：一是生成服务器和客户端所需的各种证书，二是编写服务器和客户端所需的配置文件。</p>
+<h4 id="下载easy-rsa"><a href="#下载easy-rsa" class="headerlink" title="下载easy-rsa"></a>下载easy-rsa</h4><p>想要生成各种证书和密钥，我们还要用到easy-rsa(只有服务器端需要easy-rsa，客户端无需安装)。坑爹的是，OpenVPN 2.3.x并没有自带这个东西，我们还需要去<a href="https://github.com/OpenVPN/easy-rsa" target="_blank" rel="external">GitHub下载easy-rsa</a>。更坑爹的是，GitHub上的easy-rsa已经升级到了3.0版本，该版本几乎重写了之前所有的程序代码，连使用方法都全变了，然而OpenVPN的官方文档并没有作相应更新，其中介绍的仍然是easy-rsa 2.0的操作方法。为了避免不必要的麻烦，我们推荐下载2.0版本的easy-rsa，你也可以直接<a href="http://pan.baidu.com/s/1o66Yaz4" target="_blank" rel="external">点击这里</a>下载。</p>
+<p>在这里我们将下载的<mark>easy-rsa-release-2.x.zip</mark>文件放在/root目录中。我们依次执行如下命令：</p>
+<p><pre>#转到easy-rsa安装文件所在目录<br>cd /root/</pre></p>
+<p>#解压该安装文件<br>unzip -q easy-rsa-release-2.x.zip<br>执行结果如下图所示(其中的ls命令用于查看文件列表)：</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png" title="解压easy-rsa" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-3.png" alt="解压easy-rsa" title="解压easy-rsa"></a></p>
+<p>接着，我们将上图中所标注的<mark>easy-rsa-release-2.x/easy-rsa</mark>文件夹复制到OpenVPN的解压目录中，命令如下：</p>
+<p><pre>#复制解压后的easy-rsa目录到OpenVPN解压目录下<br>cp -r easy-rsa-release-2.x/easy-rsa /usr/local/openvpn-2.3.4</pre><br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-4.png" title="复制easy-rsa" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-4.png" alt="复制easy-rsa" title="复制easy-rsa"></a></p>
+<p>然后，我们执行命令<code>cd /usr/local/openvpn-2.3.4/easy-rsa/2.0</code>从而进入OpenVPN下的<mark>easy-rsa/2.0</mark>目录。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-5.png" title="easy-rsa的2.0目录文件列表" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-5.png" alt="easy-rsa的2.0目录文件列表" title="easy-rsa的2.0目录文件列表"></a></p>
+<blockquote>
+<p>上面说了这么多，实际上就只是下载了easy-rsa 2.0，并将解压后的<mark>easy-rsa</mark>子目录复制到了OpenVPN的主目录下。这里的文件夹<mark>2.0</mark>就是我们以后生成各种证书和密钥的根据地了。</p>
+</blockquote>
+<h4 id="使用easy-rsa生成CA证书"><a href="#使用easy-rsa生成CA证书" class="headerlink" title="使用easy-rsa生成CA证书"></a>使用easy-rsa生成CA证书</h4><p>在生成证书之前，我们建议你对<mark>2.0</mark>目录中的<mark>vars</mark>文件稍作修改。<mark>vars</mark>文件存储的是一些用户变量设置信息，每次生成证书都会使用到其中的某些变量。如下图所示，我们着重建议你关注红色矩形框内的变量，并选择性地对其进行修改(你可以不修改这些参数，但不要把这些参数留空)。</p>
+<blockquote>
+<p>KEY_SIZE：表示密钥的长度，一般为1024或2048(长度越长，性能耗费越多)。</p>
+<p>#下面是一些用户相关信息配置</p>
+<p>KEY_COUNTRY：所在国家</p>
+<p>KEY_PROVINCE：所在省</p>
+<p>KEY_CITY：所在城市</p>
+<p>KEY_ORG：所在组织</p>
+<p>KEY_EMAIL：邮箱地址</p>
+<p>KEY_OU：机构单位或部门名称<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-6.png" title="vars文件部分内容" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-6.png" alt="vars文件部分内容" title="vars文件部分内容"></a></p>
+</blockquote>
+<p>下面，我们就开始来生成证书了。保持当前目录为<mark>OpenVPN根目录/easy-rsa/2.0</mark>。然后依次执行下列命令：</p>
+<p><pre>#初始化命令，用于设置后续命令所需的相关变量信息<br>. ./vars</pre></p>
+<p>#清除之前创建的所有证书和密钥<br>./clean-all</p>
+<p>#生成CA证书和密钥<br>./build-ca</p>
+<blockquote>
+<p>注意：证书的用户信息可以根据需要自行输入。如果不输入、直接回车，则表示该字段使用”[]”中的默认值(也就是前面vars文件中设置的参数值)；如果输入”.”，则表示该字段留空。在这里需要注意<mark>Common Name</mark>字段，这相当于证书的”用户名”，请确保每个证书的<mark>Common Name</mark>字段是唯一的。<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-7.png" title="执行初始化命令并创建CA证书" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-7.png" alt="执行初始化命令并创建CA证书" title="执行初始化命令并创建CA证书"></a></p>
+</blockquote>
+<p>到这里，我们的CA证书和密钥就已经生成成功了，生成的证书和密码默认均存放在当前目录的子文件夹<mark>keys</mark>中。</p>
+<h4 id="生成服务器端证书"><a href="#生成服务器端证书" class="headerlink" title="生成服务器端证书"></a>生成服务器端证书</h4><p>接下来，我们为服务器和客户端生成各自所需的证书和密钥(所有的证书和密钥都必须由OpenVPN服务器上的easy-rsa生成)。</p>
+<p>我们可以执行命令<code>./build-key-server server</code>来生成服务器端所需的证书和密钥。如下图所示，与创建CA证书一样，我们先输入证书的相关信息，并在最后输入两次”y”确认生成即可。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-8.png" title="生成server端证书和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-8.png" alt="生成server端证书和密钥" title="生成server端证书和密钥"></a></p>
+<h4 id="生成客户端证书"><a href="#生成客户端证书" class="headerlink" title="生成客户端证书"></a>生成客户端证书</h4><p>与创建服务器端证书类似，我们可以使用命令./build-key clientName来生成客户端证书和密钥，其中clientName为自定义的客户端名称(例如：client1、client2、jim、tom)。如果需要为多个客户端生成证书，只需要分别执行多次即可。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-9.png" title="生成客户端证书和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-9.png" alt="生成客户端证书和密钥" title="生成客户端证书和密钥"></a></p>
+<h4 id="生成迪菲·赫尔曼交换密钥"><a href="#生成迪菲·赫尔曼交换密钥" class="headerlink" title="生成迪菲·赫尔曼交换密钥"></a>生成迪菲·赫尔曼交换密钥</h4><p>此外，我们还需要为OpenVPN的服务器端创建迪菲·赫尔曼交换密钥，命令为<code>./build-dh</code>(无需额外输入，耐心等待生成完毕即可)。迪菲·赫尔曼交换密钥是一种安全协议，用以对数据进行加密。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-10.png" title="生成迪菲·赫尔曼交换密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-10.png" alt="生成迪菲·赫尔曼交换密钥" title="生成迪菲·赫尔曼交换密钥"></a></p>
+<h4 id="生成TLS-auth密钥"><a href="#生成TLS-auth密钥" class="headerlink" title="生成TLS-auth密钥"></a>生成TLS-auth密钥</h4><p>这一步骤是可选操作。OpenVPN提供了TLS-auth功能，可以用来抵御Dos、UDP端口淹没攻击。出于安全考虑，你可以启用该功能；启用该功能，你需要执行命令<code>openvpn --genkey --secret keys/ta.key</code>来生成TLS-auth所需的密钥文件。</p>
+<p>到这里，我们的证书生成就告一段落了。如果你以后想要生成新的客户端或执行其他操作，只需要先执行命令<code>. ./vars</code>，然后执行相应的命令即可，例如<code>./build-key client2</code>。</p>
+<p>最后，我们来看看我们一共生成了哪些证书和密钥。</p>
+<blockquote>
+<p>编号①：CA证书和密钥</p>
+<p>编号②：客户端client1的证书和密钥，</p>
+<p>编号③：迪菲·赫尔曼交换密钥 (如果你的KEY_SIZE=1024，则该文件名称为dh1024.pem)。</p>
+<p>编号④：服务器端证书和密钥。</p>
+<p>编号⑤：启用tls-auth所需的文件。<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-11.png" title="生成的所有证书文件和密钥" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-11.png" alt="生成的所有证书文件和密钥" title="生成的所有证书文件和密钥"></a></p>
+</blockquote>
+<h4 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h4><p>众所周知，OpenVPN虽然可以分为客户端和服务器，不过它们的安装程序是完全一样的，只是通过不同的证书和配置文件来进行区分。在这里，我们先在OpenVPN主目录下创建一个<mark>config</mark>目录，并将其所需的证书和密钥文件拷贝到该目录中。</p>
+<p>其中，服务器端需要用到的文件有：</p>
+<p><pre>ca.crt<br>ca.key<br>dh2048.pem (如果最初的变量KEY_SIZE设为1024，这里就是dh1024.pem)<br>server.crt<br>server.key<br>ta.key (如果不开启tls-auth，则无需该文件)</pre><br>客户端client1需要用到的文件有：</p>
+<p><pre>ca.crt<br>client1.crt<br>client1.key (名称client1根据个人设置可能有所不同)<br>ta.key (如果不开启tls-auth，则无需该文件)</pre><br>在这里，我们以OpenVPN服务器端为例来演示上述操作流程。</p>
+<p><pre>#创建config目录<br>mkdir /usr/local/openvpn-2.3.4/config</pre></p>
+<p>#复制证书和密钥文件到config目录<br>cp keys/ca.crt keys/ca.key keys/server.crt keys/server.key keys/dh2048.pem keys/ta.key /usr/local/openvpn-2.3.4/config<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-12.png" title="拷贝证书和密钥文件" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-12.png" alt="拷贝证书和密钥文件" title="拷贝证书和密钥文件"></a></p>
+<p>此外，我们还需要为服务器和每个客户端的<mark>config</mark>目录分别编写一个配置文件，服务器端的配置文件为<mark>server.conf</mark>，客户端的配置文件为<mark>client.conf</mark>。</p>
+<p>这两个配置文件该如何编写呢？OpenVPN已经在<mark>sample/sample-config-files</mark>子目录中为我们提供了相关的示例文件<mark>server.conf</mark>和<mark>client.conf</mark>，并且配置文件中的每个配置选项均有详细的英文说明(配置文件中”#”或”;”开头的均为注释内容)。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-13.png" title="OpenVPN提供的示例配置文件" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-13.png" alt="OpenVPN提供的示例配置文件" title="OpenVPN提供的示例配置文件"></a></p>
+<p>现在，我们先将<mark>server.conf</mark>文件拷贝到<mark>config</mark>目录中，然后再对其进行修改。</p>
+<p><pre>#转到simple-config-files目录<br>cd /usr/local/openvpn-2.3.4/sample/sample-config-files</pre></p>
+<p>#复制server.conf到config目录中<br>cp server.conf /usr/local/openvpn-2.3.4/config<br><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-14.png" title="复制到config目录中" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-14.png" alt="复制到config目录中" title="复制到config目录中"></a></p>
+<p>在这里，我们先给出<mark>server.conf</mark>的详细配置，并注明每项配置的作用。</p>
+<p><pre>local 192.168.1.106     #指定监听的本机IP(因为有些计算机具备多个IP地址)，该命令是可选的，默认监听所有IP地址。<br>port 1194             #指定监听的本机端口号<br>proto udp             #指定采用的传输协议，可以选择tcp或udp<br>dev tun               #指定创建的通信隧道类型，可选tun或tap<br>ca ca.crt             #指定CA证书的文件路径<br>cert server.crt       #指定服务器端的证书文件路径<br>key server.key    #指定服务器端的私钥文件路径<br>dh dh2048.pem         #指定迪菲赫尔曼参数的文件路径<br>server 10.0.0.0 255.255.255.0   #指定虚拟局域网占用的IP地址段和子网掩码，此处配置的服务器自身占用10.0.0.1。<br>ifconfig-pool-persist ipp.txt   #服务器自动给客户端分配IP后，客户端下次连接时，仍然采用上次的IP地址(第一次分配的IP保存在ipp.txt中，下一次分配其中保存的IP)。<br>tls-auth ta.key 0     #开启TLS-auth，使用ta.key防御攻击。服务器端的第二个参数值为0，客户端的为1。<br>keepalive 10 120      #每10秒ping一次，连接超时时间设为120秒。<br>comp-lzo              #开启VPN连接压缩，如果服务器端开启，客户端也必须开启<br>client-to-client      #允许客户端与客户端相连接，默认情况下客户端只能与服务器相连接<br>persist-key<br>persist-tun           #持久化选项可以尽量避免访问在重启时由于用户权限降低而无法访问的某些资源。<br>status openvpn-status.log    #指定记录OpenVPN状态的日志文件路径<br>verb 3                #指定日志文件的记录详细级别，可选0-9，等级越高日志内容越详细</pre><br>接着是客户端配置文件<mark>client.conf</mark>。</p>
+<p><pre>client         #指定当前VPN是客户端<br>dev tun        #必须与服务器端的保持一致<br>proto udp      #必须与服务器端的保持一致<br>remote 192.168.1.106 1194      #指定连接的远程服务器的实际IP地址和端口号<br>resolv-retry infinite    #断线自动重新连接，在网络不稳定的情况下(例如：笔记本电脑无线网络)非常有用。<br>nobind         #不绑定特定的本地端口号<br>persist-key<br>persist-tun<br>ca ca.crt      #指定CA证书的文件路径<br>cert client1.crt       #指定当前客户端的证书文件路径<br>key client1.key    #指定当前客户端的私钥文件路径<br>ns-cert-type server      #指定采用服务器校验方式<br>tls-auth ta.key 1     #如果服务器设置了防御DoS等攻击的ta.key，则必须每个客户端开启；如果未设置，则注释掉这一行；<br>comp-lzo              #与服务器保持一致<br>verb 3                #指定日志文件的记录详细级别，可选0-9，等级越高日志内容越详细</pre></p>
+<blockquote>
+<p>实际上，将两个模板文件中与IP地址有关的配置修改一下，就可以直接拿来使用。</p>
+<p>关于OpenVPN配置文件的更多信息请参考<a href="http://www.softown.cn/post/137.html" target="_blank" rel="external">server.conf配置详解</a>和<a href="http://www.softown.cn/post/138.html" target="_blank" rel="external">client.conf配置详解</a>。</p>
+</blockquote>
+<h4 id="启动OpenVPN"><a href="#启动OpenVPN" class="headerlink" title="启动OpenVPN"></a>启动OpenVPN</h4><p>当我们把服务器和客户端所需的证书、密钥和配置文件都分配完毕之后，我们就可以尝试启动OpenVPN来检查我们的工作成果了。</p>
+<p>在Linux中，我们可以直接执行以下命令来启动OpenVPN：</p>
+<p><pre>openvpn 配置文件路径</pre><br>如果你是服务器端，就指定<mark>server.conf</mark>文件的路径，如果你是客户端就指定<mark>client.conf</mark>文件的路径。</p>
+<p>请注意：</p>
+<ol>
+<li>配置文件中的文件路径涉及到相对路径的，均以启动OpenVPN时的所在目录为准。由于我们在配置文件中设置的文件路径都是相对<mark>config</mark>目录的路径，因此我们也只能在<mark>config</mark>目录下才能正常启动OpenVPN。如果你想在任何地方都能使用上述命令启动OpenVPN，建议你将配置文件与文件路径相关的部分全部改为绝对路径。</li>
+<li>OpenVPN服务器所在计算机必须允许OpenVPN通过防火墙，你可以禁用掉防火墙，或者将OpenVPN设为可信程序，或者开放1194端口。</li>
+<li>启动服务器和客户端都需要一定的权限，建议用<mark>root</mark>账户或<code>sudo</code>命令进行启动。<br>以下就是OpenVPN服务器的启动效果：</li>
+</ol>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-15.png" title="启动OpenVPN服务器成功" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-15.png" alt="启动OpenVPN服务器成功" title="启动OpenVPN服务器成功"></a></p>
+<p>客户端的启动效果如下：</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-16.png" title="启动OpenVPN客户端成功" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-16.png" alt="启动OpenVPN客户端成功" title="启动OpenVPN客户端成功"></a></p>
+<p>我们在客户端尝试<code>ping</code>服务器的虚拟IP地址10.0.0.1，顺利<code>ping</code>通。</p>
+<p><a href="http://img.softown.cn/attach/image/201405/linux-install-openvpn-17.png" title="OpenVPN客户端ping服务器IP地址" target="_blank" rel="external"><img src="http://img.softown.cn/attach/image/201405/linux-install-openvpn-17.png" alt="OpenVPN客户端ping服务器IP地址" title="OpenVPN客户端ping服务器IP地址"></a></p>
+<p>作者：<a href="http://www.softown.cn/post/140.html" target="_blank" rel="external">软件指南针</a>(<a href="http://www.softown.cn)，转载请保留出处！" target="_blank" rel="external">http://www.softown.cn)，转载请保留出处！</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/" data-id="cj4r5cqa0001nc3wy3p6qctrv" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/17/ubuntu-e6-90-9c-e7-8b-97-e8-be-93-e5-85-a5-e6-b3-95-e5-b4-a9-e6-ba-83-fcitx-e5-b4-a9-e6-ba-83-e6-97-a0-e7-97-9b-e9-87-8d-e5-90-af-e6-96-b9-e6-b3-95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          UBUNTU 搜狗输入法崩溃 FCITX崩溃无痛重启方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/17/linux-c-a6-e4-b8-b2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">linux 查找目录下的所有文件中是否含有某个字符串</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

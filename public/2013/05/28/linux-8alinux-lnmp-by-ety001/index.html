@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux分区知识及linux下配置lnmp by ETY001 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="你可以把 / 看作是windows的我的电脑，12345/root/home/dev/var/etc 之类的文件夹，你可以暂时把他想象为C盘，D盘之类的各个硬盘分区一般用户信息会存放在 “/home/用户名/”  这个目录下 所谓的用户信息，就是你这个用户平时使用电脑时的word文档，音乐，电影，游戏and so onroot用户是例外root用户的家目录就是/root 只有root用户可以对根目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux分区知识及linux下配置lnmp by ETY001">
+<meta property="og:url" content="https://itbugs.cn/2013/05/28/linux-8alinux-lnmp-by-ety001/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="你可以把 / 看作是windows的我的电脑，12345/root/home/dev/var/etc 之类的文件夹，你可以暂时把他想象为C盘，D盘之类的各个硬盘分区一般用户信息会存放在 “/home/用户名/”  这个目录下 所谓的用户信息，就是你这个用户平时使用电脑时的word文档，音乐，电影，游戏and so onroot用户是例外root用户的家目录就是/root 只有root用户可以对根目">
+<meta property="og:updated_time" content="2017-07-06T12:05:46.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux分区知识及linux下配置lnmp by ETY001">
+<meta name="twitter:description" content="你可以把 / 看作是windows的我的电脑，12345/root/home/dev/var/etc 之类的文件夹，你可以暂时把他想象为C盘，D盘之类的各个硬盘分区一般用户信息会存放在 “/home/用户名/”  这个目录下 所谓的用户信息，就是你这个用户平时使用电脑时的word文档，音乐，电影，游戏and so onroot用户是例外root用户的家目录就是/root 只有root用户可以对根目">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-linux-8alinux-lnmp-by-ety001" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/28/linux-8alinux-lnmp-by-ety001/" class="article-date">
+  <time class="post-time" datetime="2013-05-28T05:11:02.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux分区知识及linux下配置lnmp by ETY001
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/心语心寻/">心语心寻</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>你可以把 / 看作是windows的我的电脑，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/root</div><div class="line">/home</div><div class="line">/dev</div><div class="line">/var</div><div class="line">/etc</div></pre></td></tr></table></figure></p>
+<p>之类的文件夹，你可以暂时把他想象为C盘，D盘之类的各个硬盘分区<br>一般用户信息会存放在 “/home/用户名/”  这个目录下</p>
+<p>所谓的用户信息，就是你这个用户平时使用电脑时的word文档，音乐，电影，游戏and so on<br><code>root</code>用户是例外<br><code>root</code>用户的家目录就是<code>/root</code></p>
+<p>只有<code>root</code>用户可以对根目录（也就是/）下的所有文件和文件夹进行读写操作。<br>其他的非<code>root</code>用户，一般情况默认只能向<code>/home/用户名/</code>目录下写文件，也就是他只能操作自己的文件夹空间。</p>
+<p>比如说，我如果新建一个<code>ety001</code>的用户，那么默认情况下，<code>ety001</code>这个用户只有<code>/home/ety001/</code>目录下的所有操作权限<br>这里就涉及到另外一个必备的知识，用户和用户组<br>每个文件和文件夹都有自己的所属用户和用户组。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[gallery ids=<span class="string">"37"</span>]</div></pre></td></tr></table></figure></p>
+<p>看这个就是用<code>ls -al</code>命令显示的</p>
+<p>最前面的d，表示是dictionary目录。</p>
+<p>r表示read，读，w表示写，x表示可执行<br>d后面是九列<br>你可以看到倒数第二行<br><code>wwwlogs</code>是一个目录</p>
+<p>这九列，每3列分一组</p>
+<p>第一组表示当前目录所属用户的权限，第二列表示当前目录所属用户组的权限，第三列表示当前目录其他用户的操作权限</p>
+<p>然后数字后面两列，第一列表示这个目录的所属用户，第二列表示所属用户组<br>所以说<code>vpn</code>目录是属于<code>root</code>用户的，也是属于<code>root</code>用户组的，<code>root</code>用户对于这个目录可读可写可执行<br><code>root</code>组的用户对这个目录是可读可执行不可写，</p>
+<p>其他的用户对这个目录也是可读可执行不可写</p>
+<p>改变一个目录及其子目录的所属用户的命令是<code>chown -R 目录名 用户名</code>(具体是先用户名还是目录名的等百度吧~)</p>
+<p>我的建议是，登陆后，先用<code>passwd</code>改下密码<br>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /home</div><div class="line">mkdir lnmp</div><div class="line"><span class="built_in">cd</span> lnmp</div></pre></td></tr></table></figure></p>
+<p>刚才上面我和你说的那几个命令就是实现把<code>lnmp</code>的安装脚本下载到<code>/home/lnmp</code>目录下<br>你先下载那个lnmp的安装脚本吧<br>我今天先手把手教你搭建起lnmp</p>
+<p>恩。<br>你切换到<code>/home/lnmp</code><br>然后执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c http://soft.vpser.net/lnmp/lnmp0.8-full.tar.gz</div></pre></td></tr></table></figure></p>
+<p><code>wget</code>是linux下超好用的下载工具。</p>
+<p>一般只要wget 要下载的文件地址 就可以了。</p>
+<p>参数c貌似是可以断点续传吧，我百度下。</p>
+<p>另外，还有个小技巧，tab键可以自动补全。</p>
+<p>比如说，你在home目录下，这个目录里有一个lnmp目录，你想输入<code>cd lnmp</code>，那么你输入<code>cd l</code>后，可以按tab键自动补全，如果home目录下没有其他l开头的目录，系统就会自动给你补全</p>
+<p>你如果在lnmp目录下的话，可以执行下ls命令<br>list的缩写，列目录的意思</p>
+<p>再就是如果你想获取某个命令的帮助的话，可以输入man list，这样就能打开list命令的帮助文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf lnmp0.8-full.tar.gz</div></pre></td></tr></table></figure></p>
+<p>这时你可以用下自动补全<br>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf l</div></pre></td></tr></table></figure></p>
+<p>然后按tab<br>zxvf是tar命令的参数<br>tar是tar包的压缩和解压缩命令。</p>
+<p>解压完后，你再ls下</p>
+<p><strong>3.CentOS下安装步骤</strong><br>下载版执行命令 <code>cd lnmp0.8/</code> ，完整版执行命令：<code>cd lnmp0.8-full/</code><br>然后再执行<code>./centos.sh</code> 也可以执行<code>./centos.sh | tee lnmp.log</code> (推荐这种方式,出错时可以到<a href="http://bbs.vpser.net/forum-25-1.html" target="_blank" rel="external">论坛</a> 上传lnmp.log日志)，输入要绑定的域名(建议使用一个二级域名,该域名会绑定到/home/wwwroot/)，回车，再输入要设置的<code>MySQL root</code>的密码，回车，提示”Press any key to start…”，按任意键开始安装。程序会自动安装编译Nginx、PHP、MySQL、phpMyAdmin、Zend这几个软件。<br>我建议你输入你的不带www的域名</p>
+<p>然后能安装完lnmp后，再去nginx的虚拟主机配置文件里添加上www.myacmroad.tk</p>
+<p>安装过程很漫长。。。<br>慢慢等吧</p>
+<p> 1、安装eAccelerator，执行如下命令：<code>./eaccelerator.sh</code> ，按提示选择版本，回车确认后，就会自动安装并重启web服务。</p>
+<p>2、5、安装PureFTPd和管理面板，执行如下命令：./pureftpd.sh 按提示输入你MySQL的root密码、FTP用户管理面板的密码、MySQl的FTP数据库密码(可直接回车，自动生成一个密码)，回车确认，就会自动安装PureFTPd，安装完PureFTPd，在浏览器执行<a href="http://你的域名或IP/ftp/" target="_blank" rel="external">http://你的域名或IP/ftp/</a> 输入你前面设置的FTP用户管理面板的密码，就可以管理。</p>
+<p>第一个你可以百度下看看作用，基本上是提高效率的</p>
+<p>第二个是ftp服务器。</p>
+<p>以后，你需要去学习下vi或者vim</p>
+<p>因为在linux命令行下，是使用这个进行编辑配置文件的。</p>
+<p>其实只要懂这几条命令就可以了。<br>:q   退出<br>：wq!  强制保存并退出</p>
+<p>再就是在i，进入插入模式，esc退回到命令模式</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/28/linux-8alinux-lnmp-by-ety001/" data-id="cj4sdyx3k0000dyfypcgwgpp5" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/05/28/win8-e8-87-aa-e5-bb-ba-e7-bf-bb-e5-a2-99vpn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Win8自建翻墙VPN
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/05/28/ie6-ie9-e5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">IE6-IE9兼容性问题列表及解决办法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

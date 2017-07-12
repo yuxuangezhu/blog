@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不靠谱学长">
+<meta property="og:type" content="website">
+<meta property="og:title" content="宇轩阁">
+<meta property="og:url" content="https://itbugs.cn/page/4/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="不靠谱学长">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宇轩阁">
+<meta name="twitter:description" content="不靠谱学长">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-apmserv5-2-6-apache" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/apmserv5-2-6-apache/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:38:32.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/apmserv5-2-6-apache/">APMServ5.2.6 Apache启动失败故障排除</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在搭建和维护网站的时候遇到了Apache启动失败的故障。我以个人的经验总结了一下，现在分享给大家，希望对各位有所帮助！</p>
+<p>大致分为以下三种情况：</p>
+<ol>
+<li><p><strong>端口占用问题</strong>;</p>
+</li>
+<li><p><strong>路径及文件名问题</strong>;</p>
+</li>
+<li><p><strong>配置文件问题</strong>。</p>
+</li>
+</ol>
+<p><strong>一.端口占用问题</strong></p>
+<p>这个问题比较常见，解决起来也很容易。这个时候可以检查IIS是不是占用了80端口，可以修改成其他端口或者禁用IIS服务，在启动<code>Apache</code>之前将端口号修改为其它未占用的端口如：<code>81</code>  <code>88</code>  <code>8080</code>等等。修改为非<code>80</code>端口后，再启动APMServ还是失败的话看看是不是系统安装了迅雷之类的软件，老版本的迅雷一般默认的是使用<code>80</code>端口，在迅雷的设置选项中更改端口。</p>
+<p><strong>二.路径及文件名问题</strong></p>
+<p>如果按照上面的第一条还不能解决启动失败的话，我们需要注意一个小细节，查看一下我们安装<code>APMServ</code>的路径，要确定安装路径的文件夹名称中不能出现中文或空格。毕竟这是个人作品，有些地方考虑的不是很周到，导致一些Bug。</p>
+<p><strong>三.配置文件问题</strong></p>
+<p>在解决以上两种问题后，发现<code>Apache</code>服务还是启动失败，这里我通过一个实例来告诉大家一个比较通用的方法去解决问题。安装<code>APMServ</code>，启动服务后提示<code>Apache</code>启动失败！在排除以上两种情况后，按照下面步骤来进行排除：</p>
+<p>1、启动APMServ，显示失败状态；</p>
+<p>2、鼠标右键选择桌面上的“我的电脑”—“管理”；</p>
+<p>2、查看“服务和应用程序”—“服务”，选择服务名称中的“APMServ-Apache”.然后点击中间的“启动”，会弹出一个报错的对话框：<br>3、然后查看到“事件查看器”—“应用程序”中的第最上面两个错误查看，第一条错误信息显示的是<code>“The Apache service named  reported the following error:&gt;&gt;&gt; &lt;Directory “E:/APMServ5.2.0/www/cgi-bin”&gt; path is invalid. ”</code>我的<code>APMServ5.2.6</code>程序是安装再D盘。这里明显出错的信息就是配置文件出错。那么是软件中的那个文件出错呢，接着我们看第二个出错信息</p>
+<p>4、所以现在知道应该怎么解决了。找到APMServ的安装路径中的：<code>D:/APMServ5.2.6/Apache/conf/extra/</code>文件中的<code>httpd-ssl.conf</code>文件，用文本编辑器查找<code>“E:/APMServ5.2.0”</code>替换成<code>“D:/APMServ5.2.6”</code>保存关闭<br>因为APMServ版本之间或个人电脑间可能存在差异，大家不一定会遇到这种情况，这里只是告诉大家要充分利用系统日志的功能达到解决一系列的问题！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/apmserv5-2-6-apache/" data-id="cj4rtkze20000zffy9lfgyh6b" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:35:27.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/">LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://lnmp.org/" target="_blank" rel="external">LNMP一键安装包</a>下存在跨站和跨目录的问题，跨站和跨目录影响同服务器/VPS上的其他网站，最近看PHP 5.3，在<strong>5.3.3以上</strong>已经增加了HOST配置，可以起到防跨站、跨目录的问题。</p>
+<p>如果你是PHP 5.3.3以上的版本，可以修改/usr/local/php/etc/php.ini在末尾里加入：</p>
+<p>[HOST=www.vpser.net]<br>open_basedir=/home/wwwroot/www.vpser.net/:/tmp/<br>[PATH=/home/wwwroot/www.vpser.net]<br>open_basedir=/home/wwwroot/www.vpser.net/:/tmp/</p>
+<p>按上面的这个例子修改，换成你自己的域名和目录，多个网站就按上面的例子改成多个，最后重启php-fpm：/etc/init.d/php-fpm restart</p>
+<p>如果让网站可以使用探针需要在/tmp/后加上:/proc/</p>
+<p>PHP 5.3.3以上版本的用户，可以执行：cd /root;rm -f /root/vhost.sh;wget <a href="http://soft.vpser.net/lnmp/ext/vhost.sh;chmod" target="_blank" rel="external">http://soft.vpser.net/lnmp/ext/vhost.sh;chmod</a> +x /root/vhost.sh，这样替换原来的vhost.sh文件，以后添加网站就会自动添加HOST防跨站、跨目录的配置。</p>
+<p>为解决升级PHP 5.3.<em>版本后部分需要PHP 5.2.</em>版本的程序无法运行的问题，我们会增加一个PHP 5.2的安装脚本，脚本将在未来几天发布。</p>
+<p>如有问题或与更好的方法，欢迎在本文或到<a href="http://bbs.vpser.net/" target="_blank" rel="external">论坛</a><a href="http://bbs.vpser.net/forum-25-1.html" target="_blank" rel="external">lnmp区</a>反馈。</p>
+<p><strong>&gt;&gt;转载请注明出处：<a href="http://www.vpser.net/" target="_blank" rel="external">VPS侦探</a> 本文链接地址：<a href="http://www.vpser.net/security/lnmp-cross-site-corss-dir-security.html" title="LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本" target="_blank" rel="external">http://www.vpser.net/security/lnmp-cross-site-corss-dir-security.html</a></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/" data-id="cj4r5cq9y001lc3wyavwb2rp6" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-lnmp-e7-9b-b8-e5-85-b3-e7-9b-ae-e5-bd-95-e5-92-8c-e5-91-bd-e4-bb-a4" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/lnmp-e7-9b-b8-e5-85-b3-e7-9b-ae-e5-bd-95-e5-92-8c-e5-91-bd-e4-bb-a4/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:34:10.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/lnmp-e7-9b-b8-e5-85-b3-e7-9b-ae-e5-bd-95-e5-92-8c-e5-91-bd-e4-bb-a4/">LNMP相关目录和命令</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装：</p>
+<p><div></div></p>
+<p><div id="highlighter_362146"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><div>2</div></p>
+<p><div>3</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>wget -c http:``//soft``.vpser.net``/lnmp/lnmp0``.9-full.``tar``.gz</code></div></p>
+<p><div><code>tar</code> <code>zxvf lnmp0.9-full.``tar``.gz</code></div></p>
+<p><div><code>cd</code> <code>lnmp0.9-full/</code></div><br><br><br><br><br><br><br>确认Linux发行版：</p>
+<p><div></div></p>
+<p><div id="highlighter_722639"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>cat</code> <code>/etc/issue</code></div><br><br><br><br><br><br><br>CentOS系统下的安装</p>
+<p><div></div></p>
+<p><div id="highlighter_443963"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/centos``.sh 2&amp;gt;&amp;amp;1 | ``tee</code> <code>lnmp.log</code></div><br><br><br><br><br><br><br>Debian系统下的安装</p>
+<p><div></div></p>
+<p><div id="highlighter_425325"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/debian``.sh 2&amp;gt;&amp;amp;1 | ``tee</code> <code>lnmp.log</code></div><br><br><br><br><br><br><br>Ubuntu系统下的安装</p>
+<p><div></div></p>
+<p><div id="highlighter_43075"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/ubuntu``.sh 2&amp;gt;&amp;amp;1 | ``tee</code> <code>lnmp.log</code></div><br><br><br><br><br><br><br>添加虚拟主机</p>
+<p><div></div></p>
+<p><div id="highlighter_98918"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/root/vhost``.sh</code></div><br><br><br><br><br><br><br>删除虚拟主机</p>
+<p><div></div></p>
+<p><div id="highlighter_278553"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>rm</code> <code>/usr/local/nginx/conf/vhost/quany``.info.conf</code></div><br><br><br><br><br><br><br>安装组件<br>安装PureFTPd和FTP管理面板：</p>
+<p><div></div></p>
+<p><div id="highlighter_79702"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/pureftpd``.sh</code></div><br><br><br><br><br><br><br>安装eAccelerator：</p>
+<p><div></div></p>
+<p><div id="highlighter_468465"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/eaccelerator``.sh</code></div><br><br><br><br><br><br><br>安装ionCube：</p>
+<p><div></div></p>
+<p><div id="highlighter_943338"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/ionCube``.sh</code></div><br><br><br><br><br><br><br>安装imageMagick：</p>
+<p><div></div></p>
+<p><div id="highlighter_271216"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/imageMagick``.sh</code></div><br><br><br><br><br><br><br>安装memcached：</p>
+<p><div></div></p>
+<p><div id="highlighter_61459"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/memcached``.sh</code></div><br><br><br><br><br><br><br>升级<br>升级Nginx：</p>
+<p><div></div></p>
+<p><div id="highlighter_62797"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/upgrade_nginx``.sh</code></div><br><br><br><br><br><br><br>升级PHP版本：</p>
+<p><div></div></p>
+<p><div id="highlighter_447021"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>.``/upgrade_php``.sh</code></div><br><br><br><br><br><br><br>状态管理<br>LNMP状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_424358"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/root/lnmp</code> <code>{start|stop|reload|restart|``kill``|status}</code></div><br><br><br><br><br><br><br>Nginx状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_478070"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/etc/init``.d``/nginx</code> <code>{start|stop|reload|restart}</code></div><br><br><br><br><br><br><br>PHP-FPM状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_722585"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/etc/init``.d``/php-fpm</code> <code>{start|stop|quit|restart|reload|logrotate}</code></div><br><br><br><br><br><br><br>PureFTPd状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_709498"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/etc/init``.d``/pureftpd</code> <code>{start|stop|restart|``kill``|status}</code></div><br><br><br><br><br><br><br>MySQL状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_616509"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/etc/init``.d``/mysql</code> <code>{start|stop|restart|reload|force-reload|status}</code></div><br><br><br><br><br><br><br>Memcached状态管理：</p>
+<p><div></div></p>
+<p><div id="highlighter_599730"></div></p>
+<p><table border="0" cellspacing="0" cellpadding="0"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td></td></p>
+<p><div>1</div></p>
+<p><td></td></p>
+<p><div></div></p>
+<p><div><code>/etc/init``.d``/memcached</code> <code>{start|stop|restart}</code></div><br><br><br><br><br><br><br>相关图形界面程序</p>
+<blockquote>
+<p>phpinfo : <a href="http://www.quany.info/phpinfo.php" target="_blank" rel="external">http://www.quany.info/phpinfo.php</a></p>
+<p>phpMyAdmin : <a href="http://www.quany.info/phpmyadmin/" target="_blank" rel="external">http://www.quany.info/phpmyadmin/</a></p>
+<p>探针 : <a href="http://www.quany.info/p.php" target="_blank" rel="external">http://www.quany.info/p.php</a></p>
+<p>PureFTP管理界面：<a href="http://www.quany.info/ftp/" target="_blank" rel="external">http://www.quany.info/ftp/</a></p>
+<p>Memcached测试页面：<a href="http://www.quany.info/memcached.php" target="_blank" rel="external">http://www.quany.info/memcached.php</a><br>LNMP相关目录<br>nginx : /usr/local/nginx</p>
+<p>mysql : /usr/local/mysql</p>
+<p>php : /usr/local/php</p>
+<p>网站目录: /home/wwwroot/</p>
+<p>Nginx日志目录：/home/wwwlogs/</p>
+<p>/root/vhost.sh添加的虚拟主机配置文件所在目录：/usr/local/nginx/conf/vhost/<br>LNMP相关配置文件<br>Nginx主配置文件：/usr/local/nginx/conf/nginx.conf</p>
+<p>/root/vhost.sh添加的虚拟主机配置文件：/usr/local/nginx/conf/vhost/域名.conf</p>
+<p>MySQL配置文件：/etc/my.cnf</p>
+<p>PHP配置文件：/usr/local/php/etc/php.ini</p>
+<p>php-fpm配置文件：/usr/local/php/etc/php-fpm.conf</p>
+<p>PureFtpd配置文件：/usr/local/pureftpd/pure-ftpd.conf</p>
+<p>PureFtpd MySQL配置文件：/usr/local/pureftpd/pureftpd-mysql.conf</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/lnmp-e7-9b-b8-e5-85-b3-e7-9b-ae-e5-bd-95-e5-92-8c-e5-91-bd-e4-bb-a4/" data-id="cj4r5cqa9001vc3wy6a321hpy" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-js-e5-80" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/js-e5-80/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:31:30.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/js-e5-80/">JS倒计时代码-精确到秒</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span> <span class="attr">lang</span>=<span class="string">"gb2312"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span> 演示实例：倒计时效果-精确到秒 <span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=gb2312"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"枫岩,CNLei.y.l@gmail.com"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"JavaScript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  &lt;!-- <span class="comment">//</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">GetRTime</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> EndTime= <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2006</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">0</span>,<span class="number">0</span>); <span class="comment">//截止时间:2006年6月10日0时0分</span></div><div class="line">    <span class="keyword">var</span> NowTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    <span class="keyword">var</span> nMS =EndTime.getTime() - NowTime.getTime();</div><div class="line">    <span class="keyword">var</span> nD =<span class="built_in">Math</span>.floor(nMS/(<span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>));</div><div class="line">    <span class="keyword">var</span> nH=<span class="built_in">Math</span>.floor(nMS/(<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>)) % <span class="number">24</span>;</div><div class="line">    <span class="keyword">var</span> nM=<span class="built_in">Math</span>.floor(nMS/(<span class="number">1000</span>*<span class="number">60</span>)) % <span class="number">60</span>;</div><div class="line">    <span class="keyword">var</span> nS=<span class="built_in">Math</span>.floor(nMS/<span class="number">1000</span>) % <span class="number">60</span>;</div><div class="line">    <span class="keyword">if</span>(nD&gt;= <span class="number">0</span>)&#123;</div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">"RemainD"</span>).innerHTML=nD;</div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">"RemainH"</span>).innerHTML=nH;</div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">"RemainM"</span>).innerHTML=nM;</div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">"RemainS"</span>).innerHTML=nS;</div><div class="line">      setTimeout(<span class="string">"GetRTime()"</span>,<span class="number">1000</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">"CountMsg"</span>).innerHTML=<span class="string">"世界杯已经圆满结束！"</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">window</span>.onload=GetRTime;</div><div class="line">  <span class="comment">// --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"CountMsg"</span>&gt;</span></div><div class="line">    今天距离2006世界杯开赛还有<span class="tag">&lt;<span class="name">strong</span> <span class="attr">id</span>=<span class="string">"RemainD"</span>&gt;</span>XX<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>天<span class="tag">&lt;<span class="name">strong</span> <span class="attr">id</span>=<span class="string">"RemainH"</span>&gt;</span>XX<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>时<span class="tag">&lt;<span class="name">strong</span> <span class="attr">id</span>=<span class="string">"RemainM"</span>&gt;</span>XX<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>分<span class="tag">&lt;<span class="name">strong</span> <span class="attr">id</span>=<span class="string">"RemainS"</span>&gt;</span>XX<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>秒</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/js-e5-80/" data-id="cj4sc2v9s000c1tfyw2qbwcf6" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-html-e4-b9-8bmarquee-e8-af-a6-e8-a7-a3" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/html-e4-b9-8bmarquee-e8-af-a6-e8-a7-a3/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:29:34.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/html-e4-b9-8bmarquee-e8-af-a6-e8-a7-a3/">html之marquee详解</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>该标签不是HTML3.2的一部分，并且只支持MSIE3以后内核，所以如果你使用非IE内核浏览器(如：Netscape)可能无法看到下面一些很有意思的效果<br>该标签是个容器标签<br>语法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>以下是一个最简单的例子：</p>
+<p>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">+3</span> <span class="attr">color</span>=<span class="string">red</span>&gt;</span>Hello, World<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>下面这两个事件经常用到：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onMouseOut=<span class="string">"this.start()"</span> ：用来设置鼠标移出该区域时继续滚动</div><div class="line">onMouseOver=<span class="string">"this.stop()"</span>：用来设置鼠标移入该区域时停止滚动</div></pre></td></tr></table></figure></p>
+<p>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">onMouseOut</span>=<span class="string">"this.start()"</span> <span class="attr">onMouseOver</span>=<span class="string">"this.stop()"</span>&gt;</span>onMouseOut="this.start()"：用来设置鼠标移出该区域时继续滚动 onMouseOver="this.stop()"：用来设置鼠标移入该区域时停止滚动<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这是一个完整的例子：</p>
+<p>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">id</span>=<span class="string">"affiche"</span> <span class="attr">align</span>=<span class="string">"left"</span> <span class="attr">behavior</span>=<span class="string">"scroll"</span> <span class="attr">bgcolor</span>=<span class="string">"#FF0000"</span> <span class="attr">direction</span>=<span class="string">"up"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">hspace</span>=<span class="string">"50"</span> <span class="attr">vspace</span>=<span class="string">"20"</span> <span class="attr">loop</span>=<span class="string">"-1"</span> <span class="attr">scrollamount</span>=<span class="string">"10"</span> <span class="attr">scrolldelay</span>=<span class="string">"100"</span> <span class="attr">onMouseOut</span>=<span class="string">"this.start()"</span> <span class="attr">onMouseOver</span>=<span class="string">"this.stop()"</span>&gt;</span></div><div class="line">这是一个完整的例子</div><div class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>该标签支持的属性多达11个：</p>
+<p><code>align</code><br>设定<code>&lt;marquee&gt;</code>标签内容的对齐方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">absbottom：绝对底部对齐（与g、p等字母的最下端对齐）</div><div class="line">absmiddle：绝对中央对齐</div><div class="line">baseline：底线对齐</div><div class="line">bottom：底部对齐（默认）</div><div class="line">left：左对齐</div><div class="line">middle：中间对齐</div><div class="line">right：右对齐</div><div class="line">texttop：顶线对齐</div><div class="line">top：顶部对齐</div></pre></td></tr></table></figure></p>
+<p>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"absbottom"</span>&gt;</span>align="absbottom"：绝对底部对齐（与g、p等字母的最下端对齐）。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"absmiddle"</span>&gt;</span>align="absmiddle"： 绝对中央对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"baseline"</span>&gt;</span>align="baseline"： 底线对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"bottom"</span>&gt;</span>align="bottom"： 底部对齐（默认）。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"left"</span>&gt;</span>align="left"： 左对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"middle"</span>&gt;</span>align="middle"： 中间对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"right"</span>&gt;</span>align="right"： 右对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"texttop"</span>&gt;</span>align="texttop"： 顶线对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">align</span>=<span class="string">"top"</span>&gt;</span>align="top"： 顶部对齐。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<marquee align="absbottom">align=”absbottom”：绝对底部对齐（与g、p等字母的最下端对齐）。 </marquee><br><marquee align="absmiddle">align=”absmiddle”： 绝对中央对齐。 </marquee><br><marquee align="baseline">align=”baseline”： 底线对齐。 </marquee><br><marquee align="bottom">align=”bottom”： 底部对齐（默认）。 </marquee><br><marquee align="left">align=”left”： 左对齐。 </marquee><br><marquee align="middle">align=”middle”： 中间对齐。 </marquee><br><marquee align="right">align=”right”： 右对齐。 </marquee><br><marquee align="texttop">align=”texttop”： 顶线对齐。 </marquee><br><marquee align="top">align=”top”： 顶部对齐。 </marquee><br><code>behavior</code><br>设定滚动的方式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alternate： 表示在两端之间来回滚动。</div><div class="line">scroll： 表示由一端滚动到另一端，会重复。</div><div class="line">slide：  表示由一端滚动到另一端，不会重复。</div></pre></td></tr></table></figure><br><br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">behavior</span>=<span class="string">"alternate"</span>&gt;</span>alternate：表示在两端之间来回滚动。 <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">behavior</span>=<span class="string">"scroll"</span>&gt;</span>scroll：表示由一端滚动到另一端，会重复。<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">behavior</span>=<span class="string">"slide"</span>&gt;</span>slide：  表示由一端滚动到另一端，不会重复。<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee behavior="alternate">alternate：表示在两端之间来回滚动。 </marquee><br><marquee behavior="scroll">scroll：表示由一端滚动到另一端，会重复。</marquee><br><marquee behavior="slide">slide：  表示由一端滚动到另一端，不会重复。</marquee><br><code>bgcolor</code><br>设定活动字幕的背景颜色，背景颜色可用RGB、16进制值的格式或颜色名称来设定。<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">bgcolor</span>=<span class="string">"#006699"</span>&gt;</span>设定活动字幕的背景颜色 bgcolor="#006699"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">bgcolor</span>=<span class="string">"RGB(10%,50%,100%,)"</span>&gt;</span>设定活动字幕的背景颜色 bgcolor="rgb(10%,50%,100%,)"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">bgcolor</span>=<span class="string">"red"</span>&gt;</span>设定活动字幕的背景颜色 bgcolor="red"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee bgcolor="#006699">设定活动字幕的背景颜色 bgcolor=”#006699”</marquee><br><marquee bgcolor="RGB(10%,50%,100%,)">设定活动字幕的背景颜色 bgcolor=”rgb(10%,50%,100%,)”</marquee><br><marquee bgcolor="red">设定活动字幕的背景颜色 bgcolor=”red”</marquee><br><code>direction</code><br>设定活动字幕的滚动方向<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">direction</span>=<span class="string">"down"</span>&gt;</span>设定活动字幕的滚动方向direction="down"：向下<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">direction</span>=<span class="string">"left"</span>&gt;</span>设定活动字幕的滚动方向direction="left"：向左<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">direction</span>=<span class="string">"right"</span>&gt;</span>设定活动字幕的滚动方向direction="right"：向右<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">direction</span>=<span class="string">"up"</span>&gt;</span>设定活动字幕的滚动方向direction="up"：向上<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee direction="down">设定活动字幕的滚动方向direction=”down”：向下</marquee><br><marquee direction="left">设定活动字幕的滚动方向direction=”left”：向左</marquee><br><marquee direction="right">设定活动字幕的滚动方向direction=”right”：向右</marquee><br><marquee direction="up">设定活动字幕的滚动方向direction=”up”：向上</marquee><br><code>height</code><br>设定活动字幕的高度<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">height</span>=<span class="string">"500"</span> <span class="attr">direction</span>=<span class="string">"down"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>设定活动字幕的高度height="500"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee height="500" direction="down" bgcolor="#cccccc">设定活动字幕的高度height=”500”</marquee><br><code>width</code><br>设定活动字幕的宽度<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>设定活动字幕的宽度width="500"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee width="500" bgcolor="#cccccc">设定活动字幕的宽度width=”500”</marquee><br><code>hspace</code><br>设定活动字幕里所在的位置距离父容器水平边框的距离<br>This controls the horizontal（水平）space around the display box.<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">hspace</span>=<span class="string">"100"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>hspace="100"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure><br><br><table width="500" border="1" align="center" cellpadding="0" cellspacing="0"><br>  <tr><br>    <td><marquee hspace="100" bgcolor="#cccccc">hspace=”100”</marquee></td><br>  </tr><br></table><br><code>vspace</code><br>设定活动字幕里所在的位置距离父容器垂直边框的距离<br>This controls the vertical（垂直） space around the display box.<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">vspace</span>=<span class="string">"100"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>hspace="100"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee vspace="100" bgcolor="#cccccc">hspace=”100”</marquee><br><code>loop</code><br>设定滚动的次数，当loop=-1表示一直滚动下去，默认为-1<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"-1"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>我会不停地走。<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">"2"</span> <span class="attr">bgcolor</span>=<span class="string">"#cccccc"</span>&gt;</span>我只走两次哦<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee loop="-1" bgcolor="#cccccc">我会不停地走。</marquee><br><p>&nbsp;</p><br><marquee loop="2" bgcolor="#cccccc">我只走两次哦</marquee><br><code>scrollamount</code><br>设定活动字幕的滚动速度，单位<code>pixels</code><br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrollamount</span>=<span class="string">"10"</span> &gt;</span>scrollamount="10" <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrollamount</span>=<span class="string">"20"</span> &gt;</span>scrollamount="20" <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrollamount</span>=<span class="string">"30"</span> &gt;</span>scrollamount="30" <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee scrollamount="10">scrollamount=”10” </marquee><br><marquee scrollamount="20">scrollamount=”20” </marquee><br><marquee scrollamount="30">scrollamount=”30” </marquee><br><code>scrolldelay</code><br>设定活动字幕滚动两次之间的延迟时间，单位<code>millisecond</code>（毫秒）<br>值大了会有一步一停顿的效果<br>代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrolldelay</span>=<span class="string">"10"</span> &gt;</span>scrolldelay="10" <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrolldelay</span>=<span class="string">"100"</span> &gt;</span> scrolldelay="100"<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">scrolldelay</span>=<span class="string">"1000"</span>&gt;</span>scrolldelay="1000" <span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure><br><br><marquee scrolldelay="10">scrolldelay=”10” </marquee><br><marquee scrolldelay="100"> scrolldelay=”100”</marquee><br><marquee scrolldelay="1000">scrolldelay=”1000” </marquee>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/html-e4-b9-8bmarquee-e8-af-a6-e8-a7-a3/" data-id="cj4r5cq9k0016c3wyiupv7yde" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-adobe-cs6" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/adobe-cs6/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:27:56.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/adobe-cs6/">Adobe CS6中文版全系列下载汇总（官方链接&amp;迅雷快传）+破解补丁</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Adobe Creative Suite 6 软件可提供崭新的数字媒体开发体验，使您能够快速工作，以及随时随地为受众提供服务。您可以随时灵活地下载和安装这些应用程序，并获得其他新提供的应用程序、新功能和服务。</p>
+<p>1. 安装时断开网络，输入序列号：<br>1325-0949-2080-9819-3777-3230<br>1325-0160-5283-9851-2671-8951</p>
+<p>请勿选择试用，选择试用将会导致Encore组件无法使用！<br>2. 套装安装后先运行一次PS，否则PS不是Extended版。<br>3. 覆盖相应的文件，x86对应32位文件，x64对应64位文件，Acrobat 需要单独替换。分不清文件版本的，只要看文件大小差不多的，覆盖就可以了。<br>破解补丁：<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KPRAWOLEOUVA</a><br>已经选择了使用，导致Encore组件无法使用的话，将Encore的amtlib.dll换回原版，然后运行Encore，会要求输入序列号，输入后，再换回破解的amtlib.dll即可。联网验证神马的，无视它，你懂的。</p>
+<p>注意事项：</p>
+<p>Flash Builder的amtlib.dll目前貌似没有破解，虽然和CS5.5的amtlib.dll版本一样，但貌似替换后秒退。<br>下载繁体大师版的话，其中繁体版的Illustrator无法在简体系统打开，暂时没有找到解决方法，虽然用NTLEA可以正常运行，但是不是长远之道。需要用到的话，下载个AI简体中文版覆盖安装一下试试看。</p>
+<p>文件后缀说明：</p>
+<p>LS16 - 英/日（此为原来的LS1+LS2）</p>
+<p>LS3 - 简/繁/韩（Win大师版仅有繁/韩，Mac大师版仅有韩）</p>
+<p>LS7 - 多国语言（不包括中文）</p>
+<p>迅雷快传：</p>
+<p>包含以下所有资源<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/s/-IzC-oi-a1VSQ-l-2tP7Kg</a></p>
+<p>Photoshop<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KAICQURMWSML</a>（简/繁/韩）</p>
+<p>Illustrator<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KUMKJSNRVCOA</a>（简/繁/韩）</p>
+<p>InDesign<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KPDINHJRVAZZ</a>（简/繁/韩）</p>
+<p>InCopy<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KEVARTUHRVHZ</a>（简/繁/韩）</p>
+<p>Fireworks<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KSLIDAYDDOKB</a>（简/繁/韩）</p>
+<p>Dreamweaver<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KSYQOJMMNZFL</a>（简/繁/韩）</p>
+<p>Flash Professional<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KXNCMPKGOIDU</a>（简/繁/韩）</p>
+<p>Premiere Pro<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KCFDOWRFTWWP</a>（多国语言）</p>
+<p>After Effects<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KINQYMAVYYLU</a>（多国语言）</p>
+<p>Audition<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KLLETNOXFQTQ</a>（多国语言）</p>
+<p>Design Standard<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KUCIKHMMMWMK</a>（简/繁/韩）</p>
+<p>Design &amp; Web Premium<br>暂无</p>
+<p>Production Premium<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KBLTSCZEKKCW</a>（多国语言）</p>
+<p>Master Collection<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KRKSUWKQQMTR</a>（繁/韩）<br><a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://kuai.xunlei.com/d/KSSGBHOMNNNO</a>（英/日）</p>
+<p>官方下载：</p>
+<p>Photoshop CS6<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PHSP/13/win32/Photoshop_13_LS3.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PHSP/13/win32/Photoshop_13_LS3.exe</a><br>Mac:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PHSP/13/osx10/Photoshop_13_LS3.dmg</a></p>
+<p>Illustrator CS6<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/ILST/16/win32/Illustrator_16_LS3.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/ILST/16/win32/Illustrator_16_LS3.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/ILST/16/osx10/Illustrator_16_LS3.dmg</a></p>
+<p>InDesign CS6<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/IDSN/8/win32/InDesign_8_LS3.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/IDSN/8/win32/InDesign_8_LS3.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/IDSN/8/osx10/InDesign_8_LS3.dmg</a></p>
+<p>InCopy CS6<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AICY/8/win32/InCopy_8_LS3.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AICY/8/win32/InCopy_8_LS3.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AICY/8/osx10/InCopy_8_LS3.dmg</a></p>
+<p>Dreamweaver CS6<br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/DRWV/12/win32/Dreamweaver_12_LS3.exe</a><br>Mac:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/DRWV/12/osx10/Dreamweaver_12_LS3.dmg</a></p>
+<p>Flash Professional CS6<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/FLPR/12/win32/FlashPro_12_LS3.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/FLPR/12/osx10/FlashPro_12_LS3.dmg</a></p>
+<p>Premiere Pro CS6<br>Multi-Language<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PPRO/6/win32/PremierePro_6_LS7.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PPRO/6/win32/PremierePro_6_LS7.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/PPRO/6/osx10/PremierePro_6_LS7.dmg</a></p>
+<p>After Effects CS6<br>Multi-Language<br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AEFT/11/win64/AfterEffects_11_LS7.7z</a><br>Win: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AEFT/11/win64/AfterEffects_11_LS7.exe</a><br>Mac: <a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/AEFT/11/osx10-64/AfterEffects_11_LS7.dmg</a></p>
+<p>Production Premium CS6<br>Multi-Language - Win: 5.83 GB / Mac: 5.50 GB<br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STVD/CS6/win32/ProductionPremium_CS6_LS7.7z</a><br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STVD/CS6/win32/ProductionPremium_CS6_LS7.exe</a><br>Mac:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STVD/CS6/osx10/ProductionPremium_CS6_LS7.dmg</a></p>
+<p>Adobe Design Standard CS6<br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/DSGN/CS6/win32/DesignStandard_CS6_LS3.7z</a><br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/DSGN/CS6/win32/DesignStandard_CS6_LS3.exe</a><br>Mac:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/DSGN/CS6/osx10/DesignStandard_CS6_LS3.dmg</a></p>
+<p>Master Collection CS6<br>ko_KR / zh_TW - Win: 5.86 GB / Mac: 5.63 GB<br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STAM/CS6/win32/MasterCollection_CS6_LS3.7z</a><br>Win:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STAM/CS6/win32/MasterCollection_CS6_LS3.exe</a><br>Mac:<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://trials2.stage.adobe.com/AdobeProducts/STAM/CS6/osx10/MasterCollection_CS6_LS3.dmg</a></p>
+<p>多国语言完整版下载列表：<a href="http://reg.renren.com/xn6253.do?ss=10130&amp;rt=2" target="_blank" rel="external">http://forum.cgpersia.com/f13/adobe-cs6-esd-direct-links-adobe-win-mac-51929</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/adobe-cs6/" data-id="cj4r5cq870002c3wy3ukna6t1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-dedecms" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/dedecms/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:17:36.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/01/dedecms/">制作织梦dedecms首页RSS订阅源</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>织梦CMS默认情况下，RSS订阅源是根据分类区分不同的RSS订阅的。如果用户想订阅整个网站的RSS是个麻烦事，下面给出解决办法：</p>
+<p>1、添加一个RSS模板，文件名为:rss_index.htm,将RSS模板文件保存到/templets/plus/目录下。文件内容为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="&#123;dede:global.cfg_soft_lang /&#125;" ?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">rss</span> <span class="attr">version</span>=<span class="string">"2.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">channel</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;dede:global.cfg_webname/&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span>&gt;</span>&#123;dede:global.cfg_basehost/&#125;<span class="tag">&lt;/<span class="name">link</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span>&#123;dede:global.cfg_description/&#125;<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">language</span>&gt;</span>zh_cn<span class="tag">&lt;/<span class="name">language</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">generator</span>&gt;</span>&#123;dede:global.cfg_webname/&#125;<span class="tag">&lt;/<span class="name">generator</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webmaster</span>&gt;</span>&#123;dede:global.cfg_adminemail/&#125;<span class="tag">&lt;/<span class="name">webmaster</span>&gt;</span></div><div class="line">&#123;dede:arclist row='50' orderby='pubdate' titlelen='200'&#125;</div><div class="line"><span class="tag">&lt;<span class="name">item</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>&lt;![CDATA[[field:title/]]]&gt;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span>&gt;</span>[field:arcurl/]<span class="tag">&lt;/<span class="name">link</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">category</span>&gt;</span>[field:typename/]<span class="tag">&lt;/<span class="name">category</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">pubdate</span>&gt;</span>[field:pubdate function='strftime("%a,%d%b%Y%H:%M:%S +0800",@me)'/]<span class="tag">&lt;/<span class="name">pubdate</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[[field:array runphp='yes']@me = (strpos(@me['litpic'],'defaultpic') ? "": "&lt;a [email=href='%7B@me[%22arcurl%22]%7D']href='&#123;@me["arcurl"]&#125;'[/email] target='_blank'&gt;&lt;img [email=src='%7B@me[%22litpic%22]%7D']src='&#123;@me["litpic"]&#125;'[/email] border='0' /&gt;&lt;br /&gt;"); [/field:array][field:description function='html2text(@me)'/] ... ]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">&#123;/dede:arclist&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">channel</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">rss</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2、在根目录中添加rss.php文件，文件内容为：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span> (dirname(<span class="keyword">__FILE__</span>) . <span class="string">"/include/common.inc.php"</span>);</div><div class="line"><span class="keyword">require_once</span> DEDEINC.<span class="string">"/arc.partview.class.php"</span>;</div><div class="line">$pv = <span class="keyword">new</span> PartView();</div><div class="line">$pv-&gt;SetTemplet($cfg_basedir . $cfg_templets_dir . <span class="string">"/plus/rss_index.htm"</span>);</div><div class="line">header(<span class="string">"Content-type:application/xml"</span>);</div><div class="line">$pv-&gt;Display();</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>3、在首页index.htm模板的头部标签中添加属性，代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">”alternate”</span> <span class="attr">type</span>=<span class="string">”application/rss+xml”</span> <span class="attr">title</span>=<span class="string">”&#123;dede:field.title/&#125;”</span> <span class="attr">href</span>=<span class="string">”http://www.dedecms.com/rss.php“/</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>然后重新生成静态，通过浏览器上的RSS源识别按钮即可识别。或者在网页其它地方添加A标签形式的订阅链接。 默认情况下，最多调用50个最新的文章，它有个好处时，是动态文件，不需要每次生成，只要有新文章，RSS就会更新的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/dedecms/" data-id="cj4rvpe2g0006zffybtcaupu4" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-wifi-802" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/31/wifi-802/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T07:17:31.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/31/wifi-802/">无线路由应用中对上级网络的802.1x认证方式的一些认识和经验</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在无线路由器的应用中，对WAN端设置，不可避免地要接触到一个对上级网络的接入方式(或说认证方式)的问题。就我目前的认识，这种对上级网络的接入方式，我目前知道四种。</p>
+<p>如果上级网络(路由器)开放了DHCP功能，向后自动分配IP，那么你选择“动态IP”方式就行了，反正你接受到的IP不用设置，上级路由器就自动分配给你了。</p>
+<p>如果上级网络(路由器)是手工向你指定IP，那么，你得选择“静态IP”方式，然后向上级网络的操作人员询问分配给你这个端子的IP，默认网关，首选的的DNS服务器地址和备用的DNS服务器地址。然后填入。</p>
+<p>接触中最多的，是PPPoE认证方式，现在的中国电信和中国网通的ADSL电话线宽带，基本都是这种认证方式，选了这种认证方式后，在相应位置填入营运商给你的帐号和密码就行了，IP和DNS是认证成功后营运商给的。</p>
+<p>下面着重要专门讲讲802.1x这种认证方式。 事实例举：目前我接触并了解的802.1x认证方式，发生于网络中，其网络线材是双绞线接入，单台电脑上网时，双绞线末端的水晶头直接插入电脑网卡，如果是正规的安装，墙上的Rj45模块与电脑网卡之间用网络跳线连接，系统中安装广电网络公司提供的“认证客户”端软件，填入“用户名”和“密码”后确认，如果这两项无误就可以接入网络。 如果在这种网络环境下欲使用无线路由器，就我们现在的认识，与其对应的接入上级网络的认证方式，必须选择802.1x这种认证方式，而由于采用了这种认证方式，到了无线路由器牌子的选择上，就演化成为必须选择TP-LINK这种牌子的无线路由器(对不起，目前我们还没有发现第二种)，不仅如此，如果想通过刷固件来增加这种认证方式，目前我们也还没有发现哪种固件可以增添这种802.1x认证方式。反正我目前接触到的几种TP-LINK无线路由器，不管从3字头、4字头到6字头型号，其固件中都带有802.1x这种认证方式，还没有发现未带的。从这个情况来分析，说明TP-LINK是目前进口及国产无线路当中，比较了解国内网络状况的一个牌子，所以他做到了对国内网络的理解和顺应，因此空气当中多一些TP-LINK的SSID也就不难理解了。（另外还要说的是，上述的网络环境，要求克隆首次网络安装中原始网卡的mac地址，否则就不能认证成功，我已经凭此点经验轻巧地引导那些焦头烂额的朋友顺利地完成网络认证） 我这个贴子的目的是希望汇集全国采用802.1x认证方式的其他网络实例，帮助处于这种网络内的朋友来了解这种认证方式，进而有利于他们顺利地选择到适用的设备并正确地设置上网，顺利地达到无线上网。</p>
+<p>所以希望使用这种网络的朋友都来这里报报名。</p>
+<p>下面从别处粘贴一点有关802.1x的资料：</p>
+<p>802.1x认证，又称EAPOE认证，主要用于宽带IP城域网。802.1X协议是由(美)电气与电子工程师协会提出，刚刚完成标准化的一个符合IEEE 802协议集的局域网接入控制协议，其全称为基于端口的访问控制协议。它能够在利用IEEE 802局域网优势的基础上提供一种对连接到局域网的用户进行认证和授权的手段，达到了接受合法用户接入，保护网络安全的目的。</p>
+<p>客户端：一般安装在用户的工作站上，当用户有上网需求时，激活客户端程序，输入必要的用户名和口令，客户端程序将会送出连接请求。<br>认证系统：在以太网系统中指认证交换机，其主要作用是完成用户认证信息的上传、下达工作，并根据认证的结果打开或关闭端口。<br>认证服务器：通过检验客户端发送来的身份标识（用户名和口令）来判别用户是否有权使用网络系统提供的网络服务，并根据认证结果向交换机发出打开或保持端口关闭的状态。<br>在具有802.1X认证功能的网络系统中，当一个用户需要对网络资源进行访问之前必须先要完成以下的认证过程。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/31/wifi-802/" data-id="cj4s3xkd900001tfy7w5wjga4" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-ssh-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/31/ssh-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T07:07:55.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/31/ssh-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/">SSH命令详解</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>rm -rf mydir /<em> 删除mydir目录 </em>/</p>
+<p>cd mydir /<em> 进入mydir目录 </em>/</p>
+<p>cd - /<em> 回上一级目录 </em>/</p>
+<p>cd ~ /<em> 回根目录 </em>/</p>
+<p>mv tools tool /<em> 把tools目录改名为tool </em>/</p>
+<p>ln -s tool bac</p>
+<p>/<em> 给tool目录创建名为bac的符号链接,最熟悉的应该就是FTP中www链接到public_html目录了 </em>/</p>
+<p>cp -a tool /home/leavex/www /<em> 把tool目录下所有文件复制到www目录下 </em>/</p>
+<p>rm go.tar /<em> 删除go.tar文件 </em>/</p>
+<p>find mt.cgi /<em> 查找文件名为mt.cgi的文件 </em>/</p>
+<p>df –h /<em> 查看磁盘剩余空间,好像没这个必要，除非你太那个了 </em>/</p>
+<p>tar xvf wordpress.tar /<em> 解压tar格式的文件 </em>/</p>
+<p>tar -tvf myfile.tar /<em> 查看tar文件中包含的文件 </em>/</p>
+<p>gzip -d ge.tar.gz /<em> 解压.tar.gz文件为.tar文件 </em>/</p>
+<p>unzip phpbb.zip /<em> 解压zip文件，windows下要压缩出一个.tar.gz格式的文件还是有点麻烦的 </em>/</p>
+<p>tar cf toole.tar tool /<em> 把tool目录打包为toole.tar文件 </em>/</p>
+<p>tar cfz geek.tar.gz tool</p>
+<p>/<em> 把tool目录打包且压缩为geek.tar.gz文件，因为.tar文件几乎是没有压缩过的，MT的.tar.gz文件解压成.tar文件后差不多是10MB </em>/</p>
+<p>wget</p>
+<p>wget <a href="http://www.example.com/download/wp.tar.gz" target="_blank" rel="external">http://www.example.com/download/wp.tar.gz</a></p>
+<p>/<em>下载远程服务器上的文件到自己的服务器，连上传都省了，服务器不是100M就是1000M的带宽，下载一个2-3兆的MT还不是几十秒的事 </em>/</p>
+<p>wget -c <a href="http://www.example.com/undone.zip" target="_blank" rel="external">http://www.example.com/undone.zip</a></p>
+<p>/<em> 继续下载上次未下载完的文件 </em>/</p>
+<p>tar cfz xxxx.tar.gz tool</p>
+<p>/<em> 把tool目录打包且压缩为xxxx.tar.gz文件，因为.tar文件几乎是没有压缩过的，MT的.tar.gz文件解压成.tar文件后差不多是10MB </em>/</p>
+<p>还有一些是VIM里要用到的，也罗列出来吧!</p>
+<p>移动类的：</p>
+<p>h/j/k/l: 左/下/上/右　移一格</p>
+<p>w : 向后词移动　(前面加数字移动多少个词)</p>
+<p>b : 向前词移动　(前面加数字移动多少个词)</p>
+<p>e : 向后移到词末</p>
+<p>ge : 向前移到词末</p>
+<p>$ : 行末</p>
+<p>0 : 行首</p>
+<p>tx : 向右查找本行的x并移到那儿(大写时向左)</p>
+<p>33G : 移到文件的第33行</p>
+<p>gg : 文件首行</p>
+<p>G : 文件尾行</p>
+<p>33% : 文件的33%处</p>
+<p>H/M/L : 屏幕的首/中/尾行</p>
+<p>zt/zz/zb : 当前行移到屏幕的首/中/底部</p>
+<p>跳转：</p>
+<p>” : 回到跳转来的地方</p>
+<p>CTRL-O : 跳到一个 “较老” 的地方</p>
+<p>CTRL-I : 则跳到一个 “较新” 的地方</p>
+<p>查找：</p>
+<p>/ : 向下查找(后加关键字)</p>
+<p>? : 向上查找(后加关键字)</p>
+<p>n : 下一条符合的记录</p>
+<p>编辑：</p>
+<p>i : 转换到插入模式</p>
+<p>x : 删除当前字符</p>
+<p>. : 重复最后一次的修改操作(同PS里ctrl+f执行滤镜)</p>
+<p>u : 撤销操作</p>
+<p>CTRL-R : 重做</p>
+<p>p : 将删除的字符插入到当前位置(put)</p>
+<p>退出保存：</p>
+<p>:q : 退出</p>
+<p>:q! : 不保存退出</p>
+<p>ZZ : 保存后退出</p>
+<p>:e! : 放弃修改重新编辑</p>
+<p>退出SSH后，继续运行!</p>
+<p>#nohup wget <a href="http://www.example.net/file.tar.gz" target="_blank" rel="external">http://www.example.net/file.tar.gz</a> &amp;</p>
+<p>wget是一个Linux环境下用于从World Wide Web上提取文件的工具，这是一个GPL许</p>
+<p>可证</p>
+<p>下的自由软件，其作者为Hrvoje Niksic 。wget支持HTTP和</p>
+<p>FTP协议</p>
+<p>，支持代理服务器和断点续传功能，能够自动递归远程主机的目录，找到合乎条件</p>
+<p>的文</p>
+<p>件并将其下载到本地硬盘上;如果必要，wget将恰当地转换页面中的超级连接以在</p>
+<p>本地</p>
+<p>生成可浏览的镜像。由于没有交互式界面，wget可在后台运行，截获并忽略</p>
+<p>HANGUP信号</p>
+<p>，因此在用户推出登录以后，仍可继续运行。通常，wget用于成批量地下载</p>
+<p>Internet网</p>
+<p>站上的文件，或制作远程网站的镜像。</p>
+<p>语法:</p>
+<p>wget [options] [URL-list]</p>
+<p>URL地址格式说明:可以使用如下格式的URL:</p>
+<p><a href="http://host[:port]/path" target="_blank" rel="external">http://host[:port]/path</a></p>
+<p>例如:</p>
+<p><a href="http://fly.cc.fer.hr/" target="_blank" rel="external">http://fly.cc.fer.hr/</a></p>
+<p>ftp://ftp.xemacs.org/pub/xemacs/xemacs-19.14.tar.gz</p>
+<p>ftp://username:password@host/dir/file</p>
+<p>在最后一种形式中，以URL编码形式为FTP主机提供了用户名和密码(当然，也可以</p>
+<p>使用</p>
+<p>参数提供该信息，见后)。</p>
+<p>参数说明：</p>
+<p>wget的参数较多，但大部分应用只需要如下几个常用的参数：</p>
+<p>-r 递归;对于HTTP主机，wget首先下载URL指定的文件，然后(如果该文</p>
+<p>件是</p>
+<p>一个HTML文档的话)递归下载该文件所引用(超级连接)的所有文件(递归深度由</p>
+<p>参数</p>
+<p>-l指定)。对FTP主机，该参数意味着要下载URL指定的目录中的所有文件，递归方</p>
+<p>法与</p>
+<p>HTTP主机类似。</p>
+<p>-N 时间戳：该参数指定wget只下载更新的文件，也就是说，与本地目录中</p>
+<p>的对</p>
+<p>应文件的长度和最后修改日期一样的文件将不被下载。</p>
+<p>-m 镜像：相当于同时使用-r和-N参数。</p>
+<p>-l 设置递归级数;默认为5。-l1相当于不递归;-l0为无穷递归;注意，</p>
+<p>当递</p>
+<p>归深度增加时，文件数量将呈指数级增长。</p>
+<p>-t 设置重试次数。当连接中断(或超时)时，wget将试图重新连接。如</p>
+<p>果指</p>
+<p>定-t0，则重试次数设为无穷多。</p>
+<p>-c 指定断点续传功能。实际上，wget默认具有断点续传功能，只有当你使</p>
+<p>用别</p>
+<p>的ftp工具下载了某一文件的一部分，并希望wget接着完成此工作的时候，才需要</p>
+<p>指定</p>
+<p>此参数。</p>
+<p>使用举例：</p>
+<p>wget -m -l4 -t0 <a href="http://www.php100.com/" target="_blank" rel="external">http://www.php100.com/</a></p>
+<p>将在本地硬盘建立<a href="http://www.example.com/的镜像，镜像文件存入当前目录下一个" target="_blank" rel="external">http://www.example.com/的镜像，镜像文件存入当前目录下一个</a></p>
+<p>名为</p>
+<p>oneweb.com.cn的子目录中(你也可以使用-nH参数指定不建立该子目录，而直接在</p>
+<p>当前</p>
+<p>目录下建立镜像的目录结构)，递归深度为4，重试次数为无穷(若连接出现问题</p>
+<p>，</p>
+<p>wget将坚韧不拔地永远重试下去，知道任务完成!)</p>
+<p>另外一些使用频率稍低的参数如下：</p>
+<p>-A acclist / -R rejlist：</p>
+<p>这两个参数用于指定wget接受或排除的文件扩展名，多个名称之间用逗号隔开。例</p>
+<p>如，</p>
+<p>假设我们不想下载MPEG视频影像文件和.AU声音文件，可使用如下参数：</p>
+<p>-R mpg,mpeg,au</p>
+<p>其它参数还有：</p>
+<p>-L 只扩展相对连接，该参数对于抓取指定站点很有用，可以避免向宿主</p>
+<p>主机</p>
+<p>的其他目录扩散。例如，某个人网站地址为：<a href="http://www.example.com/~ppfl/，使用" target="_blank" rel="external">http://www.example.com/~ppfl/，使用</a></p>
+<p>如下</p>
+<p>命令行：</p>
+<p>wget -L <a href="http://www.example.com/~ppfl/" target="_blank" rel="external">http://www.example.com/~ppfl/</a></p>
+<p>则只提取该个人网站，而不涉及主机www.example.com上的其他目录。</p>
+<p>-k 转换连接：HTML文件存盘时，将其中的非相对连接转换成为相对连接。</p>
+<p>-X 在下载FTP主机上的文件时，排除若干指定的目录</p>
+<p>另外，下面参数用于设置wget的工作界面：</p>
+<p>-v 设置wget输出详细的工作信息。</p>
+<p>-q 设置wget不输出任何信息。</p>
+<p>如果我们已经在一个HTML文档(或普通文本文档)中存储了所要提取的文件的连接</p>
+<p>，可</p>
+<p>以让wget直接从该文件中提取信息，而不用在命令行中提供URL地址，参数格式为</p>
+<p>：</p>
+<p>-i filename</p>
+<p>地址文件也可以不是HTML文档，例如，一个普通的文本文件，其中有需要下载的</p>
+<p>URL列</p>
+<p>表即可。</p>
+<p>我们可以用以下技巧提高下载速度：由于Linux是一个多任务系统，我们可以同时</p>
+<p>运行</p>
+<p>多个wget进程以提高下载速度，例如，先下载某主页文件(index.html)，然后将</p>
+<p>该文</p>
+<p>件所列出的所有地址分别用一个独立的wget进程进行下载。</p>
+<p>至于其他的参数，可参考wget的man手册页，命令为：man wget</p>
+<p>用wget创建网站的镜像</p>
+<p>使用shell中的wget命令行创建网站镜像的方法。此方法将所有文件(包括图片、CSS等)都下载下来，并把网页中的链接改为相对链接，这样就避免了镜像中的链接仍旧指向原来的网站而不能正常地工作了。</p>
+<p>此方法只需一条命令行：</p>
+<p>de&gt;$ wget -mk -w 20 <a href="http://www.example.com/de&amp;gt" target="_blank" rel="external">http://www.example.com/de&amp;gt</a>;</p>
+<p>命令行中的20代表间隔20秒下载一个文件，这样可以避免网站的访问过于频繁。你可以调小点，但当你是备份别人的站时，还是为别人的服务器考虑下吧。</p>
+<p>SSH下载</p>
+<p>用SSH下载文件，大家应该都会了吧?</p>
+<p>那如何上传呢??</p>
+<p>以下情况可能会用到上传。。</p>
+<p>假设我在dreamhost里做了个站，发展不错。内容也很多，但是访问速度肯定不如国内了，所以我准备把数据都搬回国内。这时我们肯定要先用SSH打包备份了。</p>
+<p>远程SSH打包命令如下：</p>
+<p>tar cfz geek.tar.gz tool</p>
+<p>/<em> 把tool目录打包且压缩为geek.tar.gz文件，因为.tar文件几乎是没有压缩过的，MT的.tar.gz文件解压成.tar文件后差不多是10MB </em>/</p>
+<p>压缩打包好了，要转移到新服务器上，传统方法是用登录FTP，然后下载压缩包，再登录新服务器上传压缩包。</p>
+<p>这个时候，如果文件小还好，文件要是很大的话，这一下一上肯定费不少时间。很是麻烦。</p>
+<p>其实，利用SSH，可以直接把文件上传到远程服务器上。下面给大家举例子：</p>
+<p>假设我的压缩包在code/mwpk.tar.gz 而远程服务器IP qmun.com 用户：user 密码:123456</p>
+<p>我们首先登录SSH。</p>
+<p>并且转到code目录下。</p>
+<p>cd code /*转到code目录</p>
+<p>ls /*列出该目录所有文件</p>
+<p>下面就是利用SSH上传的命令了。</p>
+<p>[lenny]$ ftp /*启用FTP客户端</p>
+<p>ftp&gt; open qmun.com /*打开远程服务器IP</p>
+<p>Connected to qmun.com.</p>
+<p>220 ProFTPD 1.2.9 Server ready.</p>
+<p>Name (qmun.com:root): user /*输入用户名</p>
+<p>331 Password required for oran.</p>
+<p>Password: /*输入密码</p>
+<p>230 User oran logged in.</p>
+<p>put mwpk.tar.gz mwpk.tar.gz</p>
+<p>/*这是关键，put是上传命令，第一个mwpk.tar.gz是本地文件名，第二个是远程文件名。。意思就是把本地的mwpk.tar.gz上传到远程FTP里，并且命名为mwpk.tar.gz这样，SSH就可以自己上传了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/31/ssh-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/" data-id="cj4r5cqai0027c3wyvn7oc6dv" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T07:05:26.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/">transform使用参考指南  </a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div><strong>语法</strong></div><br>transform ：none | &lt;transform-function&gt;[ &lt;transform-function&gt; ]*</p>
+<p><div><strong>取值</strong></div><br>指定一个身份转变</p>
+<p><div><strong>说明</strong></div><br>应用于block水平和inline水平的元素。</p>
+<p>transform可以对元素进行角度旋转和缩放,请使用webkit内核最新版浏览器浏览该文章以保证CSS3效果能够完全呈现</p>
+<p>在设置了transform属性后，可以设置transform-origin属性，这个属性控制变形时的源点，也就是变形时围绕的点。这个属性接受两个参数，可以是百分比、top/center/bottom、带单位的数值。</p>
+<p><div><strong>兼容性</strong></div><br>&nbsp;</p>
+<p><div></div></p>
+<p><div>浏览器支持情况:-webkit-transform,-moz-transform,-o-transform,目前对CSS3动画支持的最好最全面的是webkit内核浏览器。</div></p>
+<p><div><img src="http://img.ph.126.net/G8OazBHan05YkUYnPWIg7g==/3210503584363241869.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br></p>
+<p><div><strong>示例</strong></div><br>transform的属性包括：rotate() / skew() / scale() / translate(,) ，分别还有x、y之分，比如：rotatex() 和 rotatey() ，以此类推。</p>
+<p>有五种变形样式，可以重叠多种变形样式，以空格分隔</p>
+<p><strong>1.scale：</strong>缩放，1为原始大小。scale(x)。正数放大，负数缩小。属性值为一个时，x/y轴同时缩放；属性值为两个值时，分别控制x、y轴的缩放。</p>
+<p><pre>.scale{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;color:#fff;border-radius:5px 5px;padding:5px;}<br>.scale:hover{-webkit-transform:scale(1.5);-moz-transform:scale(1.5);-o-transform:scale(1.5);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img775.ph.126.net/Vj1jFN5fQFbPKR9V27uD5A==/4841932549376917347.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.scale{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;color:#fff;border-radius:5px 5px;padding:5px;}<br>.scale:hover{-webkit-transform:scale(1.5);-moz-transform:scale(1.5);-o-transform:scale(1.5);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定了变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/vb83lQj5qd_oWxvbOEljgg==/3302264426770923906.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>2.rotate：</strong>水平旋转，属性值格式为Xdeg。(deg是“度”的意思)rotate(Xdeg)。X为正数时，顺时针旋转；为负数时，逆时针旋转</p>
+<p><pre>.rotate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.rotate:hover{-webkit-transform:rotate(10deg);-moz-transform:rotate(10deg);<br>-o-transform:rotate(10deg);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img319.ph.126.net/3Vf8VP3yeP1IXxgSr-PImg==/3828904108195209612.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.rotate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.rotate:hover{-webkit-transform:rotate(10deg);-moz-transform:rotate(10deg);<br>-o-transform:rotate(10deg);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定了变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/_tW1pzoSR1wjZ9vU-HubHg==/914512199333394016.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>3.translate：</strong>定位元素，基于XY轴重新定位元素。translate(Xpx,Ypx)。属性值为一个时，x、y轴参数相同；为两个时，x、y轴分别定位</p>
+<p><pre>.translate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.translate:hover{-webkit-transform:translate(10px,-10px);-moz-transform:translate(10px,-10px);<br>-o-transform:translate(10px,-10px);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img763.ph.126.net/DnQHc3TUQ82v2hFYULcHMA==/4824762575797569969.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>4.skew：</strong>将元素沿水平方向倾斜变形。skew(Xdeg,Ydeg)。这个比较难表述，想象一下平行四边形吧。属性值为一个时，x、y轴参数相同；为两个时，x、y轴各自倾斜</p>
+<p><pre>.skew{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.skew:hover{-webkit-transform:skew(20deg,-10deg);-moz-transform:skew(20deg,-10deg);<br>-o-transform:skew(20deg,-10deg);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/NvhkKqUw0vRlEWhlTNTfqA==/3334634049091804368.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.skew{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.skew:hover{-webkit-transform:skew(20deg,-10deg);-moz-transform:skew(20deg,-10deg);<br>-o-transform:skew(20deg,-10deg);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/PNEPqPDDiJguT9E-V4FZuw==/2943102356487013162.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>5.matrix：</strong>矩阵，六个值。</p>
+<p><pre>.matrix{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.matrix:hover{-webkit-transform:matrix(1,-0.2,0,1,0,0);-moz-transform:matrix(1,-0.2,0,1,0,0);<br>-o-transform:matrix(1,-0.2,0,1,0,0);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img763.ph.126.net/c5fv5hLzdJWC6vrpwesmXQ==/4827295850587965995.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br>来源：<a href="http://missdora.net/blog/2010-05/css3-transform" target="_blank" rel="external">http://missdora.net/blog/2010-05/css3-transform</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/" data-id="cj4r5cqak002bc3wy498tj9ce" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; pre</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

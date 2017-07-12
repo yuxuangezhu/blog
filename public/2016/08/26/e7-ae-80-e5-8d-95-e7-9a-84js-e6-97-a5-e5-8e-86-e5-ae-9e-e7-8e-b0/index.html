@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单的js日历实现 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个简单的js日历，支持展示当月以及任意月份展示 &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=”en”&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=”UTF-8”&amp;gt;    &amp;lt;title&amp;gt;日历&amp;lt;/title&amp;gt;&amp;lt;script type=”text/javascript” src=”http://lib.snowo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的js日历实现">
+<meta property="og:url" content="https://itbugs.cn/2016/08/26/e7-ae-80-e5-8d-95-e7-9a-84js-e6-97-a5-e5-8e-86-e5-ae-9e-e7-8e-b0/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="一个简单的js日历，支持展示当月以及任意月份展示 &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=”en”&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=”UTF-8”&amp;gt;    &amp;lt;title&amp;gt;日历&amp;lt;/title&amp;gt;&amp;lt;script type=”text/javascript” src=”http://lib.snowo">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的js日历实现">
+<meta name="twitter:description" content="一个简单的js日历，支持展示当月以及任意月份展示 &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=”en”&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=”UTF-8”&amp;gt;    &amp;lt;title&amp;gt;日历&amp;lt;/title&amp;gt;&amp;lt;script type=”text/javascript” src=”http://lib.snowo">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>52</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-e7-ae-80-e5-8d-95-e7-9a-84js-e6-97-a5-e5-8e-86-e5-ae-9e-e7-8e-b0" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/26/e7-ae-80-e5-8d-95-e7-9a-84js-e6-97-a5-e5-8e-86-e5-ae-9e-e7-8e-b0/" class="article-date">
+  <time class="post-time" datetime="2016-08-26T04:07:46.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单的js日历实现
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个简单的js日历，支持展示当月以及任意月份展示</p>
+<p><pre lang="html4strict" line="" file="" colla="+">&lt;!DOCTYPE html&gt;<br>&lt;html lang=”en”&gt;<br>&lt;head&gt;<br>    &lt;meta charset=”UTF-8”&gt;<br>    &lt;title&gt;日历&lt;/title&gt;<br>&lt;script type=”text/javascript” src=”<a href="http://lib.snowos.cn/jquery.js&quot;&gt;&lt;/script&amp;gt" target="_blank" rel="external">http://lib.snowos.cn/jquery.js&quot;&gt;&lt;/script&amp;gt</a>;<br>&lt;script type=”text/javascript”&gt;<br>$(document).ready(function() {<br>    $(‘body’).append(‘&lt;div class=”dateMap popover bottom”&gt;’<br>        +’&lt;div class=”arrow”&gt;&lt;/div&gt;’<br>        +’&lt;h3 class=”popover-title”&gt;’<br>            +’&lt;select class=”time_year”&gt;&lt;/select&gt;’<br>            +’&lt;span&gt;年&lt;/span&gt;’<br>            +’&lt;select class=”time_month”&gt;&lt;/select&gt;’<br>            +’&lt;span&gt;月&lt;/span&gt;’<br>            +’&lt;input class=”time_hour” type=”time”&gt;’<br>        +’&lt;/h3&gt;’<br>        +’&lt;div class=”popover-content”&gt;’<br>        +’&lt;div class=”month-box”&gt;’<br>            +’&lt;ul class=”week-title”&gt;&lt;/ul&gt;’<br>            +’&lt;ul class=”day-box”&gt;&lt;/ul&gt;’<br>        +’&lt;/div&gt;’<br>    +’&lt;/div&gt;’<br>    +’&lt;/div&gt;’);<br>    var bigMonth = [1, 3, 5, 7, 8, 10, 12];<br>    var weekMap = [‘日’,’一’,’二’,’三’,’四’,’五’,’六’];<br>    var time = new Date();<br>    var year = time.getFullYear();<br>    var month = time.getMonth() + 1;<br>    var today = time.getDate();<br>    var hour = time.getHours();<br>    if (parseInt(hour) &lt; 10) {<br>        hour = “0” + hour;<br>    }<br>    var min = time.getMinutes();<br>    if (parseInt(min) &lt; 10) {<br>        min = “0” + min;<br>    }<br>    $(‘.time_hour’).val(hour +”:” + min);<br>    weekMap.forEach(function(v) {<br>        $(‘.week-title’).append(‘&lt;li&gt;’+ v +’&lt;/li&gt;’);<br>    })<br>    for(var i = 2000; i &lt; 2050; i++) {<br>        if (i == year) {<br>            $(‘.time_year’).append(‘&lt;option value=”‘+ i +’” selected=”true”&gt;’+ i +’&lt;/option&gt;’)<br>        } else {<br>            $(‘.time_year’).append(‘&lt;option value=”‘+ i +’”&gt;’+ i +’&lt;/option&gt;’);<br>        }<br>    }<br>    for(var j = 0; j &lt; 12; j++) {<br>        if (j == month -1) {<br>            $(‘.time_month’).append(‘&lt;option value=”‘+ (j + 1) +’” selected=”true”&gt;’+ (j + 1) +’&lt;/option&gt;’)<br>        } else {<br>            $(‘.time_month’).append(‘&lt;option value=”‘+ (j + 1) +’”&gt;’+ (j + 1) +’&lt;/option&gt;’);<br>        }<br>    }<br>    dataMap(year, month);<br>    function dataMap(year, month) {<br>        // debugger<br>        $(‘.day-box’).empty();<br>        var daysNum = 30;<br>        var firstDay = new Date(year + ‘-‘ + month + ‘-1’);<br>        var firstWeek = firstDay.getDay();<br>        if (bigMonth.indexOf(month) != -1) {<br>            daysNum = 31;<br>        }<br>        if (month == 2) {<br>            daysNum = (year%400 == 0 ? true : ((year%4 == 0 &amp;&amp; year%100 != 0) ? true : false)) ? 29 : 28;<br>        }<br>        daysNum = daysNum + firstWeek;</pre></p>
+<pre><code>    for(var k = 0; k &amp;lt; daysNum; k++) {
+        if (k &amp;gt;= firstWeek) {
+            $(&apos;.day-box&apos;).append(&apos;&amp;lt;li&amp;gt;&apos; + (k - firstWeek + 1) + &apos;&amp;lt;/li&amp;gt;&apos;);
+        } else {
+            $(&apos;.day-box&apos;).append(&apos;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&apos;)
+        }
+    }
+}
+$(&apos;.time_month&apos;).on(&apos;change&apos;, function(e) {
+    e.stopPropagation();
+    dataMap($(&apos;.time_year&apos;).val(), $(&apos;.time_month&apos;).val());
+});
+$(&apos;.time_year&apos;).on(&apos;change&apos;, function(e) {
+    e.stopPropagation();
+    dataMap($(&apos;.time_year&apos;).val(), $(&apos;.time_month&apos;).val());
+});
+</code></pre><p>})<br>&lt;/script&gt;<br>&lt;style type=”text/css”&gt;<br>.month-box {<br>    width: 273px;<br>    height: 140px;<br>    border: 1px solid #000;<br>}<br>.week-title {<br>    padding: 0px;<br>    margin: 0px;<br>    height: 20px;<br>    border-bottom: 1px solid #000;<br>}<br>.week-title li {<br>    float: left;<br>    list-style-type: none;<br>    height: 20px;<br>    width: 39px;<br>    text-align: center;<br>}<br>.day-box {<br>    padding: 0px;<br>    margin: 0px;<br>}<br>.day-box li {<br>    float: left;<br>    list-style-type: none;<br>    height: 20px;<br>    width: 39px;<br>    text-align: center;<br>}<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br><br>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2016/08/26/e7-ae-80-e5-8d-95-e7-9a-84js-e6-97-a5-e5-8e-86-e5-ae-9e-e7-8e-b0/" data-id="cj4qs1gpe0016m5fyw83cjifo" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/nodejs-e8-8e-b7-e5-8f-96-e6-96-87-e4-bb-b6-e4-be-9d-e8-b5-96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          nodejs获取文件依赖
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/20/e4-bd-bf-e7-94-a8forever-e8-bf-90-e8-a1-8cnodejs-e5-ba-94-e7-94-a8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">使用forever运行nodejs应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>52</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

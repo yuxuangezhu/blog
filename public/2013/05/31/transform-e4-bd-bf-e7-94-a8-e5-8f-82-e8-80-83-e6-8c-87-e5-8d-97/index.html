@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>transform使用参考指南   | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="语法transform ：none | &amp;lt;transform-function&amp;gt;[ &amp;lt;transform-function&amp;gt; ]* 取值指定一个身份转变 说明应用于block水平和inline水平的元素。 transform可以对元素进行角度旋转和缩放,请使用webkit内核最新版浏览器浏览该文章以保证CSS3效果能够完全呈现 在设置了transform属性后，可以设置tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transform使用参考指南  ">
+<meta property="og:url" content="https://itbugs.cn/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="语法transform ：none | &amp;lt;transform-function&amp;gt;[ &amp;lt;transform-function&amp;gt; ]* 取值指定一个身份转变 说明应用于block水平和inline水平的元素。 transform可以对元素进行角度旋转和缩放,请使用webkit内核最新版浏览器浏览该文章以保证CSS3效果能够完全呈现 在设置了transform属性后，可以设置tr">
+<meta property="og:image" content="http://img.ph.126.net/G8OazBHan05YkUYnPWIg7g==/3210503584363241869.png">
+<meta property="og:image" content="http://img775.ph.126.net/Vj1jFN5fQFbPKR9V27uD5A==/4841932549376917347.png">
+<meta property="og:image" content="http://img.ph.126.net/vb83lQj5qd_oWxvbOEljgg==/3302264426770923906.png">
+<meta property="og:image" content="http://img319.ph.126.net/3Vf8VP3yeP1IXxgSr-PImg==/3828904108195209612.png">
+<meta property="og:image" content="http://img.ph.126.net/_tW1pzoSR1wjZ9vU-HubHg==/914512199333394016.png">
+<meta property="og:image" content="http://img763.ph.126.net/DnQHc3TUQ82v2hFYULcHMA==/4824762575797569969.png">
+<meta property="og:image" content="http://img.ph.126.net/NvhkKqUw0vRlEWhlTNTfqA==/3334634049091804368.png">
+<meta property="og:image" content="http://img.ph.126.net/PNEPqPDDiJguT9E-V4FZuw==/2943102356487013162.png">
+<meta property="og:image" content="http://img763.ph.126.net/c5fv5hLzdJWC6vrpwesmXQ==/4827295850587965995.png">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="transform使用参考指南  ">
+<meta name="twitter:description" content="语法transform ：none | &amp;lt;transform-function&amp;gt;[ &amp;lt;transform-function&amp;gt; ]* 取值指定一个身份转变 说明应用于block水平和inline水平的元素。 transform可以对元素进行角度旋转和缩放,请使用webkit内核最新版浏览器浏览该文章以保证CSS3效果能够完全呈现 在设置了transform属性后，可以设置tr">
+<meta name="twitter:image" content="http://img.ph.126.net/G8OazBHan05YkUYnPWIg7g==/3210503584363241869.png">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T07:05:26.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      transform使用参考指南  
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div><strong>语法</strong></div><br>transform ：none | &lt;transform-function&gt;[ &lt;transform-function&gt; ]*</p>
+<p><div><strong>取值</strong></div><br>指定一个身份转变</p>
+<p><div><strong>说明</strong></div><br>应用于block水平和inline水平的元素。</p>
+<p>transform可以对元素进行角度旋转和缩放,请使用webkit内核最新版浏览器浏览该文章以保证CSS3效果能够完全呈现</p>
+<p>在设置了transform属性后，可以设置transform-origin属性，这个属性控制变形时的源点，也就是变形时围绕的点。这个属性接受两个参数，可以是百分比、top/center/bottom、带单位的数值。</p>
+<p><div><strong>兼容性</strong></div><br>&nbsp;</p>
+<p><div></div></p>
+<p><div>浏览器支持情况:-webkit-transform,-moz-transform,-o-transform,目前对CSS3动画支持的最好最全面的是webkit内核浏览器。</div></p>
+<p><div><img src="http://img.ph.126.net/G8OazBHan05YkUYnPWIg7g==/3210503584363241869.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br></p>
+<p><div><strong>示例</strong></div><br>transform的属性包括：rotate() / skew() / scale() / translate(,) ，分别还有x、y之分，比如：rotatex() 和 rotatey() ，以此类推。</p>
+<p>有五种变形样式，可以重叠多种变形样式，以空格分隔</p>
+<p><strong>1.scale：</strong>缩放，1为原始大小。scale(x)。正数放大，负数缩小。属性值为一个时，x/y轴同时缩放；属性值为两个值时，分别控制x、y轴的缩放。</p>
+<p><pre>.scale{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;color:#fff;border-radius:5px 5px;padding:5px;}<br>.scale:hover{-webkit-transform:scale(1.5);-moz-transform:scale(1.5);-o-transform:scale(1.5);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img775.ph.126.net/Vj1jFN5fQFbPKR9V27uD5A==/4841932549376917347.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.scale{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;color:#fff;border-radius:5px 5px;padding:5px;}<br>.scale:hover{-webkit-transform:scale(1.5);-moz-transform:scale(1.5);-o-transform:scale(1.5);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定了变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/vb83lQj5qd_oWxvbOEljgg==/3302264426770923906.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>2.rotate：</strong>水平旋转，属性值格式为Xdeg。(deg是“度”的意思)rotate(Xdeg)。X为正数时，顺时针旋转；为负数时，逆时针旋转</p>
+<p><pre>.rotate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.rotate:hover{-webkit-transform:rotate(10deg);-moz-transform:rotate(10deg);<br>-o-transform:rotate(10deg);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img319.ph.126.net/3Vf8VP3yeP1IXxgSr-PImg==/3828904108195209612.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.rotate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.rotate:hover{-webkit-transform:rotate(10deg);-moz-transform:rotate(10deg);<br>-o-transform:rotate(10deg);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定了变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/_tW1pzoSR1wjZ9vU-HubHg==/914512199333394016.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>3.translate：</strong>定位元素，基于XY轴重新定位元素。translate(Xpx,Ypx)。属性值为一个时，x、y轴参数相同；为两个时，x、y轴分别定位</p>
+<p><pre>.translate{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.translate:hover{-webkit-transform:translate(10px,-10px);-moz-transform:translate(10px,-10px);<br>-o-transform:translate(10px,-10px);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img763.ph.126.net/DnQHc3TUQ82v2hFYULcHMA==/4824762575797569969.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>4.skew：</strong>将元素沿水平方向倾斜变形。skew(Xdeg,Ydeg)。这个比较难表述，想象一下平行四边形吧。属性值为一个时，x、y轴参数相同；为两个时，x、y轴各自倾斜</p>
+<p><pre>.skew{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.skew:hover{-webkit-transform:skew(20deg,-10deg);-moz-transform:skew(20deg,-10deg);<br>-o-transform:skew(20deg,-10deg);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/NvhkKqUw0vRlEWhlTNTfqA==/3334634049091804368.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div></p>
+<p><pre>.skew{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.skew:hover{-webkit-transform:skew(20deg,-10deg);-moz-transform:skew(20deg,-10deg);<br>-o-transform:skew(20deg,-10deg);-webkit-transform-origin:top center;/<em>-webkit-transform-origin设定变换源点</em>/}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img.ph.126.net/PNEPqPDDiJguT9E-V4FZuw==/2943102356487013162.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br><strong>5.matrix：</strong>矩阵，六个值。</p>
+<p><pre>.matrix{width:100px;height:50px;background:#f00;-webkit-transition:all .5s ease;<br>color:#fff;border-radius:5px 5px;padding:5px;}<br>.matrix:hover{-webkit-transform:matrix(1,-0.2,0,1,0,0);-moz-transform:matrix(1,-0.2,0,1,0,0);<br>-o-transform:matrix(1,-0.2,0,1,0,0);}</pre><br>&nbsp;</p>
+<p>效果图如下：</p>
+<p><div><img src="http://img763.ph.126.net/c5fv5hLzdJWC6vrpwesmXQ==/4827295850587965995.png" alt="transform使用参考指南 - 郭培 - 前端工程师 郭培的博客"></div><br>来源：<a href="http://missdora.net/blog/2010-05/css3-transform" target="_blank" rel="external">http://missdora.net/blog/2010-05/css3-transform</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/31/transform-e4-bd-bf-e7-94-a8-e5-8f-82-e8-80-83-e6-8c-87-e5-8d-97/" data-id="cj4r5cqak002bc3wy498tj9ce" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/05/31/ssh-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          SSH命令详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/05/31/win8-win7-a8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">预装win8，更改win7的机器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

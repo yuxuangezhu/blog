@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux 查找目录下的所有文件中是否含有某个字符串 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="查找目录下的所有文件中是否含有某个字符串1find .|xargs grep -ri &quot;IBM&quot; 查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名1find .|xargs grep -ri &quot;IBM&quot; -l 1.正则表达式（1）正则表达式一般用来描述文本模式的特殊用法，由普通字符（例如字符a-z）以及特殊字符（称为元字符，如/、、?等）组成。（2）基本元字符集及其含义^ ：只匹配行首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 查找目录下的所有文件中是否含有某个字符串">
+<meta property="og:url" content="https://itbugs.cn/2015/03/17/linux-c-a6-e4-b8-b2/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="查找目录下的所有文件中是否含有某个字符串1find .|xargs grep -ri &quot;IBM&quot; 查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名1find .|xargs grep -ri &quot;IBM&quot; -l 1.正则表达式（1）正则表达式一般用来描述文本模式的特殊用法，由普通字符（例如字符a-z）以及特殊字符（称为元字符，如/、、?等）组成。（2）基本元字符集及其含义^ ：只匹配行首">
+<meta property="og:updated_time" content="2017-07-06T12:11:58.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 查找目录下的所有文件中是否含有某个字符串">
+<meta name="twitter:description" content="查找目录下的所有文件中是否含有某个字符串1find .|xargs grep -ri &quot;IBM&quot; 查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名1find .|xargs grep -ri &quot;IBM&quot; -l 1.正则表达式（1）正则表达式一般用来描述文本模式的特殊用法，由普通字符（例如字符a-z）以及特殊字符（称为元字符，如/、、?等）组成。（2）基本元字符集及其含义^ ：只匹配行首">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-linux-c-a6-e4-b8-b2" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/linux-c-a6-e4-b8-b2/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:25:15.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux 查找目录下的所有文件中是否含有某个字符串
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>查找目录下的所有文件中是否含有某个字符串<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri <span class="string">"IBM"</span></div></pre></td></tr></table></figure></p>
+<p>查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri <span class="string">"IBM"</span> <span class="_">-l</span></div></pre></td></tr></table></figure></p>
+<p>1.正则表达式<br>（1）正则表达式一般用来描述文本模式的特殊用法，由普通字符（例如字符a-z）以及特殊字符（称为元字符，如/、<em>、?等）组成。<br>（2）基本元字符集及其含义<br><code>^</code> ：只匹配行首。   如^a 匹配以a开头的行abc,a2e,a12,aaa,……<br><code>$</code> ：只匹配行尾。   如^a 匹配以a结尾的行bca,12a,aaa,…….<br>`</em><code>：匹配0个或多个此单字符。 如(a)* 匹配 空，a,aa,aaa,....</code>[]<code>：只匹配[]内字符。可以是一个单字符，也可以是字符序列，用&quot;,&quot;将里面要匹配的不同字符串分开。也可以使用-来表示[]内字符序列的范围，如[1-5]表示[12345]</code>` ：只用来屏蔽一个元字符的特殊含义。 如<code>\*,\&#39;,\&quot;,\|,\+,\^,\</code>. 等<br><code>.</code>：（点）只匹配任意单字符。<br><code>pattern\{n\}</code>：只用来匹配前面pattern出现的次数.n为次数。如a{2}匹配aa.<br><code>pattern\{n,\}</code>：含义同上，但次数最少为n.如a{2,}匹配aa,aaa,aaaa,…..<br><code>pattern\{n,m\}</code>：含义同上，但次数在n和m之间。如a{2,4}匹配aa,aaa,aaaa三个<br>(3)举例说明：<br><code>^$</code> ：匹配空行<br><code>^.$</code> ：匹配包含一个字符的行<br><code>\*\.pas</code> ：匹配以*.pas结尾的所有字符或文件<br><code>[0123456789]或[0-9]</code> ：假定要匹配任意一个数字<br><code>[a-z]</code> ：任意小写字母<br><code>[A-Za-z]</code> ：任意大小写字母<br><code>[S,s]</code> ：匹配大小写S<br><code>[0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}</code> ：匹配IP地址 [0-9]{3}三个0-9组成的字符串；.<br><code>：</code>匹配点（注意这里点是特殊的字符，所以要用”\”来屏蔽其含义）<br>2.find介绍   （1）查找具有某些特征文件的命令，可遍历当前目录甚至于整个文件系统来查看某些文件或目录，其遍历大的文件系统时一般放在后台执行。<br>（2）find命令的一般形式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">find pathname -options [-print -exec -ok]</div><div class="line">	-pathname :find命令所查找的目录路径。如用<span class="string">"."</span>来表示当前的目录，用/来表示系统根目录</div><div class="line">	-print :find命令将匹配的文件输出到标准输出</div><div class="line">	-exec: find命令对匹配的文件执行该参数所给出的shell命令，相应的命令形式为</div><div class="line">	<span class="string">'command'</span>&#123;&#125; \; (注意&#123;&#125;和\之间的空格)</div><div class="line">	-ok 和 -exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</div><div class="line">	options有如下几种：</div><div class="line">	-name ：按照文件名查找文件</div><div class="line">	-perm ：按照文件权限来查找文件</div><div class="line">	-user ：按照文件属主来查找文件</div><div class="line">	-group ：按照文件所属的组来查找文件</div><div class="line">	-mtime -n +n 按照文件的更改时间来查找文件，-n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前。find命令还有-atime 和-ctime选项，但它们都和-mtime选项相似。</div><div class="line">	-size n[c]查找文件长度为n块的文件，带有c时表示文件长度以字节计。</div><div class="line">	-nogroup 查找无有效所属组的文件，即该文件所属的组在/etc/groups中不存在</div><div class="line">	-newer file1 !file2查找更改时间比文件file1新但比文件file2旧的文件</div><div class="line">	-depth 先查找指定目录有无匹配文件，若无则再在子目录中查找</div><div class="line">	-type 查找某一类型的文件，如</div><div class="line">	b :块设备文件</div><div class="line">	d：目录</div><div class="line">	e：字符设备文件</div><div class="line">	p；管道文件</div><div class="line">	l：符号链接文件</div><div class="line">	f：普通文件</div></pre></td></tr></table></figure></p>
+<p>（3）find命令举例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">find -name <span class="string">"*.txt"</span> -print 查找txt结尾的文件并输出到屏幕上</div><div class="line">find /cmd <span class="string">".sh"</span> -print 查找/cmd目录下所有sh文件，并输出</div><div class="line">find . -perm 755 -print 查找当前目录下权限为755的文件，并输出</div><div class="line">find `<span class="built_in">pwd</span>` -user root -print 查找当前目录下属主为root的文件，并输出</div><div class="line">find ./ -group sunwill -print 查找当前目录下所属主是sunwill的文件</div><div class="line">find /var -mtime -5 -print 查找/var目录下更改时间为5天内的所有文件</div><div class="line">find /var -mtime +5 -print 查找/var目录下更改时间为5天以前的所有文件</div><div class="line">find /var -newer <span class="string">"myfile1"</span> ! -newer <span class="string">"myfile2"</span> -print 查找/var目录下比myfile1新，但是比myfile2旧的所有文件。</div><div class="line">find /var -type d -print 查找/var目录下所有目录</div><div class="line">find /var -type l -print 查找/var目录下所有的符号链接文件。</div><div class="line">find . -size +1000000c -print 查找当前目录下大于1000000字节的文件</div><div class="line">find / -name <span class="string">"con.file"</span> -depth -print 查找根目录下有无<span class="string">"con.file"</span>,若无则在其子目录中查找</div><div class="line">find . -type f -exec ls <span class="_">-l</span> &#123;&#125; \; 查找当前目录下是否有普通文件，若有则执行ls <span class="_">-l</span></div></pre></td></tr></table></figure></p>
+<p>（4）xargs命令<br>在 使用find命令的-exec选项处理匹配到的文件时，find命令将所有匹配到的文件一起传递给exec。不幸的是，有些系统对能够传递给exec的命 令长度有限制，这样find命令运行几分钟之后就算出现溢出错误。错误信息通常是“参数列太长”或“参数列溢出”。这就是xargs的用处所在，特别是与 find命令一起使用,exec会发起多个进程，而xargs会多个，只有一个<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find ./ -perm -7 -print | xargs chmod o-w</div></pre></td></tr></table></figure></p>
+<p>查找权限为7的文件并传递给chmod处理<br>3.grep介绍<br>(1)grep 的一般格式为 <code>grep [options]</code> 基本正则表达式 [文件]<br>字符串参数最好采用是双引号括，一是以防被误解为shell命令，二是可以用来查找多个单词组成的字符串<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-c：只输出匹配行的记数</div><div class="line">-i：不区分大小写（只适用于单个字符）</div><div class="line">-h：查询多个文件时不显示文件名</div><div class="line">-H：只显示文件名</div><div class="line"><span class="_">-l</span>：查询多文件时只输出包含匹配字符的文件名</div><div class="line">-n：只显示匹配行及其行号</div><div class="line"><span class="_">-s</span>：不显示不存在或无匹配文本的错误信息。</div><div class="line">-v：显示不包含匹配文本的所有行。</div></pre></td></tr></table></figure></p>
+<p>（2）举例说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">grep ^[^210] myfile 匹配myfile中以非2、1、0开头的行</div><div class="line">grep <span class="string">"[5-8][6-9][0-3]"</span> myfile 匹配myfile中第一位为5|6|7|8，第二位6|7|8|9，第三位为0|1|2|3的三个字符的行</div><div class="line">grep <span class="string">"4\&#123;2,4\&#125;"</span> myfile 匹配myfile中含有44,444或4444的行</div><div class="line">grep <span class="string">"\?"</span> myfile匹配myfile中含有任意字符的行</div></pre></td></tr></table></figure></p>
+<p>（3）grep命令类名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[[:upper:]]   表示[A-Z]</div><div class="line">[[:alnum:]]   表示[0-9a-zA-Z]</div><div class="line">[[:lower:]]   表示[a-z]</div><div class="line">[[:space:]]   表示空格或者tab键</div><div class="line">[[:digit:]]   表示[0-9]</div><div class="line">[[:alpha:]]   表示[a-zA-Z]</div></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"5[[:digit:]][[:digit:]]"</span> myfile</div></pre></td></tr></table></figure></p>
+<p>匹配myfile中含有5开头接下去两位都是数字的行。<br>4.awk介绍<br>可以从文件或字符串中基于指定规则浏览和抽取信息，是一种自解释的变成语言。<br>（1）awk命令行方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk [-F filed-spearator] <span class="string">'command'</span> input-files</div></pre></td></tr></table></figure></p>
+<p>awk脚本：所有awk命令插入一个文件，并使awk程序可执行，然后用awk命令解释器作为脚本的首行，以便通过键入脚本名称来调用它。awk脚本是由各种操作和模式组成。<br>模式部分决定动作语句何时触发及触发事件。（BEGIN,END）<br>动作对数据进行处理，放在{}内指明（print）<br>（2）分隔符、域和记录<br>awk执行时，其浏览域标记为$1,$2,…$n.这种方法成为域标识。$0为所有域。<br>（3）举例说明:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;print $0&#125;'</span> test.txt |tee test.out 输出test.txt中所有行<span class="variable">$0</span>表示所有域</div><div class="line">awk -F : <span class="string">'&#123;print $1&#125; test.txt |tee test.out'</span>   同上。。只是分隔符为<span class="string">":"</span></div><div class="line">awk <span class="string">'BEGIN &#123;print "IPDate\n"&#125;&#123;print $1 "\t" $4&#125; END&#123;print "end-of-report"&#125;'</span> test.txt</div></pre></td></tr></table></figure></p>
+<p>开始时打印“IPDate”结束时打印“end-of-report”中间打印主体信息，比如总共匹配三条信息，则输出如下：<br>IPDate<br>1 first<br>2 second<br>3 third<br>end-of-report<br>（4）匹配操作符 ~ 匹配,!~ 不匹配<br>cat test.txt |awk ‘$0~/210.34.0.13/‘ 匹配test.txt中为210.34.0.13的行<br>awk ‘$0!~/210.34.0.13’ test.txt     匹配test.txt中不是210.34.0.13的行<br>awk ‘{if($1==”210.34.0.13”) print $0}’ test.txt 匹配 test.txt中第一个域为210.34.0.13的行。<br>5.sed介绍     sed不与初始化文件打交道，它操作的只是一个拷贝，然后所有的改动如果没有重定向到一个文件，将输出到屏幕。<br>sed是一种很重要的文本过滤工具，使用一行命令或者使用管道与grep与awk相结合。是一种非交互性文本流编辑。<br>（1）调用sed的三种方式<br>使用sed命令行格式为：sed [options] sed命令 输入文件<br>使用sed脚本文件格式为：sed[options] -f sed脚本文件 输入文件<br>sed脚本文件[options] 输入文件<br>–不管是使用shell命令行方式或脚本文件方式，如果没有指定输入文件，sed从标准输入中接受输入，一般是键盘或重定向结果。<br>（2）sed 命令的options如下<br>-n：不打印<br>-c：下一命令是编辑命令<br>-f：如果正在调用sed脚本文件<br>（3）sed在文件中查询文本的方式<br>–使用行号，可以是一个简单的数字，或是一个行号的范围<br>–使用正则表达式<br>（4）读取文本的方式<br>x       x为一行号<br>x,y       表示行号范围从x到y<br>/pattern/     查询包含模式的行<br>/pattern/pattern/ 查询包含两个模式的行<br>pattern/,x   在给定的行号上查询包含模式的行<br>x,/pattern/   通过行号和模式查询匹配行<br>x,y!       查询不包含指定行号x和y的行<br>（5）基本sed编辑命令<br>p   打印匹配行<br>d   删除匹配行<br>=   显示文件行号<br>a\   在定位行号后附加新文本信息<br>i\   在定位行号后插入新文本信息<br>c\   用新文本替换定位文本<br>s     使用替换模式替换相应模式<br>r     从另一个文件中读文件<br>w   写文本到一个文件<br>q     第一个模式匹配完成后推出或立即退出<br>l     显示与八禁止ASCII代码等价的控制字符<br>{}   在定位行执行的命令组<br>n     从另一个文件中读文本下一行，并附加在下一行<br>g     将模式2粘贴到/pattern n/<br>y     传送字符<br>（6）举例说明：<br>sed -n ‘2p’ test.txt 打印第二行的信息(注意：-n是不打印不匹配的信息，若没加-n，则打印文件的所有信息而不是匹配信息)<br>sed -n ‘1,4p’ test.txt 打印第一行到第四行的信息<br>sed -n ‘/los/p’ test.txt模式匹配los，并打印出来<br>sed -n ‘2,/los/p’ test.txt 从第二行开始。。知道匹配第一个los<br>sed -n ‘/^$/p’ test.txt 匹配空行<br>sed -n -e ‘/^$/p’ -e ‘/^$/=’ test.txt 打印空行及行号<br>sed -n ‘/good/a\morning’ test.txt 在匹配到的good后面附加morning<br>sed -n ‘/good/i\morning’ test.txt 在匹配到的good前面插入morning<br>sed -n ‘/good/c\morning’ test.txt 将匹配到的good替换成morning<br>sed ‘1,2d’ test.txt 删除第1和2行<br>sed ‘s/good/good morning/g’ test.txt 匹配good并替换成goodmorning<br>send ‘s/good/&amp; hello /p’ test.txt 匹配到good就在其后面加上hello<br>send ‘s/good/ hello &amp;/p’ test.txt 匹配到good就在其前面加上hello<br>6.合并与分割（sort,uniq,join,cut,paste,split）     (1)sot命令<br>sort [options] files 许多不同的域按不同的列顺序排序<br>-c 测试文件是否已经排序<br>-m 合并两个排序文件<br>-u 删除所有同样行<br>-o 存储sort结果的输出文件名<br>-t 域分隔符，用非空格或tab开始排序<br>+n ：n 为列号，使用此列号开始排序<br>-n 指定排序是域上的数字分类项<br>-r 比较求逆<br>sort -c test.txt 测试文件是否分类过<br>sort -u test.txt 排序并合并一样的行<br>sort -r test.txt 以相反的顺序排列<br>sort -t “/“ +2 test.txt 以”/“分隔，第二个域开始分类<br>（2）uniq命令<br>uniq [options ] files 从一个文本文件中去除或禁止重复行<br>-u 只显示不重复行<br>-d 只显示有重复数据行，每种重复行只显示其中一行<br>-c 打印每一重复行出现次数<br>-f ：n为数字，前n个域被忽略<br>uniq -f 2 test.txt 忽略前2个域<br>（3）join 命令<br>join [options] file1 file2 用来将来自两个分类文本文件的行连在一起<br>-an，n为一数字，用于连接时从文件n中显示不匹配行<br>-onm ，连接域，n为文件号，m为域号<br>-jnm，n为文件号，m为域号，使用其他域作连接域<br>-t ，域分隔符。用来设置非空格或tab键的域分隔符。<br>（4）split命令<br>split -output_file_size intput_filename output_filename<br>用来将大文件分割成小文件。<br>-b n，每个分割文件的大小n<br>-C n，每个分割文件一行最多n字节<br>-l n，每个分割文件的行数<br>-n，同-l n<br>split -10 test.txt 将test.txt分割成10行的小文件<br>（5）cut 命令<br>cut -c n1-n2 filename 显示每行从开头算起 n1 到 n2 的文字。<br>cut -c 3-5 test.txt 显示test.txt中每行从第3到第5个字符</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/linux-c-a6-e4-b8-b2/" data-id="cj4se0w9x0002dyfy8gmwi3i3" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/17/linux-e7-89-88openvpn-e5-ae-89-e8-a3-85-e3-80-81-e9-85-8d-e7-bd-ae-e6-95-99-e7-a8-8b/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux版OpenVPN安装、配置教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">VI命令使用(查找替换) </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

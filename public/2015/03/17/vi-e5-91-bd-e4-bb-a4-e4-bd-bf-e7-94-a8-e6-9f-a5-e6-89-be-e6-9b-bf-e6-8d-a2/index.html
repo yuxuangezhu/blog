@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>VI命令使用(查找替换)  | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="esc:   命令模式与插入模式的切换 一、vi查找:    当你用vi打开一个文件后，因为文件太长，如何才能找到你所要查找的关键字呢？在vi里可没有菜单-〉查找，               不过没关系,你在命令模式下敲斜杆(/)这时在状态栏（也就是屏幕左下脚）就出现了 “/”然后输入你要查找的关键字               敲回车就可以了。如果你要继续查找此关键字，敲字符n就可以继续查找了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VI命令使用(查找替换) ">
+<meta property="og:url" content="https://itbugs.cn/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="esc:   命令模式与插入模式的切换 一、vi查找:    当你用vi打开一个文件后，因为文件太长，如何才能找到你所要查找的关键字呢？在vi里可没有菜单-〉查找，               不过没关系,你在命令模式下敲斜杆(/)这时在状态栏（也就是屏幕左下脚）就出现了 “/”然后输入你要查找的关键字               敲回车就可以了。如果你要继续查找此关键字，敲字符n就可以继续查找了">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VI命令使用(查找替换) ">
+<meta name="twitter:description" content="esc:   命令模式与插入模式的切换 一、vi查找:    当你用vi打开一个文件后，因为文件太长，如何才能找到你所要查找的关键字呢？在vi里可没有菜单-〉查找，               不过没关系,你在命令模式下敲斜杆(/)这时在状态栏（也就是屏幕左下脚）就出现了 “/”然后输入你要查找的关键字               敲回车就可以了。如果你要继续查找此关键字，敲字符n就可以继续查找了">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/" class="article-date">
+  <time class="post-time" datetime="2015-03-17T03:23:36.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VI命令使用(查找替换) 
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>esc:   命令模式与插入模式的切换</strong></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;"><strong><span style="color: #3366ff;">一、vi查找:  </span></strong>  当你用vi打开一个文件后，因为文件太长，如何才能找到你所要查找的关键字呢？在vi里可没有菜单-〉查找，</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              不过没关系,</span><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">你在命令模式下敲斜杆(/)这时在状态栏（也就是屏幕左下脚）就出现了 “/”然后输入你要查找的关键字</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              敲回车就可以了。如果你要继续查找此关键字，敲字符n就可以继续查找了。值得注意的是“/”是向下查找，而“?”</span></p>
+<p><span style="color: #6d5887; font-family: 微软雅黑; font-size: small;">              是向上查找，而在键盘定义上“?”刚好是“/”的上档符.</span></p>
+<p><strong><span style="color: #3366ff;">二、VI替换：</span></strong>vi/vim 中可以使用 ：s 命令来替换字符串§以前只会使用一种格式来全文替换，今天发现该命令有很多种写法（vi 真是强大啊飕还有很多需要学习），记录几种在此，方便以后查询§</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/vivian/sky/ 替换当前行第一个 vivian 为 sky<br>：s/vivian/sky/g 替换当前行所有 vivian 为 sky<br>：n，$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky<br>：n，$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky<br>n 为数字，若 n 为 .，表示从当前行开始到最后一行<br>：%s/vivian/sky/（等同于 ：g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky<br>：%s/vivian/sky/g（等同于 ：g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</td><br><br><br><br>可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s#vivian/#sky/# 替换当前行第一个 vivian/ 为 sky/<br>：%s+/oradata/apras/+/user01/apras1+ （使用+ 来 替换 / ）： /oradata/apras/替换成/user01/apras1/</td><br><br><br><br>&nbsp;<br><strong>               1.：s/vivian/sky/ 替换当前行第一个 vivian 为 sky</strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/vivian/sky/g 替换当前行所有 vivian 为 sky</td><br><br><br><br>&nbsp;</p>
+<p><strong>               2. ：n，$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：n，$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky<br>（n 为数字，若 n 为 .，表示从当前行开始到最后一行）</td><br><br><br><br>&nbsp;</p>
+<p><strong>               3. ：%s/vivian/sky/（等同于 ：g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：%s/vivian/sky/g（等同于 ：g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</td><br><br><br><br>&nbsp;</p>
+<p><strong>               4. 可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符 </strong></p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s#vivian/#sky/# 替换当前行第一个 vivian/ 为 sky/</td><br><br><br><br>&nbsp;</p>
+<p><strong>               5. 删除文本中的^M </strong><br>问题描述：对于换行，window下用回车换行（0A0D）来表示，linux下是回车（0A）来表示§这样，</p>
+<p>将window上的文件拷到unix上用时，总会有个^M.请写个用在unix下的过滤windows文件的换行符（0D）</p>
+<p>的shell或c程序§</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>§ 使用命令：cat filename1 | tr -d “^V^M” &gt; newfile；<br>§ 使用命令：sed -e “s/^V^M//” filename &gt; outputfilename.需要注意的是在1、2两种方法中，^V和^M指的是Ctrl+V和Ctrl+M.你必须要手工进行输入，而不是粘贴§<br>§ 在vi中处理：首先使用vi打开文件，然后按ESC键，接着输入命令：%s/^V^M//.<br>§ ：%s/^M$//g</td><br><br><br><br>如果上述方法无用，则正确的解决办法是：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>§ tr -d \”\r\” &lt; src &gt;dest<br>§ tr -d \”\015\” dest<br>§ strings A&gt;B</td><br><br><br><br><strong>              6. 其它</strong><br>利用 ：s 命令可以实现字符串的替换§具体的用法包括：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><table width="80%" border="0" cellspacing="0" cellpadding="0" align="center"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>：s/str1/str2/ 用字符串 str2 替换行中首次出现的字符串 str1<br>：s/str1/str2/g 用字符串 str2 替换行中所有出现的字符串 str1<br>：§，$ s/str1/str2/g 用字符串 str2 替换正文当前行到末尾所有出现的字符串 str1<br>：1，$ s/str1/str2/g 用字符串 str2 替换正文中所有出现的字符串 str1<br>：g/str1/s//str2/g 功能同上</td><br><br><br><br>&nbsp;</p>
+<p>从上述替换命令可以看到：g 放在命令末尾，表示对搜索字符串的每次出现进行替换；不加 g，</p>
+<p>表示只对搜索字符串的首次出现进行替换；g 放在命令开头，表示对正文中所有包含搜索字符</p>
+<p>串的行进行替换操作§</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/03/17/vi-e5-91-bd-e4-bb-a4-e4-bd-bf-e7-94-a8-e6-9f-a5-e6-89-be-e6-9b-bf-e6-8d-a2/" data-id="cj4r5cqam002fc3wy7kg0nxlo" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/17/linux-c-a6-e4-b8-b2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          linux 查找目录下的所有文件中是否含有某个字符串
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/22/sublime-text-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">三句话安装sublime text 3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

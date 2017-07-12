@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LNMP添加、删除虚拟主机及伪静态使用教程 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、添加虚拟主机通俗点就是在VPS/服务商上添加一个网站(域名)。 &amp;nbsp; 需要执行如下命令：/root/vhost.sh 执行后会出现如下界面：这里输入要绑定的域名，比如我想添加www.vpser.net 这个网站，那么直接输入www.vpser.net 然后回车，如果输入一个或多个字母按住Ctrl再按Backspace键删除，紧接会出现如下提示：这一步提示是否要在www.vpser.ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LNMP添加、删除虚拟主机及伪静态使用教程">
+<meta property="og:url" content="https://itbugs.cn/2014/06/06/lnmp-e6-b7-bb-e5-8a-a0-e3-80-81-e5-88-a0-e9-99-a4-e8-99-9a-e6-8b-9f-e4-b8-bb-e6-9c-ba-e5-8f-8a-e4-bc-aa-e9-9d-99-e6-80-81-e4-bd-bf-e7-94-a8-e6-95-99-e7-a8-8b/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="一、添加虚拟主机通俗点就是在VPS/服务商上添加一个网站(域名)。 &amp;nbsp; 需要执行如下命令：/root/vhost.sh 执行后会出现如下界面：这里输入要绑定的域名，比如我想添加www.vpser.net 这个网站，那么直接输入www.vpser.net 然后回车，如果输入一个或多个字母按住Ctrl再按Backspace键删除，紧接会出现如下提示：这一步提示是否要在www.vpser.ne">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-1.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-2.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-3.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-4.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-5.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-6.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-add-vhost-7.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-rewrite-modify.png">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LNMP添加、删除虚拟主机及伪静态使用教程">
+<meta name="twitter:description" content="一、添加虚拟主机通俗点就是在VPS/服务商上添加一个网站(域名)。 &amp;nbsp; 需要执行如下命令：/root/vhost.sh 执行后会出现如下界面：这里输入要绑定的域名，比如我想添加www.vpser.net 这个网站，那么直接输入www.vpser.net 然后回车，如果输入一个或多个字母按住Ctrl再按Backspace键删除，紧接会出现如下提示：这一步提示是否要在www.vpser.ne">
+<meta name="twitter:image" content="http://lnmp.org/images/lnmp-add-vhost-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-lnmp-e6-b7-bb-e5-8a-a0-e3-80-81-e5-88-a0-e9-99-a4-e8-99-9a-e6-8b-9f-e4-b8-bb-e6-9c-ba-e5-8f-8a-e4-bc-aa-e9-9d-99-e6-80-81-e4-bd-bf-e7-94-a8-e6-95-99-e7-a8-8b" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/06/06/lnmp-e6-b7-bb-e5-8a-a0-e3-80-81-e5-88-a0-e9-99-a4-e8-99-9a-e6-8b-9f-e4-b8-bb-e6-9c-ba-e5-8f-8a-e4-bc-aa-e9-9d-99-e6-80-81-e4-bd-bf-e7-94-a8-e6-95-99-e7-a8-8b/" class="article-date">
+  <time class="post-time" datetime="2014-06-06T15:53:27.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LNMP添加、删除虚拟主机及伪静态使用教程
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、添加虚拟主机"><a href="#一、添加虚拟主机" class="headerlink" title="一、添加虚拟主机"></a>一、添加虚拟主机</h2><p>通俗点就是在VPS/服务商上添加一个网站(域名)。</p>
+<p>&nbsp;</p>
+<p>需要执行如下命令：<strong>/root/vhost.sh</strong> 执行后会出现如下界面：<br><img src="http://lnmp.org/images/lnmp-add-vhost-1.png" alt=""><br>这里输入要绑定的域名，比如我想添加www.vpser.net 这个网站，那么直接输入www.vpser.net 然后回车，如果输入一个或多个字母按住Ctrl再按Backspace键删除，紧接会出现如下提示：<br><img src="http://lnmp.org/images/lnmp-add-vhost-2.png" alt=""><br>这一步提示是否要在www.vpser.net这个网站添加更多的域名，如想把vpser.net 或更多其他的域名绑上。</p>
+<blockquote>
+<p>(注：带www和不带www的是不同的域名，如需带www和不带的www的域名都访问同一个网站需要同时都绑定)。<br>如果需要添加更多的域名，如不需要直接输入 n 回车。如需要输入 y 回车，出现如下图提示：<br><img src="http://lnmp.org/images/lnmp-add-vhost-3.png" alt=""><br>再输入要另外绑定的域名，多个域名可以用空格隔开。比如我要添加的站是多个域名都是访问一个站，输入 vpser.net www.vpser.org vpser.org 回车。</p>
+</blockquote>
+<p><img src="http://lnmp.org/images/lnmp-add-vhost-4.png" alt=""><br>接下来是设置网站目录位置，一般情况下不需要设置直接回车即可。<br>在VPS或服务器有单独的数据分区，比如国内的<a href="http://vps.im/aliyun" target="_blank" rel="external">阿里云</a>之类的，如系统分区下容量小，数据盘分区大，那么可以输入自己的数据盘目录，必须是绝对目录。<br>比如/data/ 下面有大量的空间也可以填写/data/www/vpser 填写完回车确认。<br><img src="http://lnmp.org/images/lnmp-add-vhost-5.png" alt=""><br>这里选择是否添加伪静态规则，如不需要伪静态，直接输入 n 回车。如果需要输入 y 回车，再选择伪静态或自定义伪静态，一下为伪静态选择提示：<br><img src="http://lnmp.org/images/lnmp-add-vhost-6.png" alt=""><br>默认已经有了discuz、discuzx、wordpress、sablog、emlog、dabr、phpwind、wp2(二级目录wp伪静态)、dedecms、drupal、ecshop、shopex，可直接输入以上名称即可。（注：以上除特殊注明外所有规则均只能用于根目录网站，二级目录网站的无法使用，需修改规则。）</p>
+<p>如果以上伪静态没有自己需要的可以添加自定义伪静态规则，直接输入一个想要的名字，名字不能和前面这些伪静态的名字及/usr/local/nginx/conf/下的其他文件相同，程序会自动创建伪静态文件，直接在/usr/local/nginx/conf/你自定义的伪静态名字.conf 里面添加伪静态规则就行。<br>注：添加完执行/etc/init.d/nginx restart 重启生效。</p>
+<p><img src="http://lnmp.org/images/lnmp-add-vhost-7.png" alt=""><br>接下来会提示是否需要启用日志功能，如上图，一般情况下不需要启用日志，直接输入 n 回车。如需启用日志，输入y 回车。<br>会提示：Type access_log name(Default access log file:www.vpser.net.log):<br>这里是要求输入要定义的日志文件名字，一般不自定义直接回车即可。<br>日志文件存放在：/home/wwwlogs/ 下面。</p>
+<p>出现：Press any key to start create virtul host… 后，再次回车确认就会自动添加虚拟主机。</p>
+<h2 id="二、删除虚拟主机"><a href="#二、删除虚拟主机" class="headerlink" title="二、删除虚拟主机"></a><a id="delete-vhost" name="delete-vhost"></a>二、删除虚拟主机</h2><p>ssh登陆执行命令：rm /usr/local/nginx/conf/vhost/域名.conf<br>如，前面我们添加的主域名是www.vpser.net，则该命令为：rm /usr/local/nginx/conf/vhost/www.vpser.net.conf</p>
+<p>&nbsp;</p>
+<h2 id="三、伪静态"><a href="#三、伪静态" class="headerlink" title="三、伪静态"></a><a id="rewrite" name="rewrite"></a>三、伪静态</h2><p>Apache下的.htaccess伪静态规则不能用在LNMP下，需要使用Nginx伪静态规则。</p>
+<p>&nbsp;</p>
+<p>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。</p>
+<p>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。</p>
+<p>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如签名我们添加的虚拟主机，打开后前半部分配置会显示如下：<br><img src="http://lnmp.org/images/lnmp-rewrite-modify.png" alt=""><br>在root /home/wwwroot/www.vpser.net;这一行下面添加：<br>include wordpress.conf;<br>上面的wordpress.conf换成上传到/usr/local/nginx/conf/ 下面的伪静态规则文件，加完保存，执行：<strong>/etc/init.d/nginx restart</strong> 重启生效，如果报错可能是添加有误或伪静态规则有误。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2014/06/06/lnmp-e6-b7-bb-e5-8a-a0-e3-80-81-e5-88-a0-e9-99-a4-e8-99-9a-e6-8b-9f-e4-b8-bb-e6-9c-ba-e5-8f-8a-e4-bc-aa-e9-9d-99-e6-80-81-e4-bd-bf-e7-94-a8-e6-95-99-e7-a8-8b/" data-id="cj4r5cqa7001tc3wyhd50jg0i" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/06/06/lnmp-e7-8a-b6-e6-80-81-e7-ae-a1-e7-90-86-e5-91-bd-e4-bb-a4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LNMP状态管理命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/06/lnmp-e4-b8-80-e9-94-ae-e5-ae-89-e8-a3-85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">LNMP一键安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

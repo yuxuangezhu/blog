@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>centos6基于LNMP搭建gitlab ce教程 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近需要使用gitlab在内网进行版本管理，整了一台centos的服务器，版本6.8，因为已有LNMP存在，不想再使用gitlab自带的nginx配置，所以搜了一下教程，基本基于centos7的比较多，命令等执行起来多有失败，好在都解决了，所以整理了下centos6的安装方法，以备后用。 1、GitLab安装简介：GitLab安装说明，按照官方的安装说明进行安装。 2、开始安装GitLab：官方命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos6基于LNMP搭建gitlab ce教程">
+<meta property="og:url" content="https://itbugs.cn/2017/02/21/centos6-e5-9f-ba-e4-ba-8elnmp-e6-90-ad-e5-bb-bagitlab-ce-e6-95-99-e7-a8-8b/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="最近需要使用gitlab在内网进行版本管理，整了一台centos的服务器，版本6.8，因为已有LNMP存在，不想再使用gitlab自带的nginx配置，所以搜了一下教程，基本基于centos7的比较多，命令等执行起来多有失败，好在都解决了，所以整理了下centos6的安装方法，以备后用。 1、GitLab安装简介：GitLab安装说明，按照官方的安装说明进行安装。 2、开始安装GitLab：官方命">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos6基于LNMP搭建gitlab ce教程">
+<meta name="twitter:description" content="最近需要使用gitlab在内网进行版本管理，整了一台centos的服务器，版本6.8，因为已有LNMP存在，不想再使用gitlab自带的nginx配置，所以搜了一下教程，基本基于centos7的比较多，命令等执行起来多有失败，好在都解决了，所以整理了下centos6的安装方法，以备后用。 1、GitLab安装简介：GitLab安装说明，按照官方的安装说明进行安装。 2、开始安装GitLab：官方命">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>52</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-centos6-e5-9f-ba-e4-ba-8elnmp-e6-90-ad-e5-bb-bagitlab-ce-e6-95-99-e7-a8-8b" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/21/centos6-e5-9f-ba-e4-ba-8elnmp-e6-90-ad-e5-bb-bagitlab-ce-e6-95-99-e7-a8-8b/" class="article-date">
+  <time class="post-time" datetime="2017-02-21T02:25:04.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      centos6基于LNMP搭建gitlab ce教程
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近需要使用gitlab在内网进行版本管理，整了一台centos的服务器，版本6.8，因为已有LNMP存在，不想再使用gitlab自带的nginx配置，所以搜了一下教程，基本基于centos7的比较多，命令等执行起来多有失败，好在都解决了，所以整理了下centos6的安装方法，以备后用。</p>
+<h2 id="1、GitLab安装简介："><a href="#1、GitLab安装简介：" class="headerlink" title="1、GitLab安装简介："></a>1、GitLab安装简介：</h2><p><a href="https://about.gitlab.com/downloads/" target="_blank" rel="external">GitLab安装说明</a>，按照官方的安装说明进行安装。</p>
+<h2 id="2、开始安装GitLab："><a href="#2、开始安装GitLab：" class="headerlink" title="2、开始安装GitLab："></a>2、开始安装GitLab：</h2><pre>官方命令执行安装必备依赖
+sudo yum install curl openssh-server openssh-clients postfix cronie
+sudo service postfix start
+sudo chkconfig postfix on
+sudo lokkit -s http -s ssh
+
+安装完依赖之后开始正式安装gitlab，官方给出两种安装方式，这里我们使用[清华镜像站](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)的源，选择指定yum源的方式进行安装
+
+新建 `/etc/yum.repos.d/gitlab-ce.repo`，内容为
+
+</pre>
+
+<pre><code>[gitlab-ce]
+name=gitlab-ce
+baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+gpgkey=https://packages.gitlab.com/gpg.key
+
+再执行
+</code></pre><pre class="highlight">`sudo yum makecache
+sudo yum install gitlab-ce
+
+`一般情况下，不使用原有的LNMP环境的话，gitlab已经安装完成了，只需要执行
+<span class="hljs-built_in">sudo</span> gitlab-ctl reconfigure
+
+就可以直接启动gitlab了。
+
+如果要基于LNMP的话，就需要对gitlab的默认配置进行修改
+
+vi /etc/gitlab/gitlab<span class="hljs-preprocessor">.rb</span>
+
+打开文件后，找到下面三处位置进行如下修改，有没启用的，需要自行删除前面的#
+<span class="hljs-preprocessor"># note the 'https' below
+</span>external_url <span class="hljs-string">'https://域名orIP'
+
+</span><span class="hljs-preprocessor"># Set the web server
+</span>web_server[<span class="hljs-string">'external_users'</span>] = [<span class="hljs-string">'www'</span>]
+
+<span class="hljs-preprocessor"># Disable the built-in nginx
+</span>nginx[<span class="hljs-string">'enable'</span>] = <span class="hljs-literal">false</span>
+
+修改完成后开始配置nginx
+
+vi /usr/<span class="hljs-keyword">local</span>/nginx/conf/vhost/gitlab.conf
+
+创建新文件，内容如下，部分地方需要修改
+
+<span class="hljs-comment">## GitLab</span> <span class="hljs-comment">##
+</span><span class="hljs-comment">## Modified from nginx http version
+</span><span class="hljs-comment">## Modified from http://blog.phusion.nl/2012/04/21/tutorial-setting-up-gitlab-on-debian-6/
+</span><span class="hljs-comment">## Modified from https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html</span> <span class="hljs-comment">##
+</span><span class="hljs-comment">## Lines starting with two hashes (##) are comments with information.
+</span><span class="hljs-comment">## Lines starting with one hash (#) are configuration parameters that can be uncommented.</span> <span class="hljs-comment">##
+</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">#### ## CONTRIBUTING ## ###</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">#
+</span><span class="hljs-comment">##</span> <span class="hljs-comment">## If you change this file in a Merge Request, please also create
+</span><span class="hljs-comment">## a Merge Request on https://gitlab.com/gitlab-org/omnibus-gitlab/merge_requests</span> <span class="hljs-comment">##
+</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">##### ## configuration ## ###</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">######</span><span class="hljs-comment">##</span> <span class="hljs-comment">##
+</span><span class="hljs-comment">## See installation.md#using-https for additional HTTPS configuration details.
+</span>upstream gitlab-workhorse {
+    server <span class="hljs-attribute">unix</span>:/<span class="hljs-reserved">var</span>/opt/gitlab/gitlab-workhorse/socket fail_timeout=<span class="hljs-number">0</span>;
+}
+<span class="hljs-comment">## HTTPS host
+</span>server {
+    listen <span class="hljs-number">80</span>;
+    listen <span class="hljs-number">443</span> ssl;
+    server_name 域名 or IP; <span class="hljs-comment">## Replace this with something like gitlab.example.com
+</span>    server_tokens <span class="hljs-literal">off</span>; <span class="hljs-comment">## Don't show the nginx version number, a security best practice
+</span>    root /opt/gitlab/embedded/service/gitlab-rails/public;
+    include ssl.conf;
+    access_log /tmp/gitlab.access.log;
+    error_log /<span class="hljs-reserved">tmp</span>/gitlab.error.log;
+    location / {
+        client_max_body_size <span class="hljs-number">0</span>;
+        gzip <span class="hljs-literal">off</span>;
+
+<span class="hljs-comment">        ## https://github.com/gitlabhq/gitlabhq/issues/694
+</span><span class="hljs-comment">        ## Some requests take more than 30 seconds.
+</span>        proxy_read_timeout <span class="hljs-number">300</span>;
+        proxy_connect_timeout <span class="hljs-number">300</span>;
+        proxy_redirect <span class="hljs-literal">off</span>;
+        proxy_http_version <span class="hljs-number">1.1</span>;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Ssl <span class="hljs-literal">on</span>;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass <span class="hljs-attribute">http</span>:<span class="hljs-regexp">//gi</span>tlab-workhorse;
+    }
+}</pre>
+<pre>其中所需要的ssl.conf文件 需要单独创建
+
+内容如下
+
+<span class="hljs-function_or_atom">ssl</span> <span class="hljs-function_or_atom">on</span>;
+<span class="hljs-function_or_atom">add_header</span> <span class="hljs-variable">Strict</span>-<span class="hljs-variable">Transport</span>-<span class="hljs-variable">Security</span> <span class="hljs-string">"max-age=31536000;includeSubdomains; preload;"</span>;
+<span class="hljs-function_or_atom">ssl_certificate</span> /<span class="hljs-function_or_atom">usr</span>/<span class="hljs-function_or_atom">local</span>/<span class="hljs-function_or_atom">nginx</span>/<span class="hljs-function_or_atom">conf</span>/<span class="hljs-number">1</span>_xxx.<span class="hljs-function_or_atom">com</span>.<span class="hljs-function_or_atom">crt</span>;
+<span class="hljs-function_or_atom">ssl_certificate_key</span> /<span class="hljs-function_or_atom">usr</span>/<span class="hljs-function_or_atom">local</span>/<span class="hljs-function_or_atom">nginx</span>/<span class="hljs-function_or_atom">conf</span>/<span class="hljs-function_or_atom">ssl</span>.<span class="hljs-function_or_atom">key</span>;
+<span class="hljs-function_or_atom">ssl_protocols</span> <span class="hljs-variable">TLSv1</span> <span class="hljs-variable">TLSv1</span>.<span class="hljs-number">1</span> <span class="hljs-variable">TLSv1</span>.<span class="hljs-number">2</span>;
+<span class="hljs-function_or_atom">ssl_ciphers</span> <span class="hljs-variable">ALL</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-variable">DH</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-variable">EXPORT</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-variable">RC4</span>:+<span class="hljs-variable">HIGH</span>:+<span class="hljs-variable">MEDIUM</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-variable">LOW</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-function_or_atom">aNULL</span>:<span class="hljs-exclamation_mark">!</span><span class="hljs-function_or_atom">eNULL</span>;
+<span class="hljs-function_or_atom">ssl_session_cache</span> <span class="hljs-function_or_atom">shared</span>:<span class="hljs-variable">SSL</span>:<span class="hljs-number">20</span>m;
+<span class="hljs-function_or_atom">ssl_session_timeout</span> <span class="hljs-number">20</span>m;
+
+文件中的</pre>
+<pre>.<span class="hljs-function_or_atom">crt和.key文件需要自行去证书网站签发
+
+上面文件准备好之后，
+
+执行
+<span class="hljs-built_in">sudo</span> gitlab-ctl reconfigure
+
+使gitlab配置生效（每次更改配置都需要执行才能生效）
+
+重启Nginx使配置生效
+
+重启后访问刚才配置的</span>server_name 就可以看见界面了
+
+首次登陆需要设置root用户的密码，设置完成后就可以正常使用了
+
+</pre>
+
+<h2 id="3、GitLab几个坑："><a href="#3、GitLab几个坑：" class="headerlink" title="3、GitLab几个坑："></a>3、GitLab几个坑：</h2><ol>
+<li><p>很多时候我们安装完成，创建完项目会发现，系统给出的git clone的地址不对，有的时候是域名不对，有的时候是协议不对，这个时候就需要修改vi  /etc/gitlab/gitlab.rb中的 gitlab_rails[‘gitlab_ssh_host’] = ‘域名 or IP’，修改完成后执行</p>
+<pre><span class="hljs-function_or_atom"><span class="hljs-built_in">sudo</span> gitlab-ctl reconfigure</span></pre>
+</li>
+<li><p>如果你在上一步ssl证书的地方使用了不被认可的证书，使用git拉取代码的时候会报错<br>SSL: no alternative certificate subject name matches target host name ‘192.168.22.15’<br>这个时候需要执行clone命令之前先执行env GIT_SSL_NO_VERIFY=true来忽略ssl警告，拉取完代码之后在当前仓库执行git config http.sslVerify <span class="string">“false”可以对当前仓库永久忽略警告。</span><br>&nbsp;</p>
+<pre><span class="hljs-function_or_atom">参考资料：
+[http://blog.csdn.net/w670328683/article/details/50736977](http://blog.csdn.net/w670328683/article/details/50736977)
+[http://schnell18.iteye.com/blog/2031397](http://schnell18.iteye.com/blog/2031397)
+</span></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2017/02/21/centos6-e5-9f-ba-e4-ba-8elnmp-e6-90-ad-e5-bb-bagitlab-ce-e6-95-99-e7-a8-8b/" data-id="cj4qs1go9000cm5fyfzem1mds" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/14/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/26/nodejs-e8-8e-b7-e5-8f-96-e6-96-87-e4-bb-b6-e4-be-9d-e8-b5-96/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">nodejs获取文件依赖</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>52</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

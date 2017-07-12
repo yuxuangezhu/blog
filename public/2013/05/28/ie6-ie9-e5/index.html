@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>IE6-IE9兼容性问题列表及解决办法 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一章：HTML第一节：IE7-IE8更新1.如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记。MSDN原文：Unclosed P elements are now automatically closed when followed by TABLE, FORM, NOFRAMES, or NOSCRIPT elements">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE6-IE9兼容性问题列表及解决办法">
+<meta property="og:url" content="https://itbugs.cn/2013/05/28/ie6-ie9-e5/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="第一章：HTML第一节：IE7-IE8更新1.如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记。MSDN原文：Unclosed P elements are now automatically closed when followed by TABLE, FORM, NOFRAMES, or NOSCRIPT elements">
+<meta property="og:updated_time" content="2017-07-06T11:03:33.612Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE6-IE9兼容性问题列表及解决办法">
+<meta name="twitter:description" content="第一章：HTML第一节：IE7-IE8更新1.如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记。MSDN原文：Unclosed P elements are now automatically closed when followed by TABLE, FORM, NOFRAMES, or NOSCRIPT elements">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-ie6-ie9-e5" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/28/ie6-ie9-e5/" class="article-date">
+  <time class="post-time" datetime="2013-05-28T04:46:06.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IE6-IE9兼容性问题列表及解决办法
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章：HTML"><a href="#第一章：HTML" class="headerlink" title="第一章：HTML"></a>第一章：HTML</h1><h2 id="第一节：IE7-IE8更新"><a href="#第一节：IE7-IE8更新" class="headerlink" title="第一节：IE7-IE8更新"></a>第一节：IE7-IE8更新</h2><h3 id="1-如果缺少结束标记的-P-元素后跟-TABLE、FORM、NOFRAMES-或-NOSCRIPT-元素，会自动添加结束标记。"><a href="#1-如果缺少结束标记的-P-元素后跟-TABLE、FORM、NOFRAMES-或-NOSCRIPT-元素，会自动添加结束标记。" class="headerlink" title="1.如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记。"></a>1.如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记。</h3><p>MSDN原文：Unclosed P elements are now automatically closed when followed by TABLE, FORM, NOFRAMES, or NOSCRIPT elements.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>如果缺少结束标记的 P 元素后跟 TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素，会自动添加结束标记，即：TABLE、FORM、NOFRAMES 或 NOSCRIPT 元素不能再嵌套在段落元素P中了b。</p>
+<p>考虑如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Simple P Element Closing Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE8"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is the first paragraph<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"margin-left:30px"</span>&gt;</span>This is another paragraph. <span class="comment">&lt;!-- P not closed --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1px"</span> <span class="attr">cellpadding</span>=<span class="string">"2px"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>This is a table cell.<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a third paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在这个例子中，第二个P元素没有关闭。在IE6, IE7下，Table元素显示为第二个p元素的子元素。第二个p元素是窗口的左边界缩进30像素。因为该表是一个P元素的子元素，它也从窗口的左边界缩进。IE7下Html结构图如下：</p>
+<p>然而，与IE8时，在默认模式下，TABLE元素对齐到左边缘。因为IE8会自动关闭显示表元素之前闭合的P元素，TABLE元素的子元素。IE8下Html结构图如下：</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请注意此特性， 在代码中规避风险。</p>
+<h3 id="2-支持格式正确的有效标记，不再支持格式错误的-HTML。"><a href="#2-支持格式正确的有效标记，不再支持格式错误的-HTML。" class="headerlink" title="2.支持格式正确的有效标记，不再支持格式错误的 HTML。"></a>2.支持格式正确的有效标记，不再支持格式错误的 HTML。</h3><p>MSDN原文：Malformed HTML is no longer supported, in favor of well-formed, valid markup.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>支持格式正确的有效标记，不再支持格式错误的 HTML</p>
+<p>Malformed HTML is no longer supported, in favor of well-formed, valid markup.</p>
+<p>Parser error correction for malformed HTML has changed in IE8 Standards Mode. Pages depending on the way IE7 performs error correction may encounter issues as a result.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1</div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">!—多了一个标记，will</span> <span class="attr">Closes</span> <span class="attr">1.1</span> <span class="attr">in</span> <span class="attr">IE8</span>, <span class="attr">but</span> <span class="attr">not</span> <span class="attr">IE7</span> <span class="attr">--</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1.2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在IE8下可以看到如下效果图：</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>HTML标记写法要严谨。</p>
+<p>Ensure your markup is well-formed and valid.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1</div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!-- &lt;/li&gt; --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.1.2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>修改后，IE8下效果图如下：</p>
+<h2 id="第二节-IE8-IE9更新"><a href="#第二节-IE8-IE9更新" class="headerlink" title="第二节: IE8-IE9更新"></a>第二节: IE8-IE9更新</h2><ol>
+<li>表对象模式现在更加符合其他浏览器。</li>
+</ol>
+<p>MSDN原文：Table Object Model Is Now More Consistent with Other Browsers.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>为了提高IE和其他浏览器之间的一致性，IE9的标准模式的表Table发生了以下变化：</p>
+<p>•额外的THead和TFoot元素不会出现在table.tBodies集合中。这里所指的是table.tBodies属性，并不是在tBody里面放thead或者tfoot。如果有多余的thead或者tfoot，IE9模式下不会把它们计入在内，而在IE8模式下会把多余的thead或tfoot单独计入到一个tBody。</p>
+<p>•Table的行集合有着不同的顺序。无论他们在文档内的顺序是什么，首先是THead内容, 其次是TBody内容，最后才是TFoot内容。</p>
+<p>•调用rows统计将返回一个表内的所有层次的TR行数，包括直属TR行。也就是指把table里面的所有TR对象都计入在rows列表里面，而不论它是在根节点还是thead/tfoot/tbody里面</p>
+<p>•使用getElementsByTagName和HtmlElement.children方法不返回注释节点。</p>
+<p>To improve consistency between Windows Internet Explorer and other browsers, the IE9 Standards mode includes the following changes to the table object model:</p>
+<p>•Extra thead and tfoot elements do not appear in the tBodies collection.</p>
+<p>•The rows collection has a different ordering. First, it includes any rows in the thead element, then all remaining rows that are not in the tfoot element, and then any rows in the tfoot element, regardless of their order in the document.</p>
+<p>•A call for rows returns all rows at all depths within the table, including direct row children of the table.</p>
+<p>•The getElementsByTagName and HtmlElement.children methods do not return comment nodes.</p>
+<p>如果不考虑这些变化在您的应用程序，应用程序可能会遇到次要的脚本错误，页面始终保持在加载中状态，或创建非预期内容等错误。</p>
+<p>If you do not consider these changes in your application, the application might encounter script errors that are minor, that keep pages from loading, or that create content that is not intended.</p>
+<p>考虑如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Table Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">CheckTable</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">"mytable"</span>);</div><div class="line">    <span class="keyword">var</span> tBodyResult = <span class="string">"有"</span> + table.tBodies.length + <span class="string">"个tBody\n\n"</span>;</div><div class="line">    <span class="keyword">var</span> rows = table.rows;</div><div class="line">    <span class="keyword">var</span> length = rows.length;</div><div class="line">    <span class="keyword">var</span> rowResult = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</div><div class="line">      rowResult +=  <span class="string">"第"</span> + (i+<span class="number">1</span>) + <span class="string">"行: "</span>+ rows[i].innerHTML + <span class="string">"\n"</span>;</div><div class="line">    &#125;</div><div class="line">    alert(tBodyResult + rowResult);</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">table</span> <span class="attr">id</span>=<span class="string">"mytable"</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Row1<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Row2<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Foot<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Head1<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Head2<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"CheckTable()"</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>点击Click Me按钮，IE8将弹出提示，显示有三个tBody, 实际上只有一个tbody，但是IE8将多余的一个thead和一个tfoot都各自单独计入一个tBody里了。而IE9则不会有这个问题，只显示有一个tBody。</p>
+<p>注释：Table包含 thead、tfoot 以及 tbody 子元素， thead元素用于定义表格的表头，tfoot用于定义表格的表尾，tbody为表格中的主体内容。thead 元素应该与 tbody和 tfoot元素结合起来使用。</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>注意此特性，规避风险。</p>
+<p><strong>相关资源：</strong></p>
+<ol>
+<li>文本布局使用自然度量而不是图形设备接口 (GDI) 度量。</li>
+</ol>
+<p>MSDN原文：Text Layout Uses Natural Metrics.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>对于IE9 标准模式中的文字版面配置， IE9 使用自然度量法，而非旧版IE 浏览器使用的图形装置介面(GDI) 度量法。GDI 度量法会将文字与像素界限对齐，而自然度量法则会使用内部像素的间距来呈现更准确且更容易阅读的文字。</p>
+<p>IE 的其他文件模式则继续使用GDI 度量法。</p>
+<p>针对旧版文件模式所写的页面版面配置在IE9 中可能无法正确​​显示。 最常見的错误是未预期的文字換行，這可能会遮盖位于换行文字下方的元素。当文字方块沒有多余的水平空间或是当文字方块的大小与頁面上的其他元素(例如图形) 相连时，很可能会发生此错误。</p>
+<p>For text layout in IE9 Standards mode, Windows Internet Explorer 9 uses natural metrics instead of the graphical device interface (GDI) metrics that other Microsoft Windows browsers use. GDI metrics align text to pixel boundaries, but natural metrics use inter-pixel spacing to create more accurately rendered and readable text.</p>
+<p>Other document modes for Windows Internet Explorer continue to use GDI metrics.</p>
+<p>Page layouts that are written for earlier document modes might display incorrectly in Internet Explorer 9. The most common error is unexpected text wrapping, which can cover elements that are below the wrapped text. This error is most likely when a text box does not include extra horizontal space or when the size of the text box is connected to another element on the page, such as a graphic.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>不要假设特定字型的大小在不同浏览器间或是在相同浏览器内都会依相容的方式呈现，因为使用者有可能会缩放浏览器的字体 (例如，125%)。</p>
+<p>利用下列设计准则，可确定您的网页显示文字版面配置的方式一致：</p>
+<p>1.将Textbox的大小设定为特定的像素数。</p>
+<p>2.在Textbox中留些余量空间，避免空间过紧。</p>
+<p>3.使用非Static大小的Textbox。</p>
+<p>4.在与其他页面元素相连接处包含额外空间。</p>
+<p>5.如果您允许用户改变页面字体的大小，就要请您确认页面可以适应文字换行。</p>
+<p>6.如果您发现文字换行的问题，请您调整页面，确保页面可以恰当地呈现文字。</p>
+<p>避免对文字版面配置采用下列设计：</p>
+<p>1.指望字型大小在不同浏览器间以相同的方式呈现。</p>
+<p>2.使用Static大小的textbox。</p>
+<p>关于Static大小的textbox, 含义如下例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">style</span>=<span class="string">"width:100px"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这里就指定了text box的size，非静态non-statically意思是说我们不要去指定size。如果一定要指定，尽量用如上的px作为单位。</p>
+<h1 id="第二章：CSS"><a href="#第二章：CSS" class="headerlink" title="第二章：CSS"></a>第二章：CSS</h1><h2 id="第一节：IE6-IE7更新"><a href="#第一节：IE6-IE7更新" class="headerlink" title="第一节：IE6-IE7更新"></a>第一节：IE6-IE7更新</h2><h3 id="1-方框模型溢出内容现与方框相交，不再让方框自动增长适应内容。"><a href="#1-方框模型溢出内容现与方框相交，不再让方框自动增长适应内容。" class="headerlink" title="1. 方框模型溢出内容现与方框相交，不再让方框自动增长适应内容。"></a>1. 方框模型溢出内容现与方框相交，不再让方框自动增长适应内容。</h3><p>MSDN原文：Box model overflow content now intersects box, no longer auto-grows box div to fit content.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE6-IE7</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>在IE7中，为了适应CSS2.1 box model，微软修改了溢出的行为。溢出是用来描述当一个块元素的内容溢出它的区域时，这些内容是否被剪切掉的一种方法。默认情况下，内容不被剪切，也就是，它有可能呈现在区域以外。过去的IE不支持这个行为。内容总是需要适合区域的大小。想象一个宽和高都是100px的区域，如果内容小于100px，那么没有问题。如果内容超过了尺寸，我们需要自动增长区域大小来适合内容。</p>
+<p>请看下面的代码示例。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">border</span>: thin solid red;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">blockquote</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">125px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">border</span>: thin dashed black</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">cite</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="attribute">text-align</span>: right;</div><div class="line">  <span class="attribute">border</span>: none</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>some text long enough to make it interesting.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">cite</span>&gt;</span>- anonymous<span class="tag">&lt;/<span class="name">cite</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>下图显示了在IE6和IE7中此段代码的不同效果，(上图为IE6，下图为IE7)：</p>
+<p>从图中可以看出，<code>&lt;blockquote&gt;</code>内容超出了div的边界，在IE7下，div不再自动增长来装下<code>&lt;blockquote&gt;</code>，而是让<code>&lt;blockquote&gt;</code>伸出div的边界。</p>
+<p>As you can see, we now honor the height and width settings of a box. In this example, the <code>&lt;blockquote&gt;</code> content now renders outside of the boundaries of the parent <code>&lt;div&gt;</code> (box with red borders).</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请检查相关的页面设计，如果以前依赖自动增长这一特性，现在就需要修改代码，来避免页面布局显示错误的风险。</p>
+<p>If your layout relied on us “growing” the box (if your content did not fit the dimensions you gave it) then this can lead to breaks. You can easily discover breaks related to overflow by observing content suddenly overlapping other content.</p>
+<p><strong>相关资源：</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/bb250496(VS.85" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/bb250496(VS.85).aspx</a>.aspx)</p>
+<h3 id="2-不再支持某些-CSS-筛选器（如-HTML、-underscore-和-注释）。"><a href="#2-不再支持某些-CSS-筛选器（如-HTML、-underscore-和-注释）。" class="headerlink" title="2. 不再支持某些 CSS 筛选器（如 HTML、_underscore 和 /*/ 注释）。"></a>2. 不再支持某些 CSS 筛选器（如 <em>HTML、_underscore 和 /*</em>/ 注释）。</h3><p>MSDN原文：Certain CSS filters (for example, <em>HTML, _underscore, and /*</em>/ comment) are no longer supported.）</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE6-IE7</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>虽然CSS标准已经存在，但是并不保证所有的浏览器用同样的方式呈现页面。这些标准可能含有未经定义的部分，并不是所有的组件等会被所有的浏览器去执行，并且已知的执行也可能存在问题。CSS标准并不提供一个方法去指定一个特定的浏览器版本，所以网络开发者社区开发了CSS filter（也被称作”CSS hacks”）。这些filter利用浏览器的问题或者未执行的特性来隐藏针对特殊浏览器的CSS样式规则。当我们修复了这些问题并且改进了CSS支持后，一些CSS filter将不再可用。</p>
+<p>如果你使用这些filters，你应该了解它们的效果。这个可以帮助你做出针对以后版本的Internet Explorer和其它浏览器的更有效的并且适应改进后的CSS的设计。</p>
+<p>在IE7中，我们修改了许多潜在解析错误，这些错误有可能会阻止下面的filter在以前的IE版本中正常工作。如果你的页面中包含这些filter，请去除或者更换它们。</p>
+<p>Even though standards like CSS are available it is not a guarantee that all browsers render the same way. The standard might have undefined parts, not all components are equally implemented by all browser vendors, and existing implementations might have bugs. The CSS standard does not provide a way to target specific browser versions and as a result the Web developer community has developed CSS filters (also called “CSS hacks”). These filters take advantage of browser bugs or unimplemented features to hide CSS style rules from specific browsers. As we fix these bugs and improve CSS support, some CSS filters will stop working.</p>
+<p>If you use such filters, you should understand their effects. In this long run, this will help you create designs that more effectively adapt to improved CSS support in later versions of Internet Explorer and other browsers.</p>
+<p>In IE7, we fixed many underlying parser bugs that prevented the following filters from working in earlier versions of IE. If your page contains these filters, please remove or replace them (at the end of this article we will offer other means of targeting reliable IE versions).</p>
+<p>具体举例如下：</p>
+<p>*HTML filter</p>
+<p>这个CSS filter基于一个解析错误。它被用于显示排除内容。这些内容将被Internet Explorer7和以后的版本忽略。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* The following rules used to apply only to</span></div><div class="line">IE but now get ignored by IE7 and higher */</div><div class="line">* <span class="selector-tag">html</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">* <span class="selector-tag">html</span> <span class="selector-tag">body</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">* <span class="selector-tag">html</span> <span class="selector-class">.foo</span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下划线filter</p>
+<p>这个CSS filter基于一个解析错误。它被用来显示被排除的属性。这个内容现在被Internet Explorer以及之后的版本认为是一个自定义属性。自定义属性意味着它仍然可以使用，但是并不默认就拥有一个值。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/* The following rule used to apply min-height</div><div class="line">to browser who understand this property and</div><div class="line">height to IE.  In IE7, _height will be treated</div><div class="line">as a custom property (no height will be applied) */</div><div class="line"></div><div class="line">.myclass &#123;</div><div class="line">  min-height: 300px;</div><div class="line">  _height: 300px;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>/**/注释filter</p>
+<p>这个CSS filter基于一个解析错误。它被用来在strict模式下隐藏属性（这个filter在quirk模式下不起作用）。在Internet Explorer7中，这个属性可以被解析和使用。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/* The following rule used to hide the height</div><div class="line">property to Internet Explorer. In IE7, the</div><div class="line">value will be applied */</div><div class="line"></div><div class="line">.myclass &#123;</div><div class="line">  height/**/: 300px;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>如果使用了上述CSS筛选器，停用即可。</p>
+<p><strong>相关资源：</strong></p>
+<h3 id="3-已解决SELECT-元素不能被div覆盖的问题。"><a href="#3-已解决SELECT-元素不能被div覆盖的问题。" class="headerlink" title="3. 已解决SELECT 元素不能被div覆盖的问题。"></a>3. 已解决SELECT 元素不能被div覆盖的问题。</h3><p>MSDN原文：Applications that relied on SELECT element to get an HWND to use with Microsoft Win32 APIs may break because SELECT element is now a windowless control.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE6-IE7</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>Select元素现在已改为无窗口控件， 这项改变使z-order 和 zoom缩放能正常工作了，也就说， 这次彻底解决了IE6中Select不能被div覆盖的问题，除此之外，其他都和以前保持一致；</p>
+<p>但是，如果有应用程序依赖从Select控件获取窗口的HWND就必须修改为使用DOM了，因为Select元素现在是无窗口控件，也就得不到HWND了。</p>
+<p>Select Element—The Select control is now a windowless control. This change enables z-order and zoom to work correctly. The HTML and Document Object Model (DOM) for Select remain the same, so Web developers and end users interact with Select as before; however, applications that relied on getting an HWND from Select to use with Microsoft Win32 APIs must be modified to use the DOM.</p>
+<hr>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>注意此特性即可。</p>
+<p><strong>相关资源：</strong></p>
+<p>Select control: CSS style-able and not always on top</p>
+<p><a href="http://blogs.msdn.com/b/ie/archive/2006/01/17/514076.aspx" target="_blank" rel="external">http://blogs.msdn.com/b/ie/archive/2006/01/17/514076.aspx</a></p>
+<h2 id="第二节：IE7-IE8更新"><a href="#第二节：IE7-IE8更新" class="headerlink" title="第二节：IE7-IE8更新"></a>第二节：IE7-IE8更新</h2><h3 id="1-不再支持-CSS-表达式，改为支持增强的-CSS-或-DHTML-逻辑。"><a href="#1-不再支持-CSS-表达式，改为支持增强的-CSS-或-DHTML-逻辑。" class="headerlink" title="1.不再支持 CSS 表达式，改为支持增强的 CSS 或 DHTML 逻辑。"></a>1.不再支持 CSS 表达式，改为支持增强的 CSS 或 DHTML 逻辑。</h3><p>MSDN原文：CSS expressions no longer supported, in favor of improved CSS support or DHTML logic.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：<br>不再支持 CSS 表达式，改为支持增强的 CSS 或 DHTML 逻辑。<br>CSS expressions no longer supported, in favor of improved CSS support or DHTML logic.</p>
+<p>Support for CSS Expressions has been removed in IE8 Standards Mode.</p>
+<p>CSS 表达式的例子：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#main</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="built_in">expression</span>(</div><div class="line">    (new Date()).<span class="built_in">getHours</span>()%<span class="number">2</span> ? <span class="string">"#000"</span> : <span class="string">"#fff"</span></div><div class="line"></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>停用CSS Expressions，重构代码.<br>Refactor to utilize either improved CSS support or DHTML logic.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Script */</span></div><div class="line"><span class="keyword">var</span> elm = <span class="built_in">document</span>.getElementById(<span class="string">"main"</span>);</div><div class="line"><span class="keyword">if</span>((<span class="keyword">new</span> <span class="built_in">Date</span>()).getHours()%<span class="number">2</span>) &#123;</div><div class="line">elm.style.backgroundColor = <span class="string">"#000"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">elm.style.backgroundColor = <span class="string">"#fff"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<h3 id="2-currentStyle-对象的Unset属性现在返回其初始值。"><a href="#2-currentStyle-对象的Unset属性现在返回其初始值。" class="headerlink" title="2.currentStyle 对象的Unset属性现在返回其初始值。"></a>2.currentStyle 对象的Unset属性现在返回其初始值。</h3><p>MSDN原文：Unset properties on the currentStyle object now return their initial value. This is the root cause of issues with the ASP.NET menu control.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>现在，currentStyle 对象的Unset 属性会返回其初始值”auto”， 这是 ASP.NET 菜单控件问题的根本原因。</p>
+<p>Unset properties on the currentStyle object now return their initial value. This is the root cause of issues with the ASP.NET menu control (example).</p>
+<p>Initial CSS Property Values</p>
+<p>Unset properties on the currentStyle object now return their initial value. Relying on the old initial values for CSS properties such as z-index can cause problems. This is the root cause of issues with the ASP.NET menu control.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zIndex = elm.currentStyle.zIndex;</div><div class="line"><span class="keyword">if</span>(zIndex == <span class="number">0</span>) &#123;</div><div class="line">  <span class="comment">// custom code</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注释1：currentStyle 对象，它用来返回元素上的样式表，但是 style 对象只返回通过 STYLE 标签属性应用到元素的内嵌样式。因此，通过 currentStyle 对象获取的样式值可能与通过 style 对象获取的样式值不同。例如，如果段落的 color 属性值通过链接或嵌入样式表设置为红色( red )，而不是内嵌的话，对象.currentStyle.color 将返回正确的颜色，而对象 style.color 不能返回值。但是，如果用户指定了 </p><p style="color:'red'">，currentStyle 和 STYLE 对象都将返回值 red。</p>
+<p>注释2：z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>例子：下面button不设置style属性(也就谈不上置width和zindex了)，则currentStyle.width和currentStyle.zIndex都返回默认值auto.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnAdd"</span> <span class="attr">value</span>=<span class="string">"123"</span>  /&gt;</span></div><div class="line">alert(window.document.getElementById("btnAdd").currentStyle.width);</div><div class="line">alert(window.document.getElementById("btnAdd").currentStyle.zIndex);</div></pre></td></tr></table></figure></p>
+<p>要做如下双重检查：<br>Perform a check for both the backwards compatible value and the standardized initial value.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var zIndex = elm.currentStyle.zIndex;</div><div class="line">if(zIndex == 0 || zIndex == "auto") &#123;</div><div class="line">  // custom code  </div><div class="line">&#125;</div><div class="line">**相关资源：**</div><div class="line"></div><div class="line">currentStyle 对象</div><div class="line"></div><div class="line">[http://www.phpx.com/man/dhtmlcn/objects/currentStyle.html](http://www.phpx.com/man/dhtmlcn/objects/currentStyle.html)</div><div class="line"></div><div class="line">### 3.style 对象的 Unset 属性值现在返回空字符串。</div><div class="line"></div><div class="line">MSDN原文：Unset properties values on the style object now return empty string.</div><div class="line"></div><div class="line">| 所属分类 | 版本更新 |</div><div class="line">| ------ |-------|</div><div class="line">| CSS   | IE7-IE8 |</div><div class="line"></div><div class="line">**具体描述及示例**：</div><div class="line">style 对象的 Unset 属性值现在返回空字符串。</div><div class="line">Unset properties values on the style object now return empty string.</div><div class="line">Unspecified CSS Property Values</div><div class="line">Unset properties on the style object now return the empty string for improved compliance with the DOM Level 2 Style Specification. Expecting CSS properties such as z-index to have a value when they have not been explicitly set can lead to problems.</div><div class="line">```javascript</div><div class="line">var zIndex = elm.style.zIndex;</div><div class="line">if(zIndex === 0) &#123;</div><div class="line">  // custom code</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:<br>要做如下双重检查：<br>Perform a check for both the backwards compatible value and the empty string.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zIndex = elm.style.zIndex;</div><div class="line"><span class="keyword">if</span>(zIndex === <span class="number">0</span> || zIndex === <span class="string">""</span>) &#123;</div><div class="line">  <span class="comment">// custom code</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<h2 id="第三节：IE8-IE9更新"><a href="#第三节：IE8-IE9更新" class="headerlink" title="第三节：IE8-IE9更新"></a>第三节：IE8-IE9更新</h2><ol>
+<li>泰语和东亚语文本和字体大小的显示可能小于其他字样。</li>
+</ol>
+<p>MSDN原文：Thai and East Asian Text and Font Sizing.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>泰文和东亚文字在IE9 看起来可能比在IE8 和旧版本中还要小。<br>在IE8 中，泰文和東亚文字可在下列情況下以大于指定大小的字型呈现：<br>1.指定font size为9pt 或更小.</p>
+<p>2.指定的font-family不支持泰文或東亚文字，例如Arial指定的字型系列不支持泰文或东亚文字。</p>
+<p>因此，8pt Arial 的泰文段落会使用[Internet Options-Fonts] 中指定的后援字型来呈现，而后者之后会配合Ariel 公制放大调整。因此，如果网页作者要求使用8pt 的字型大小，则实际尺寸会更大。</p>
+<p>在IE9 中，则始终采用指定的字型大小。因此，由于后援字型不会再放大调整，文字可能看起来可能会比较小。</p>
+<p>Thai and East Asian text may look smaller in IE9 than in IE8 and earlier releases. In IE8, Thai and East Asian text could be rendered at a larger font size than specified when:</p>
+<p>•The specified font size was 9pt or smaller</p>
+<p>•The specified font family did not support Thai or East Asian characters such as Arial</p>
+<p>Thus, a Thai paragraph of 8pt Arial would be rendered using the fallback font specified in Internet Options-Fonts and the latter would then be scaled up to match Arial metrics. As a result, the real size is larger than it would have been if the web author had requested that font at 8pt.</p>
+<p>In IE9, the specified font size is always respected. Thus, as the fallback font is no longer scaled up, text may appear smaller.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请尽可能确定CSS font-family 属性的第一个值支持您的语言。</p>
+<p>此问题还会影响到多语言界面的CSS字体设置。</p>
+<p><strong>相关资源：</strong></p>
+<hr>
+<h3 id="2-某些行为连接方法在-XML-模式中不可用。"><a href="#2-某些行为连接方法在-XML-模式中不可用。" class="headerlink" title="2.某些行为连接方法在 XML 模式中不可用。"></a>2.某些行为连接方法在 XML 模式中不可用。</h3><p>MSDN原文：Some Behavior-Connecting Methods Do Not Work in XML.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>用于连接行为的标记式表单在Windows IE9 模式中可运作，但在xml 模式中则无法运作。</p>
+<p>The markup-based form for connecting behaviors works in Windows Internet Explorer 9 modes, but it does not work in xml mode.</p>
+<p>行为可在网页的最上层指定，如下面的程式码范例所示。</p>
+<p>A behavior can be specified at the top of a webpage, as the following code example shows.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:myNamespace</span>&gt;</span></div><div class="line">&lt;?import namespace="myNamespace" implementation = "my.htc"&gt;</div><div class="line">…</div><div class="line">&lt;myNamespace:calendar/&gt;</div></pre></td></tr></table></figure></p>
+<p>此问题只影响新内容。<br>This problem affects only new content.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请不要使用HTML标记，而是通过CSS的behavior属性注册，如下例所示。</p>
+<p>Instead of using HTML markup, use Cascading Style Sheets (CSS)-based registration through the behavior property, as the following code example shows.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.calendar</span> &#123;</div><div class="line">  <span class="attribute">ms-behavior</span>: <span class="built_in">url</span>(my.htc);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">…</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"calendar"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>您可以透过class属性以外的元素使用CSS注册。<br>You can use CSS-based registration through elements other than the class attribute.</p>
+<p><strong>相关资源：</strong></p>
+<h1 id="第三章：Javascript-and-DOM"><a href="#第三章：Javascript-and-DOM" class="headerlink" title="第三章：Javascript and DOM"></a>第三章：Javascript and DOM</h1><h2 id="第一节：IE6-IE7更新-1"><a href="#第一节：IE6-IE7更新-1" class="headerlink" title="第一节：IE6-IE7更新"></a>第一节：IE6-IE7更新</h2><h3 id="1-不再允许用于绕过-window-close-提示的-window-opener-技巧。"><a href="#1-不再允许用于绕过-window-close-提示的-window-opener-技巧。" class="headerlink" title="1.不再允许用于绕过 window.close 提示的 window.opener 技巧。"></a>1.不再允许用于绕过 window.close 提示的 window.opener 技巧。</h3><p>MSDN原文：window.opener trick used to bypass the window.close prompt is no longer allowed.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE6-IE7更新</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>不再允许用于绕过 window.close 提示的 window.opener 技巧。</p>
+<p>window.opener and window.close–Internet Explorer 7 no longer allows the window.opener trick to bypass the window.close prompt. Browser windows cannot close themselves unless the windows were created in script. This security enhancement no longer allows browsing to a random site when the main browser window closes unexpectedly.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>在IE6中，当我们用这种方法:<code>Response.Write(&quot;&lt;script&gt;window.close()&lt;/script&gt;&quot;)</code></p>
+<p>总是会提示:你查看的网页试图关闭的提示。在IE6下, 可以用以下方法，去掉提示，直接关闭窗体: <code>Response.Write(&quot;&lt;script&gt;window.opener=null;window.close()&lt;/script&gt;&quot;)</code></p>
+<p>opener只要设为任何值都可以,不会出现提示。</p>
+<p>在IE7及以上版本中，此写法就不被允许了。</p>
+<p>注意此新特性即可。</p>
+<p><strong>相关资源：</strong></p>
+<h3 id="2-从脚本创建的模式或无模式对话框看起来似乎稍微变大。"><a href="#2-从脚本创建的模式或无模式对话框看起来似乎稍微变大。" class="headerlink" title="2.从脚本创建的模式或无模式对话框看起来似乎稍微变大。"></a>2.从脚本创建的模式或无模式对话框看起来似乎稍微变大。</h3><p>MSDN原文：Modal or modeless dialogs created from script might seem slightly bigger.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>其他</td>
+<td>IE6-IE7更新</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>从脚本创建的模式或无模式对话框看起来似乎稍微变大。</p>
+<p>Changes that affect modal or modeless dialogs created from script–Modal or modeless dialogs created from script in Internet Explorer 7 might seem to be slightly bigger than their Internet Explorer 6 counterparts. This is caused by a change to the behavior of the dialogWidth and dialogHeight properties, which now set and retrieve dimensions of the content area of a dialog (from Internet Explorer 7 and later). It will no longer be necessary to calculate the area lost by elements of a dialog’s frame.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要目测，看是否需要调整。</p>
+<p><strong>相关资源：</strong></p>
+<p>Why Does IE Resize My Dialogs?</p>
+<p><a href="http://blogs.msdn.com/b/ie/archive/2006/08/25/719355.aspx" target="_blank" rel="external">http://blogs.msdn.com/b/ie/archive/2006/08/25/719355.aspx</a></p>
+<h2 id="第二节：IE7-IE8更新-1"><a href="#第二节：IE7-IE8更新-1" class="headerlink" title="第二节：IE7-IE8更新"></a>第二节：IE7-IE8更新</h2><ol>
+<li>支持“class”语法，不再支持“className”属性语法。<br>MSDN原文：“className” attribute syntax no longer supported, in favor of “class” syntax.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>在IE7中，必须使用属性名称为“ClassName”来设置和检索元素的类。在IE8中已经被修改为符合标准，因此需要使用“class”来设置和检索元素的类。</p>
+<p>In IE7, “className” had to be used as the attribute name to set and retrieve the class of an element. This has been fixed for standards-compliance in IE8 Standards Mode. Using the old approach will create an attribute named “className” that has no affect on the actual class assigned to an element.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> elm.getAttribute(<span class="string">"className"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>使用规范的名称，“class”，而不是为“ClassName”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> elm.getAttribute(<span class="string">"class"</span>);</div></pre></td></tr></table></figure></p>
+<p>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetClass</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="built_in">window</span>.document.getElementById(<span class="string">"btnAdd"</span>).getAttribute(<span class="string">"className"</span>));</div><div class="line">  <span class="comment">//alert(window.document.getElementById("btnAdd").getAttribute("class"));</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"GetClass()"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">runat</span>=<span class="string">"server"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnAdd"</span> <span class="attr">value</span>=<span class="string">"123"</span>  /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用<code>getAttribute(&quot;className&quot;)</code>，在IE8中会得到Null的错误提示。</p>
+<p>使用<code>getAttribute(&quot;class&quot;)</code>，在IE8中会得到INPUT的正确值。</p>
+<p><strong>相关资源：</strong></p>
+<hr>
+<h3 id="2-属性集合不再包含-Internet-Explorer-可识别的所有可能属性。"><a href="#2-属性集合不再包含-Internet-Explorer-可识别的所有可能属性。" class="headerlink" title="2.属性集合不再包含 Internet Explorer 可识别的所有可能属性。"></a>2.属性集合不再包含 Internet Explorer 可识别的所有可能属性。</h3><p>MSDN原文：<strong>The attributes collection no longer contains all possible attributes recognized by Internet Explorer.</strong></p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>属性集合不再包含 Internet Explorer 可识别的所有可能属性.</p>
+<p>The attributes collection no longer contains all possible attributes recognized by Internet Explorer.</p>
+<p>The attributes collection no longer contains all possible attributes recognized by IE, but only those that have been explicitly set. Scripts can fail if they depend on natively supported attributes always being present as they were in IE7.</p>
+<p>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> attr = elm.attributes[<span class="string">"checked"</span>];</div><div class="line"><span class="comment">// Potential script error in IE8</span></div><div class="line"><span class="keyword">return</span> attr.specified;</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>要先检查确认属性存在，而后再使用。</p>
+<p>Do not assume an attribute will be in the attributes collection. Check for existence first.</p>
+<p>正确写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> attr = elm.attributes[<span class="string">"checked"</span>];</div><div class="line"><span class="keyword">if</span>(attr) <span class="keyword">return</span> attr.specified;</div><div class="line"><span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<h3 id="3-属性排序已更改，影响了属性集、innerHTML-和-outerHTML。"><a href="#3-属性排序已更改，影响了属性集、innerHTML-和-outerHTML。" class="headerlink" title="3.属性排序已更改，影响了属性集、innerHTML 和 outerHTML。"></a>3.属性排序已更改，影响了属性集、innerHTML 和 outerHTML。</h3><p>MSDN原文：<strong>Attribute ordering has changed, affecting attributes collection, innerHTML, and outerHTML.</strong></p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>属性排序已更改，影响了属性集、innerHTML 和 outerHTML。</p>
+<p>Attribute ordering has changed, affecting attributes collection, innerHTML, and outerHTML.</p>
+<p>The ordering of attributes has changed, affecting the attributes collection as well as the values of innerHTML and outerHTML. Pages depending on a specific attribute ordering may break.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">attr = elm.attributes[<span class="number">1</span>]; <span class="comment">// May differ in IE8</span></div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请用属性取id代替属性所在位置索引。</p>
+<p>Reference attributes by name as opposed to their position within the attributes collection.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">attr = elm.attributes[<span class="string">"id"</span>];</div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<h3 id="4-GetElementById-区分大小写，且不再搜索名称属性。"><a href="#4-GetElementById-区分大小写，且不再搜索名称属性。" class="headerlink" title="4.GetElementById 区分大小写，且不再搜索名称属性。"></a>4.GetElementById 区分大小写，且不再搜索名称属性。</h3><p>MSDN原文：GetElementById is case sensitive and no longer searches name attributes.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE7-IE8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>GetElementById 区分大小写，不再搜索名称属性</p>
+<p>GetElementById is case sensitive and no longer searches name attributes.</p>
+<p>The method getElementById is now case-sensitive and no longer searches name attributes.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"Test"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">// No element is found because of case difference</span></div><div class="line">  <span class="keyword">var</span> test = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>遵守区分大小写的特性即可。</p>
+<p>Ensure case-correctness and use getElementsByName when searching name attributes.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"Test"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">// Element Test is found</span></div><div class="line">  <span class="keyword">var</span> test = <span class="built_in">document</span>.getElementById(<span class="string">"Test"</span>)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<h2 id="第三节：IE8-IE9更新-1"><a href="#第三节：IE8-IE9更新-1" class="headerlink" title="第三节：IE8-IE9更新"></a>第三节：IE8-IE9更新</h2><ol>
+<li>createElement 方法中不允许使用尖括号&lt;&gt; 。<br>MSDN原文：Angle Brackets Are Not Allowed in the createElement Method.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>IE9不能识别createElement方法内的角括弧(&lt; &gt;)。如果您在IE9 的页面中使用角括弧，会发生异常。</p>
+<p>Windows IE 9 does not recognize angle brackets (&lt; &gt;) within the createElement method. If you use angle brackets in IE 9 webpages that are not set to previous Windows IE Standards document modes, an exception occurs. For example, the following code example will cause an exception in IE9 mode.</p>
+<p>例如，下面的例子在IE9 模式中引发异常。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> el=<span class="built_in">document</span>.createElement(<span class="string">"&lt;div id='myDiv'&gt;"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>要顺应IE9 中的这项变更有两种方法：</p>
+<ol>
+<li>使用setAttribute API 建立​​元素并分别新增属性，如下面的代码范例所示。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> elm = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">elm.setAttribute(<span class="string">"id"</span>,<span class="string">"myDiv"</span>);</div><div class="line"><span class="string">``</span><span class="string">`javascript</span></div><div class="line">1.  使用innerHTML API 在父元素内建立元素，如下面的代码范例所示。</div><div class="line">`<span class="string">``</span>javascript</div><div class="line"><span class="keyword">var</span> parent=<span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">parent.innerHTML=<span class="string">"&lt;div id='myDiv'&gt;&lt;/div&gt;"</span>;</div><div class="line"><span class="keyword">var</span> elm=parent.firstChild;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或者，也可以将网页设定为IE9 以前的文件模式。</p>
+<p><strong>相关资源：</strong></p>
+<ol>
+<li>IE9 标准模式不支持arguments.caller 属性。<br>MSDN原文：IE9 Standards Mode Does Not Support the arguments.caller Property.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>IE9 标准模式中不再支持arguments.caller 属性。</p>
+<p>当建立argument objects时，在IE8 和Quirks 中的所有模式，以及IE9 的IE7 标准和IE8 标准模式，都会建立一个名为“caller” 的属性。此caller 属性会储存对呼叫它的函数的argument Object参照。</p>
+<p>When argument objects are created, in all modes of IE8 and Quirks, IE7 Standards, and IE8 Standards modes of IE9, a property with the name “caller” is created. This caller property stores the reference to the argument object of the function that called it.</p>
+<p>在下例中，IE8 和Quirks 中的所有文件模式，以及IE9 的IE7 标准和IE8 标准文件模式会传回“1”。 IE9 标准模式会发出「Object为null 或未经定义」的错误。</p>
+<p>In the following example, all document modes in IE8 and Quirks, IE7 standards, and IE8 standards document modes in IE9 return “1”. IE9 standards mode issues the script error “object is null or undefined”.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">alertCallerLength</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="built_in">arguments</span>.caller.length);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callingFunction</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alertCallerLength();</div><div class="line">&#125;</div><div class="line"></div><div class="line">callingFunction(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>停用用此属性即可。</p>
+<p><strong>相关资源：</strong></p>
+<h3 id="3-不再支持使用不带“-call”或“-bind”的函数指针调用方法。"><a href="#3-不再支持使用不带“-call”或“-bind”的函数指针调用方法。" class="headerlink" title="3.不再支持使用不带“.call”或“.bind”的函数指针调用方法。"></a>3.不再支持使用不带“.call”或“.bind”的函数指针调用方法。</h3><p>MSDN原文：<strong>Calling a Method with a Function Pointer without “.call” or “.bind”</strong></p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>旧版IE中，为了使JavaScript 代码更加精简，常见的做法是将常用的方法储存为变量，然后将该变量替代该方法来使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.writeln;</div><div class="line">d(<span class="string">"&lt;script language=VBScript&gt;"</span>);</div></pre></td></tr></table></figure></p>
+<p>在IE9 中，需要有Object才能调用方法。window对象预设是在全域范围内提供(比如在上例中)。但是window对象并没有”writeln” 的方法，因此会报告JavaScript「call Object无效」的错误信息。</p>
+<p>Previous versions of Internet Explorer supported caching a pointer to a method and then using the cached pointer to call the method. This support was removed in Internet Explorer 9 in order to increase interoperability with other browsers.</p>
+<p>A common practice on webpages targeting older versions of IE was to save common methods to a variable and use that variable as a proxy for the method in order to make JavaScript code more compact:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.writeln;</div><div class="line">d(<span class="string">"&lt;script language=VBScript&gt;"</span>);</div></pre></td></tr></table></figure></p>
+<p>In IE9, an object is required in order to invoke the method. By default the “window” object is provided in global scope (such as in the previous example). However, the “window” object does not have a method “writeln” and so the JavaScript error message “Invalid calling object” is reported.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>简单解决此问题的方法是使用”call” 方法(所有函数的属性) 明确提供适当的呼叫Object：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d.call(<span class="built_in">document</span>, <span class="string">"&lt;script language=VBScript&gt;"</span>);</div></pre></td></tr></table></figure>
+<p>长期解决此问题的方法是使用JavaScript 的”bind” API，建立隐含的呼叫Object与方法的关联。方法如下(同样是取自上例)：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.writeln.bind(<span class="built_in">document</span>);</div><div class="line">d(<span class="string">"&lt;script language=VBScript&gt;"</span>); <span class="comment">// Now this is OK</span></div></pre></td></tr></table></figure></p>
+<p>原文：<br>Now you must specify the target for the method call just as you do in all other browsers. So while this code works in IE8 and earlier:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.writeln;</div><div class="line">d(<span class="string">"&lt;script language=VBScript&gt;"</span>);</div></pre></td></tr></table></figure></p>
+<p>Now it fails in IE9 just as it fails in all other browsers. An easy fix for this issue is to use the “call” method (a property of all functions) to explicitly provide the appropriate calling object:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d.call(<span class="built_in">document</span>, <span class="string">"&lt;script language=VBScript&gt;"</span>);</div></pre></td></tr></table></figure></p>
+<p>The long term fix for this is to use JavaScript’s “bind” API to associate an implicit calling object with the method. This is done as follows (again, drawing on the previous example):<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.writeln.bind(<span class="built_in">document</span>);</div><div class="line">d(<span class="string">"&lt;script language=VBScript&gt;"</span>); <span class="comment">// Now this is OK</span></div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<ol>
+<li>不再连接内容属性和 DOM expando。<br>MSDN原文：Content Attributes and DOM Expandos Are No Longer Connected.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myElement"</span> <span class="attr">myAttr</span>=<span class="string">"custom"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在下面的范例中，’id’ 和’className’ 都是预先定义的属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"myElement"</span>);</div><div class="line"><span class="keyword">var</span> divId = div.id; <span class="comment">// Gets the value of the id content attribute</span></div><div class="line"><span class="keyword">var</span> divClass = div.className; <span class="comment">// Gets the value of the class content attribute</span></div></pre></td></tr></table></figure></p>
+<p>在IE8 和之前的版本中，’myAttr’ 内容属性的存在等于暗示’myAttr’ DOM expando 的存在：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> divExpando = div.myAttr; <span class="comment">// divExpando would get the value "custom" in IE8</span></div></pre></td></tr></table></figure></p>
+<p>IE9 中的突破性变更是使用者定义的内容属性将不再暗指DOM expando。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> divExpando = div.myAttr; <span class="comment">// divExpando would get an undefined value</span></div></pre></td></tr></table></figure></p>
+<p>In past versions of Internet Explorer, content attributes were represented on JavaScript objects as DOM expandos. In Internet Explorer 9, this link between content attributes and DOM expandos has been severed in order to increase interoperability between IE and other browsers.</p>
+<p>A content attribute is an attribute that is specified in the HTML source, for example, <element attribute1="value" attribute2="value">. Many content attributes are predefined as part of HTML; HTML also supports additional user-defined content attributes.</element></p>
+<p>DOM expandos are the values that can be retrieved from an object in JavaScript, for example, document.all[“myelement”].domExpando. Most objects have a predefined set of properties that typically represent the value of their same-named content attribute. JavaScript supports additional user-defined properties as well.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>在JavaScript 代码中几乎无法直接在失败点看出此问题。而往往是在应用时才会看到失败的情形。</p>
+<p>若要修正此问题，请使用’getAttribute’来获取使用者定义的内容属性值。建议对所有IE 版本采取此因应措施。例如(根据上个范例)：</p>
+<p>不要使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> divExpando = div.myAttr;</div></pre></td></tr></table></figure></p>
+<p>而改用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> divExpando = div.getAttribute(<span class="string">"myAttr"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<p>1.JavaScript 属性列举在IE9 中不同。</p>
+<p>MSDN原文：JavaScript Property Enumeration Differs in Internet Explorer 9</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>由于IE9 的JavaScript Object模型中所做的变更，JavaScript 属性的列举方式跟在IE8 中可能不太一样。</p>
+<p>Due to the changes made in the JavaScript object model of Internet Explorer 9, JavaScript properties may be enumerated differently from how they are enumerated in Internet Explorer 8.</p>
+<p>当在任何文件模式内使用for… 陈述式时，属性列举的顺序可能与IE8 传回的顺序不同。例如，数值属性现在是列举在非数值属性之前。下例说明IE8 与IE9 之间的列举顺序的差异：</p>
+<p>When using the for…in Statement, in any document mode, the order of property enumerations may be different from the order returned by Internet Explorer 8. For example, numeric properties now enumerate before non-numeric properties. The following sample illustrates the difference in enumeration order between Internet Explorer 8 and Internet Explorer 9:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">first</span> : <span class="string">"prop1"</span>, <span class="attr">second</span>: <span class="string">"prop2"</span>, <span class="number">3</span>: <span class="string">"prop3"</span>&#125;;</div><div class="line"><span class="keyword">var</span> s = <span class="string">""</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</div><div class="line">  s += key + <span class="string">": "</span> + obj[key] + <span class="string">" "</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">document</span>.write (s);</div></pre></td></tr></table></figure></p>
+<p>在IE8 和IE9 中执行此范例会输出下列结果：</p>
+<p>IE8：first: prop1 second: prop2 3: prop3</p>
+<p>IE9：3: prop3 first: prop1 second: prop2</p>
+<p>IE8 并不包含与原型物件的内建属性同名的属性列举。 IE9 中的所有文件模式則会在列举中包含這些属性。</p>
+<p>Internet Explorer 8 does not include enumerations of properties that have the same name as built-in properties of a prototype object. All document modes in Internet Explorer 9 include these properties in the enumeration. The following sample illustrates this difference:</p>
+<p>下列说明此项差异：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">first</span>: <span class="string">"prop1"</span>, <span class="attr">toString</span> : <span class="string">"Hello"</span> &#125;</div><div class="line"><span class="keyword">var</span> s = <span class="string">""</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</div><div class="line">  s += key + <span class="string">": "</span> + obj[key] + <span class="string">" "</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">document</span>.write (s);</div></pre></td></tr></table></figure></p>
+<p>在IE8 和IE9 中执行此范例会输出下列结果：</p>
+<p>IE8的所有模式： first: prop1 first: prop1</p>
+<p>IE9的所有模式： first: prop1 toString: Hello</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要注意此项差异并修改受影响代码。</p>
+<p><strong>相关资源：</strong></p>
+<p>1.数学精确度在IE9 中不同。</p>
+<p>MSDN原文：Math Precision Differs in Internet Explorer 9</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>数学精确度在某些边界情况下与IE8 不同。</p>
+<p>Math precision differs from Internet Explorer 8 in certain edge cases.</p>
+<p>Chakra 引擎使用Streaming SIMD Extensions 2 (SSE2) (如果平台有支援的话)，达成更快速的数学运算，但是也会在精确度方面产生有别于IE8 的JScript 引擎的差异。 下列說明了這项差异：</p>
+<p>The Chakra engine uses Streaming SIMD Extensions 2 (SSE2) if the platform supports them, which results in faster mathematical operations but also yields a difference in precision from the JScript engine of Internet Explorer 8. The following example demonstrates the difference:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> x = <span class="number">6.28318530717958620000</span>;</div><div class="line">  <span class="keyword">var</span> val = <span class="built_in">Math</span>.sin(x);</div><div class="line">  <span class="built_in">document</span>.write(<span class="built_in">Math</span>.abs(val))</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure></p>
+<p>在IE8 的所有模式中，这会输出“2.4492127076447545e-16”。</p>
+<p>当平台支持SSE2 时，在IE9 的所有模式中，这会输出“2.4492935982947064e-16”。</p>
+<p>In all modes of Internet Explorer 8, this will print “2.4492127076447545e-16”. When the platform supports SSE2, in all modes of Internet Explorer 9, this will print “2.4492935982947064e-16”.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要注意此项差异。</p>
+<p><strong>相关资源：</strong></p>
+<p>1.间接“eval”函数调用的行为方式不同。</p>
+<p>MSDN原文：Indirect ‘eval’ Function Calls Behave Differently in Internet Explorer 9.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>间接“eval”函数调用，会在IE9 中产生与IE8 不同的结果。</p>
+<p>Calling eval methods indirectly (that is, other than by the explicit use of its name) inside a function produces different results in Internet Explorer 9 than it does in Internet Explorer 8.</p>
+<p>在IE8 和Quirks 的所有模式中，以及IE9 的IE 7 标准和IE8 标准模式中，传递给间接eval 的字串是在本机函数范围内进行评估。在IE9 的IE9 标准模式中，则是根据ECMAScript 标准(第5 版) 在全域范围内进行评估。</p>
+<p>In all modes of Internet Explorer 8 and Quirks, IE 7 standards, and IE8 standards modes of Internet Explorer 9, the string passed to the indirect eval is evaluated in the local function scope. In IE9 Standards mode of Internet Explorer 9, it is evaluated in the global scope as per the ECMAScript standard (5th edition).</p>
+<p>在下例中，是通过将eval 函数赋值给变量并且把该变量当作eval 来调用的方式，间接调用eval 函数。</p>
+<p>In the following example, the eval function has been called indirectly by assigning it to a variable and calling the variable as if it were eval.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> dateFn = <span class="string">"Date(1971,3,8)"</span>;</div><div class="line">  <span class="keyword">var</span> myDate;</div><div class="line">  <span class="keyword">var</span> indirectEval = <span class="built_in">eval</span>;</div><div class="line">  indirectEval(<span class="string">"myDate = new "</span> + dateFn + <span class="string">";"</span>);</div><div class="line">  <span class="built_in">document</span>.write(myDate);</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure></p>
+<p>本范例在IE8 和Quirks 的所有模式中，以及IE9 的IE 7 标准和IE8 标准模式中将传回“Thu Apr 8 00:00:00 PDT 1971”。而在IE9 的IE9 标准模式中，这会输出“undefined”。</p>
+<p>This sample will return “Thu Apr 8 00:00:00 PDT 1971” in all document modes of Internet Explorer 8 and Quirks, IE7 standards, and IE8 standards document modes in Internet Explorer 9. However in IE9 standards mode of Internet Explorer 9, this would print “undefined”</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要注意此项差异。</p>
+<p><strong>相关资源：</strong></p>
+<p>1.IE9 处理含大型索引的数组项目的方式不一样。</p>
+<p>MSDN原文：Array elements with large indices are handled differently than in Internet Explorer 8.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>含大型索引的数组项目的处理方式与IE8 不同。</p>
+<p>Array elements with large indices are handled differently than in Internet Explorer 8.</p>
+<p>在数组的length 属性的初始值大于2E+31-1 (亦即2147483647) 的情况下，IE8 并不符合ECMAScript (第3 版) 规格。当使用大于2147483647 的索引建立数组项目时，新建立项目的索引将会是负整数。</p>
+<p>Internet Explorer 8 does not conform to the ECMAScript (3rd edition) specification in situations where the initial value of the array’s length property is greater than 2E+31-1 (that is, 2147483647). When an array element is created with an index greater than 2147483647, the index of new element created will be a negative integer.</p>
+<p>IE9 会正确处理使用介于2E+31-1 和2E+32-2 指数之间的数组项目。 IE9 的任何文件模式中并未复写IE8 行为。</p>
+<p>Internet Explorer 9 correctly handles array elements that use indices between 2E+31-1 and 2E+32-2. The Internet Explorer 8 behavior is not replicated in any of the Internet Explorer 9 document modes.</p>
+<p>当项目推送到长度为2E+31-1 的数组时，即可观察到此现象。</p>
+<p>This can be observed when an element is pushed to an array of length 2E+31-1.</p>
+<p>下例在IE8 输出“true”，但是在IE9 输出“false”。</p>
+<p>The following sample prints “true” in Internet Explorer 8, but prints “false” in Internet Explorer 9.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">  arr[<span class="number">2147483650</span>] = <span class="number">10000</span>;</div><div class="line">  arr.push(<span class="number">10</span>);</div><div class="line">  <span class="built_in">document</span>.write(arr[<span class="string">"-2147483645"</span>] == <span class="number">10</span>);</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要注意此项差异即可。</p>
+<p><strong>相关资源：</strong></p>
+<p>1.重叠元素会被复制。<br>MSDN原文：Overlapping Elements Are Cloned.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>在IE9 中，重叠的格式化元素是会被复制的，其用意是为了减低在DOM (Document Object Model) 中语意模糊的情况。</p>
+<p>一般来说，网站有没有这项功能看起来都一样。不过，若是您对标记中的重叠元素执行DOM 操作，该动作在IE9 中的运作方式可能不一样。</p>
+<p>举例来说，假如您对重叠元件进行像是firstChild或nextSibling这类的DOM呼叫，这些呼叫可能不会以相同的方式运作。</p>
+<p>Overlapping formatting elements are cloned in Windows Internet Explorer 9 to reduce ambiguity in the Document Object Model (DOM).</p>
+<p>Typically, a site looks the same with or without this feature. However, if you perform DOM operations on elements that are overlapped in markup, the operations might not work the same way in Internet Explorer 9.</p>
+<p>For example, if you make DOM calls such as firstChild or nextSibling on an overlapped element, these calls might not work the same way.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>不过此问题的优先级为”Low”，所以我们可以不必太在意。</p>
+<p>使用IE开发者工具来测试您的程式码，以找出并修正所有的重叠元素。</p>
+<p>Test your code by using the Internet Explorer Developer Tools to find and fix any overlapping elements.</p>
+<p><strong>相关资源：</strong></p>
+<p>1.DOM中会保留空格。<br>MSDN原文：White Spaces Are Preserved in the Document Object Model.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>您新增的任何空白字符都会保存在DOM中。</p>
+<p>Any white space that you add to a webpage persists in the Document Object Model (DOM).</p>
+<p>請考虑下面的例子在IE9 与IE8 中的差异。</p>
+<p>Consider how the following code example appears in Windows Internet Explorer 9 and Windows Internet Explorer 8.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Text <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>IE9：<br>div<br>|-&gt;”\n Text “</p>
+<p>IE8：</p>
+<p>div</p>
+<p>|-&gt;”Text”</p>
+<p>考虑如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"input"</span> <span class="attr">id</span>=<span class="string">"t1"</span> <span class="attr">value</span>=<span class="string">"t1"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在IE8下文档结构图如下：</p>
+<p>在IE9下文档结构图如下：</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>请留意代码中的空格。</p>
+<p><strong>相关资源：</strong></p>
+<ol>
+<li>部分DOM 事件已过时。</li>
+</ol>
+<p>MSDN原文：Some DOM Events Are Deprecated。</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javascript and DOM</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>部分DOM 事件已过时。</p>
+<p>Microsoft identifies features as deprecated to warn against using the features in the future so that they can be phased out:</p>
+<p>•If new standards-based support is added in Windows Internet Explorer 9, the associated feature documentation on MSDN is marked with “deprecated” and includes a link to the standards-based alternative.</p>
+<p>•If the feature is a web platform feature, it is supported across all document modes until the feature is shown to be used by very few websites.</p>
+<p>The following Document Object Model (DOM) events features are deprecated in IE9 standards document mode and are intended to be removed in the latest standards mode of the next major release.</p>
+<p><strong>Deprecated feature</strong></p>
+<p><strong>W3C standards replacement</strong></p>
+<p><a href="http://go.microsoft.com/fwlink/?LinkID=190906" target="_blank" rel="external">attachEvent</a><br><a href="http://go.microsoft.com/fwlink/?LinkID=201619" target="_blank" rel="external">addEventListener</a><br><a href="http://go.microsoft.com/fwlink/?LinkId=201620" target="_blank" rel="external">detachEvent</a><br><a href="http://go.microsoft.com/fwlink/?LinkID=201621" target="_blank" rel="external">removeEventListener</a><br><a href="http://go.microsoft.com/fwlink/?LinkID=201624" target="_blank" rel="external">createEventObject</a><br><a href="http://go.microsoft.com/fwlink/?LinkId=201622" target="_blank" rel="external">createEvent</a><br><a href="http://go.microsoft.com/fwlink/?LinkId=201625" target="_blank" rel="external">fireEvent</a><br><a href="http://go.microsoft.com/fwlink/?LinkId=201623" target="_blank" rel="external">dispatchEvent</a></p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>建议写法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">id</span>=<span class="string">"Head1"</span> <span class="attr">runat</span>=<span class="string">"server"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">LoadEverything</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//应停用过时方法</span></div><div class="line">  <span class="comment">//document.getElementById("btnAdd").attachEvent("onclick", ShowHello);</span></div><div class="line">  <span class="comment">//应用标准方法，注意事件不是onclick，而是click.</span></div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"btnAdd"</span>).addEventListener(<span class="string">"click"</span>, ShowHello);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ShowHello</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">"hello"</span>);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"LoadEverything()"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">runat</span>=<span class="string">"server"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnAdd"</span> <span class="attr">value</span>=<span class="string">"btnAdd"</span>  /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>相关资源：</strong></p>
+<hr>
+<h1 id="第四章：其他更新"><a href="#第四章：其他更新" class="headerlink" title="第四章：其他更新"></a>第四章：其他更新</h1><h2 id="第一节：IE7-IE8更新-1"><a href="#第一节：IE7-IE8更新-1" class="headerlink" title="第一节：IE7-IE8更新"></a>第一节：IE7-IE8更新</h2><p>1.文件上载控件仅向服务器提交文件路径，而不提供完整路径。<br>MSDN原文：File upload control only submits the file path, not the full path, to the server.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>其他</td>
+<td>IE7-IE8更新</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>文件上传控件仅向服务器提交文件路径，而不提供完整路径.</p>
+<p>Historically, the HTML File Upload Control (<code>&lt;input type=file&gt;</code>) has been the source of a significant number of information disclosure vulnerabilities. To resolve these issues, two changes were made to the behavior of the control.</p>
+<p>To block attacks that rely on “stealing” keystrokes to surreptitiously trick the user into typing a local file path into the control, the File Path edit box is now read-only. The user must explicitly select a file for upload using the File Browse dialog.</p>
+<p>Additionally, the “Include local directory path when uploading files” URLAction has been set to “Disable” for the Internet Zone. This change prevents leakage of potentially sensitive local file-system information to the Internet. For instance, rather than submitting the full path C:\users\ericlaw\documents\secret\image.png, Internet Explorer 8 will now submit only the filename image.png.</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>注意此特性即可。</p>
+<p><strong>相关资源：</strong></p>
+<p><a href="http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx" target="_blank" rel="external">http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx</a></p>
+<h2 id="第二节：IE8-IE9更新"><a href="#第二节：IE8-IE9更新" class="headerlink" title="第二节：IE8-IE9更新"></a>第二节：IE8-IE9更新</h2><p>1.预设使用者代理(UA) 字串已变更.</p>
+<p>MSDN原文：Default User-Agent (UA) String Changed.</p>
+<table>
+<thead>
+<tr>
+<th>所属分类</th>
+<th>版本更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>其他</td>
+<td>IE8-IE9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体描述及示例</strong>：</p>
+<p>IE9 使用缩短的UA使用者代理字符串, 不会再传送安装在电脑上的其他软件所新增的UA 字串，例如.NET Framework 。</p>
+<p>By default, Internet Explorer 9 sends a new short UA string to improve the overall performance, interoperability, and compatibility. Internet Explorer 9 does not send additions to the UA string that are made by other software that is installed on the computer, such as the .NET Framework and many other programs.</p>
+<p>IE7: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Trident/5.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)</p>
+<p>IE9: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)</p>
+<p><strong>解决方案及正确写法</strong>:</p>
+<p>需要注意此项差异。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/28/ie6-ie9-e5/" data-id="cj4sbsvl0000a1tfy5honw6r5" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/05/28/linux-8alinux-lnmp-by-ety001/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          linux分区知识及linux下配置lnmp by ETY001
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/05/28/css-ie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">如何解决IE兼容性问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

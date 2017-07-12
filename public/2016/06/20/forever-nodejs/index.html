@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用forever运行nodejs应用 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。 官方的说明是说： A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).// 一个用来持续（或者说永远）运行一个给定脚本的简单的命令行工具 Github地址：https://github.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用forever运行nodejs应用">
+<meta property="og:url" content="https://itbugs.cn/2016/06/20/forever-nodejs/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。 官方的说明是说： A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).// 一个用来持续（或者说永远）运行一个给定脚本的简单的命令行工具 Github地址：https://github.com">
+<meta property="og:updated_time" content="2017-07-06T08:58:17.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用forever运行nodejs应用">
+<meta name="twitter:description" content="forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。 官方的说明是说： A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).// 一个用来持续（或者说永远）运行一个给定脚本的简单的命令行工具 Github地址：https://github.com">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-forever-nodejs" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/20/forever-nodejs/" class="article-date">
+  <time class="post-time" datetime="2016-06-20T02:40:06.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用forever运行nodejs应用
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。</p>
+<p>官方的说明是说：</p>
+<p>A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).<br>// 一个用来持续（或者说永远）运行一个给定脚本的简单的命令行工具</p>
+<p>Github地址：<code>https://github.com/nodejitsu/forever</code><br>用途</p>
+<p>forever的用途就是帮我们更好的管理我们node App服务，本质上就是在forever进程之下，创建一个node app的子进程。</p>
+<p>比如，你有一个基于express的或者其他的一些个应用那么，它将会很方便你更新和操作你的服务，并且保证你服务能持续运行。</p>
+<p>更好的一点就是每次更改文件，它都可以帮你自动重启服务而不需要手动重启。<br>安装forever<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install forever -g // 记得加-g，forever要求安装到全局环境下</div></pre></td></tr></table></figure></p>
+<p>forever使用说明<br>启动相关</p>
+<p>1. 简单的启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start app.js</div></pre></td></tr></table></figure></p>
+<p>2. 指定forever信息输出文件，当然，默认它会放到<code>~/.forever/forever.log</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start <span class="_">-l</span> forever.log app.js</div></pre></td></tr></table></figure></p>
+<p>3. 指定app.js中的日志信息和错误日志输出文件，<br>  -o 就是console.log输出的信息，<code>-e</code>就是<code>console.error</code>输出的信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start -o out.log <span class="_">-e</span> err.log app.js</div></pre></td></tr></table></figure></p>
+<p>4. 追加日志，forever默认是不能覆盖上次的启动日志，<br>  所以如果第二次启动不加<code>-a</code>，则会不让运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start <span class="_">-l</span> forever.log <span class="_">-a</span> app.js</div></pre></td></tr></table></figure></p>
+<p>5. 监听当前文件夹下的所有文件改动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start -w app.js</div></pre></td></tr></table></figure></p>
+<p>文件改动监听并自动重启</p>
+<p>1. 监听当前文件夹下的所有文件改动（不太建议这样）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever start -w app.js</div></pre></td></tr></table></figure></p>
+<p>2. 显示所有运行的服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever list</div></pre></td></tr></table></figure></p>
+<p>停止操作</p>
+<p>1. 停止所有运行的<code>node App</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever stopall</div></pre></td></tr></table></figure></p>
+<p>2. 停止其中一个<code>node App</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever stop app.js</div></pre></td></tr></table></figure></p>
+<p>当然还可以这样<br>  forever list 找到对应的id，然后：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever stop [id]</div></pre></td></tr></table></figure></p>
+<p>重启操作</p>
+<p>重启操作跟停止操作保持一致。</p>
+<p>1. 启动所有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever restartall</div></pre></td></tr></table></figure></p>
+<p>更多一些</p>
+<p>上面的一些解释足够平常使用，还有待之后继续补充。<br>开发和线上建议配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 开发环境下</div><div class="line">NODE_ENV=development forever start <span class="_">-l</span> forever.log <span class="_">-e</span> err.log <span class="_">-a</span> app.js</div><div class="line">// 线上环境下</div><div class="line">NODE_ENV=production forever start <span class="_">-l</span> ~/.forever/forever.log <span class="_">-e</span> ~/.forever/err.log -w <span class="_">-a</span> app.js</div></pre></td></tr></table></figure></p>
+<p>上面加上<code>NODE_ENV</code>为了让<code>app.js</code>辨认当前是什么环境用的。不加它可能就不知道哦？<br>一些注意点</p>
+<p>有可能你需要使用unix下的<code>crontab</code>（定时任务）</p>
+<p>这个时候需要注意配置好环境变量。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SHELL=/bin/sh</div><div class="line">PATH=/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin</div></pre></td></tr></table></figure></p>
+<p>后记</p>
+<p>毋庸置疑，拥有了Github就拥有了世界。<br>参考</p>
+<p><a href="https://github.com/nodejitsu/forever" target="_blank" rel="external">https://github.com/nodejitsu/forever</a><br><a href="http://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever" target="_blank" rel="external">http://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever</a><br><a href="https://github.com/nodejitsu/forever/issues/116" target="_blank" rel="external">https://github.com/nodejitsu/forever/issues/116</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2016/06/20/forever-nodejs/" data-id="cj4r5cq9h0012c3wy1ptqv1m6" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/calendar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          简单的js日历实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/28/windows-e6-bf-80-e6-b4-bb-e6-95-99-e7-a8-8b-e8-8b-b1-e5-9b-bd-e7-94-b5-e8-af-9d-e6-bf-80-e6-b4-bbwindows-e6-96-b9-e6-b3-95-e6-95-99-e7-a8-8b/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">windows激活教程|英国电话激活windows方法教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

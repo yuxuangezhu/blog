@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决phpmyadmin上传文件大小限制的配置方法 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="phpmyadmin导入SQL文件时涉及到phpmyadmin上传文件大小限制问题，默认phpmyadmin上传文件大小为2M，如果想要phpmyadmin上传超过2M大文件，就需要修改phpmyadmin上传文件的大小配置或者将大文件分几批上传，相对来说修改phpmyadmin上传文件大小的限制来得方便很多。解决phpmyadmin上传文件大小限制问题涉及修改php.ini配置文件和phpmya">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决phpmyadmin上传文件大小限制的配置方法">
+<meta property="og:url" content="https://itbugs.cn/2013/05/29/phpmyadminb3-95/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="phpmyadmin导入SQL文件时涉及到phpmyadmin上传文件大小限制问题，默认phpmyadmin上传文件大小为2M，如果想要phpmyadmin上传超过2M大文件，就需要修改phpmyadmin上传文件的大小配置或者将大文件分几批上传，相对来说修改phpmyadmin上传文件大小的限制来得方便很多。解决phpmyadmin上传文件大小限制问题涉及修改php.ini配置文件和phpmya">
+<meta property="og:updated_time" content="2017-07-06T07:57:39.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决phpmyadmin上传文件大小限制的配置方法">
+<meta name="twitter:description" content="phpmyadmin导入SQL文件时涉及到phpmyadmin上传文件大小限制问题，默认phpmyadmin上传文件大小为2M，如果想要phpmyadmin上传超过2M大文件，就需要修改phpmyadmin上传文件的大小配置或者将大文件分几批上传，相对来说修改phpmyadmin上传文件大小的限制来得方便很多。解决phpmyadmin上传文件大小限制问题涉及修改php.ini配置文件和phpmya">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-phpmyadminb3-95" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/29/phpmyadminb3-95/" class="article-date">
+  <time class="post-time" datetime="2013-05-29T15:16:15.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解决phpmyadmin上传文件大小限制的配置方法
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>phpmyadmin导入SQL文件时涉及到phpmyadmin上传文件大小限制问题，默认phpmyadmin上传文件大小为2M，如果想要phpmyadmin上传超过2M大文件，就需要修改phpmyadmin上传文件的大小配置或者将大文件分几批上传，相对来说修改phpmyadmin上传文件大小的限制来得方便很多。解决phpmyadmin上传文件大小限制问题涉及修改php.ini配置文件和phpmyadmin配置文件。</p>
+<p>修改phpmyadmin上传文件大小限制主要分修改php.ini配置文件和phpmyadmin配置文件两个步骤。</p>
+<p><strong>第一步：修改php.ini配置文件中文件上传大小配置</strong></p>
+<p>此步骤与一般的PHP.INI配置文件上传功能方法一致，需要修改php.ini配置文件中<strong>upload_max_filesize</strong>和<strong>post_max_size</strong>两个选项值，具体修改方法请参考：<a href="http://www.leapsoul.cn/?p=488" target="_blank" rel="external">PHP.INI配置:文件上传功能配置教程</a>。</p>
+<p><strong>第二步：修改php执行时间及内存限制实现phpmyadmin上传大文件功能</strong></p>
+<p>如果想要phpmyadmin上传大文件，还需修改php.ini配置文件中的max_execution_time（php页面执行最大时间）、max_input_time（php页面接受数据最大时间）、memory_limit（php页面占用的最大内存）三个配置选项，这是因为phpmyadmin上传大文件时，php页面的执行时间、内存占用也势必变得更长更大，其需要php运行环境的配合，光修改上传文件大小限制是不够的。</p>
+<p><strong>第三步：修改phpmyadmin配置文件</strong></p>
+<p>在完成php.ini的相关配置后，还需要修改phpmyadmin配置。</p>
+<p>1、修改phpmyadmin config配置文件中的<strong>$cfg[‘ExecTimeLimit’]</strong>配置选项，默认值是300，需要修改为0，即没有时间限制。</p>
+<p>2、修改phpmyadmin安装根目录下的import页面中的**$memory_limit<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$memory_limit = trim(@ini_get(<span class="string">'memory_limit'</span>));</div><div class="line"><span class="comment">// 2 MB as default</span></div><div class="line"><span class="keyword">if</span> (empty($memory_limit)) &#123;</div><div class="line">    $memory_limit = <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// In case no memory limit we work on 10MB chunks</span></div><div class="line"><span class="keyword">if</span> ($memory_limit == <span class="number">-1</span>) &#123;</div><div class="line">    $memory_limit = <span class="number">10</span> * <span class="number">1024</span> * <span class="number">1024</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>说明</strong>：首选读取php.ini配置文件中的内存配置选项memory_limit，如果为空则默认内存大小限制为2M，如果没有限制则内存大小限制为10M，你可以结合你php.ini配置文件中的相关信息修改这段代码。</p>
+<p>至此，经过修改php.ini配置文件中的文件上传配置选项以及phpmyadmin配置文件后，即可解决phpmyadmin上传文件大小限制问题，从而实现phpmyadmin上传大文件功能。</p>
+<p><strong>注</strong>：<a href="http://www.leapsoul.cn/" title="PHP网站开发-PHP教程-leapsoul - 分享PHP网站开发与建设的乐趣,以PHP实例教程方式教你建站" target="_blank" rel="external">PHP网站开发教程-leapsoul.cn</a>版权所有，转载时请以链接形式注明原始出处及本声明，谢谢。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/29/phpmyadminb3-95/" data-id="cj4s5418800041tfyzv0s9qov" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/05/31/dede-archives/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          把数据保存到数据库主表 `#@__archives` 时出错,请把相关信息提交给DedeCms官方。
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/05/28/win8-e7-94-b5-e8-af-9d-e6-bf-80-e6-b4-bb-e8-8b-b1-e6-96-87-e5-af-b9-e8-af-9d-e7-bf-bb-e8-af-91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Win8电话激活英文对话翻译</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

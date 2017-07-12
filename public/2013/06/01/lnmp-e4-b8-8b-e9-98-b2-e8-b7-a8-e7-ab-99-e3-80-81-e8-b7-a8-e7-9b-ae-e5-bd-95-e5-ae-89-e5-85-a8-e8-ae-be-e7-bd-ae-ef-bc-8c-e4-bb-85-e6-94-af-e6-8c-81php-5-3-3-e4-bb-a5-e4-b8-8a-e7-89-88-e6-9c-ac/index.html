@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LNMP一键安装包下存在跨站和跨目录的问题，跨站和跨目录影响同服务器/VPS上的其他网站，最近看PHP 5.3，在5.3.3以上已经增加了HOST配置，可以起到防跨站、跨目录的问题。 如果你是PHP 5.3.3以上的版本，可以修改/usr/local/php/etc/php.ini在末尾里加入： [HOST=www.vpser.net]open_basedir=/home/wwwroot/www.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本">
+<meta property="og:url" content="https://itbugs.cn/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="LNMP一键安装包下存在跨站和跨目录的问题，跨站和跨目录影响同服务器/VPS上的其他网站，最近看PHP 5.3，在5.3.3以上已经增加了HOST配置，可以起到防跨站、跨目录的问题。 如果你是PHP 5.3.3以上的版本，可以修改/usr/local/php/etc/php.ini在末尾里加入： [HOST=www.vpser.net]open_basedir=/home/wwwroot/www.">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.835Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本">
+<meta name="twitter:description" content="LNMP一键安装包下存在跨站和跨目录的问题，跨站和跨目录影响同服务器/VPS上的其他网站，最近看PHP 5.3，在5.3.3以上已经增加了HOST配置，可以起到防跨站、跨目录的问题。 如果你是PHP 5.3.3以上的版本，可以修改/usr/local/php/etc/php.ini在末尾里加入： [HOST=www.vpser.net]open_basedir=/home/wwwroot/www.">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/" class="article-date">
+  <time class="post-time" datetime="2013-05-31T16:35:27.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://lnmp.org/" target="_blank" rel="external">LNMP一键安装包</a>下存在跨站和跨目录的问题，跨站和跨目录影响同服务器/VPS上的其他网站，最近看PHP 5.3，在<strong>5.3.3以上</strong>已经增加了HOST配置，可以起到防跨站、跨目录的问题。</p>
+<p>如果你是PHP 5.3.3以上的版本，可以修改/usr/local/php/etc/php.ini在末尾里加入：</p>
+<p>[HOST=www.vpser.net]<br>open_basedir=/home/wwwroot/www.vpser.net/:/tmp/<br>[PATH=/home/wwwroot/www.vpser.net]<br>open_basedir=/home/wwwroot/www.vpser.net/:/tmp/</p>
+<p>按上面的这个例子修改，换成你自己的域名和目录，多个网站就按上面的例子改成多个，最后重启php-fpm：/etc/init.d/php-fpm restart</p>
+<p>如果让网站可以使用探针需要在/tmp/后加上:/proc/</p>
+<p>PHP 5.3.3以上版本的用户，可以执行：cd /root;rm -f /root/vhost.sh;wget <a href="http://soft.vpser.net/lnmp/ext/vhost.sh;chmod" target="_blank" rel="external">http://soft.vpser.net/lnmp/ext/vhost.sh;chmod</a> +x /root/vhost.sh，这样替换原来的vhost.sh文件，以后添加网站就会自动添加HOST防跨站、跨目录的配置。</p>
+<p>为解决升级PHP 5.3.<em>版本后部分需要PHP 5.2.</em>版本的程序无法运行的问题，我们会增加一个PHP 5.2的安装脚本，脚本将在未来几天发布。</p>
+<p>如有问题或与更好的方法，欢迎在本文或到<a href="http://bbs.vpser.net/" target="_blank" rel="external">论坛</a><a href="http://bbs.vpser.net/forum-25-1.html" target="_blank" rel="external">lnmp区</a>反馈。</p>
+<p><strong>&gt;&gt;转载请注明出处：<a href="http://www.vpser.net/" target="_blank" rel="external">VPS侦探</a> 本文链接地址：<a href="http://www.vpser.net/security/lnmp-cross-site-corss-dir-security.html" title="LNMP下防跨站、跨目录安全设置，仅支持PHP 5.3.3以上版本" target="_blank" rel="external">http://www.vpser.net/security/lnmp-cross-site-corss-dir-security.html</a></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/01/lnmp-e4-b8-8b-e9-98-b2-e8-b7-a8-e7-ab-99-e3-80-81-e8-b7-a8-e7-9b-ae-e5-bd-95-e5-ae-89-e5-85-a8-e8-ae-be-e7-bd-ae-ef-bc-8c-e4-bb-85-e6-94-af-e6-8c-81php-5-3-3-e4-bb-a5-e4-b8-8a-e7-89-88-e6-9c-ac/" data-id="cj4r5cq9y001lc3wyavwb2rp6" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/06/01/apmserv5-2-6-apache/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          APMServ5.2.6 Apache启动失败故障排除
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/01/lnmp-e7-9b-b8-e5-85-b3-e7-9b-ae-e5-bd-95-e5-92-8c-e5-91-bd-e4-bb-a4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">LNMP相关目录和命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

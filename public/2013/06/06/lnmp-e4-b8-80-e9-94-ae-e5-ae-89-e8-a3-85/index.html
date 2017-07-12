@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LNMP一键安装 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="系统需求:  需要2GB以上硬盘剩余空间 128M以上内存,OpenVZ的建议192MB以上(小内存请勿使用64位系统) VPS或服务器必须已经联网！ Linux下区分大小写，输入命令时请注意！LNMP一键安装包 V1.0 已经在DiaHosting(感谢提供测试VPS)、VPSYOU(感谢提供测试VPS)、PhotonVPS(感谢提供测试VPS)、Linode、VR香港VPS、XeHost、VP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LNMP一键安装">
+<meta property="og:url" content="https://itbugs.cn/2013/06/06/lnmp-e4-b8-80-e9-94-ae-e5-ae-89-e8-a3-85/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="系统需求:  需要2GB以上硬盘剩余空间 128M以上内存,OpenVZ的建议192MB以上(小内存请勿使用64位系统) VPS或服务器必须已经联网！ Linux下区分大小写，输入命令时请注意！LNMP一键安装包 V1.0 已经在DiaHosting(感谢提供测试VPS)、VPSYOU(感谢提供测试VPS)、PhotonVPS(感谢提供测试VPS)、Linode、VR香港VPS、XeHost、VP">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-1.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-2.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-3.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-4.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-5.png">
+<meta property="og:image" content="http://lnmp.org/images/lnmp-install-6.png">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LNMP一键安装">
+<meta name="twitter:description" content="系统需求:  需要2GB以上硬盘剩余空间 128M以上内存,OpenVZ的建议192MB以上(小内存请勿使用64位系统) VPS或服务器必须已经联网！ Linux下区分大小写，输入命令时请注意！LNMP一键安装包 V1.0 已经在DiaHosting(感谢提供测试VPS)、VPSYOU(感谢提供测试VPS)、PhotonVPS(感谢提供测试VPS)、Linode、VR香港VPS、XeHost、VP">
+<meta name="twitter:image" content="http://lnmp.org/images/lnmp-install-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-lnmp-e4-b8-80-e9-94-ae-e5-ae-89-e8-a3-85" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/06/lnmp-e4-b8-80-e9-94-ae-e5-ae-89-e8-a3-85/" class="article-date">
+  <time class="post-time" datetime="2013-06-06T15:52:12.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LNMP一键安装
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>系统需求:</strong></p>
+<ul>
+<li>需要2GB以上硬盘剩余空间</li>
+<li>128M以上内存,OpenVZ的建议192MB以上(小内存请勿使用64位系统)</li>
+<li>VPS或服务器必须已经联网！</li>
+<li>Linux下区分大小写，输入命令时请注意！<br><div>LNMP一键安装包 V1.0 已经在<a href="http://www.vpser.net/go/diahosting" target="_blank" rel="external">DiaHosting</a>(感谢提供测试VPS)、<a href="http://www.vpser.net/go/vpsyou" target="_blank" rel="external">VPSYOU</a>(感谢提供测试VPS)、<a href="http://www.vpser.net/go/photonvps" target="_blank" rel="external">PhotonVPS</a>(感谢提供测试VPS)、<a href="http://www.vpser.net/go/linode" target="_blank" rel="external">Linode</a>、<a href="http://www.vpser.net/go/vr" target="_blank" rel="external">VR香港VPS</a>、<a href="http://www.vpser.net/go/xehost" target="_blank" rel="external">XeHost</a>、<a href="http://www.vpser.net/go/vpszz" target="_blank" rel="external">VPSZZ</a>、<a href="http://www.vpser.net/go/digitalocean" target="_blank" rel="external">DigitalOcean</a>、<a href="http://www.vpser.net/go/hostigation" target="_blank" rel="external">Hostigation</a>、<a href="http://www.vpser.net/go/myhost123" target="_blank" rel="external">MyHost123</a>、<a href="http://www.vpser.net/go/yardvps" target="_blank" rel="external">YardVPS</a>、<a href="http://www.vpser.net/go/budgetvm" target="_blank" rel="external">BudgetVM</a>、<a href="http://www.vpser.net/go/rashost" target="_blank" rel="external">瑞豪开源</a>、<a href="http://www.vpser.net/go/aoyohost" target="_blank" rel="external">遨游主机</a>、<a href="http://www.vpser.net/go/directspace" target="_blank" rel="external">DirectSpace</a>、<a href="http://www.vpser.net/go/thrust" target="_blank" rel="external">ThrustVPS</a>、<a href="http://www.vpser.net/go/buyvm" target="_blank" rel="external">BuyVM</a>等多家美国VPS的CentOS 5-6.4、Debian 5-7、Ubuntu 10.04-13.04的32位和64位系统上测试通过。(<a href="http://bbs.vpser.net/thread-9094-1-1.html" target="_blank" rel="external">Debian5系统源需要修改</a>才可使用！小内存请勿使用64位系统)<br><strong>安装步骤:</strong></div><br><strong>1、使用<a href="http://www.vpser.net/other/putty-ssh-linux-vps.html" target="_blank" rel="external">putty</a>或类似的SSH工具登陆VPS或服务器；</strong></li>
+</ul>
+<p>登陆后运行：<strong>screen -S lnmp</strong></p>
+<p>如果提示screen: command not found 命令不存在可以执行：yum install screen 或 apt-get install screen安装，详细的<a href="http://www.vpser.net/manage/run-screen-lnmp.html" target="_blank" rel="external">screen教程</a>。</p>
+<p><strong>2、下载并安装LNMP一键安装包：</strong></p>
+<p>您可以选择使用下载版(推荐国外或者美国VPS使用)或者完整版(推荐国内VPS使用)，两者没什么区别。</p>
+<p>执行安装程序前需要您确认您的Linux发行版，可以执行：cat /etc/issue 查看是CentOS、Debian还是Ubuntu，也可以通过VPS服务商提供的控制面板上查看。确定好之后，选择下面对应系统的安装命令：</p>
+<p>CentOS系统下执行：<strong>wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz</a> &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; cd lnmp1.0-full &amp;&amp; ./centos.sh</strong></p>
+<p>Debian系统下执行：<strong>wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz</a> &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; cd lnmp1.0-full &amp;&amp; ./debian.sh</strong></p>
+<p>Ubuntu系统下执行：<strong>wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz</a> &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; cd lnmp1.0-full &amp;&amp; ./ubuntu.sh</strong></p>
+<p>另外有2个镜像下载点可以使用soft2.vpser.net 和soft3.vpser.net ，可以替换上述连接地址，也可以sed -i ‘s/soft.vpser.net/soft2.vpser.net/g’ 脚本名 来替换脚本里的下载点地址。</p>
+<p>按上述命令执行后，会出现如下提示：<br>(注：如果是Debian系统，会提示Where are your servers located? asia,america,europe,oceania or africa，这里是选择服务器/VPS在哪个大洲，一般都是美国VPS，直接回车就行，如果是中国的，输入asia，回车。)<br><img src="http://lnmp.org/images/lnmp-install-1.png" alt=""><br>这一步需要设置MySQL的root密码，输入后回车进入下一步，如下图所示：<br><img src="http://lnmp.org/images/lnmp-install-2.png" alt=""><br>这里需要确认是否启用MySQL InnoDB，如果不确定是否启用可以输入 y ，这个可以单独在MySQL文件里关闭，输入 y 表示启用，输入 n 表示不启用。输入 y 或 n 后回车进入下一步，显示如下信息：<br><img src="http://lnmp.org/images/lnmp-install-3.png" alt=""><br>这一步是选择php版本，可以选择 PHP 5.3.17 或 PHP 5.2.17，安装PHP 5.3.17的话输入 y ，安装PHP 5.2.17 输入 n，输入 y 或 n 后回车，进入下一步MySQL版本的选择，如下图：<br><img src="http://lnmp.org/images/lnmp-install-4.png" alt=""><br>可以选择MySQL 版本 5.5.27 或 5.1.60，安装MySQL 5.5.27的话输入 y ，安装MySQL 5.1.60 输入n，输入 y 或 n 后回车，完成选择。</p>
+<p>提示”Press any key to start…”，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<p><strong>3、安装完成</strong><br>如果显示如下界面：<br><img src="http://lnmp.org/images/lnmp-install-5.png" alt=""><br>说明已经安装成功。<br>接下来按<a href="http://lnmp.org/faq/lnmp-vhost-add-howto.html" target="_blank" rel="external"><strong>添加虚拟主机教程</strong></a>，添加虚拟主机，通过<a href="http://lnmp.org/faq/sftp.html" target="_blank" rel="external">sftp</a>或<a href="http://lnmp.org/faq/ftpserver.html" target="_blank" rel="external">ftp服务器</a>上传网站，将域名解析到VPS或服务器的IP上，解析生效即可使用。</p>
+<p><strong>4、安装失败</strong><br><img src="http://lnmp.org/images/lnmp-install-6.png" alt=""><br>如果出现类似上图的提示，则表明安装失败，说明没有安装成功！！需要用<a href="http://www.vpser.net/manage/winscp.html" target="_blank" rel="external">winscp</a>或其他类似工具，将/root目录下面的lnmp-install.log下载下来，到<a href="http://bbs.vpser.net/forum-25-1.html" target="_blank" rel="external">LNMP支持论坛</a>发帖注明你的发行版名称版本号(可通过 cat /etc/issue获得)、32位还是64位，并将lnmp-install.log压缩以附件形式上传到论坛，我们会通过日志查找错误，并给予相应的解决方法。</p>
+<p>&nbsp;</p>
+<p><strong>5、添加、删除虚拟主机及伪静态管理</strong><br><a href="http://lnmp.org/faq/lnmp-vhost-add-howto.html" target="_blank" rel="external">http://lnmp.org/faq/lnmp-vhost-add-howto.html</a></p>
+<p><strong>6、eAccelerator，xcache，memcached，imageMagick，ionCube的安装</strong><br><a href="http://lnmp.org/faq/Add-ons.html" target="_blank" rel="external">http://lnmp.org/faq/Add-ons.html</a></p>
+<p><strong>7、LNMP相关软件目录及文件位置</strong><br><a href="http://lnmp.org/faq/lnmp-software-list.html" target="_blank" rel="external">http://lnmp.org/faq/lnmp-software-list.html</a></p>
+<p><strong>8、LNMP状态管理命令</strong><br><a href="http://lnmp.org/faq/lnmp-status-manager.html" target="_blank" rel="external">http://lnmp.org/faq/lnmp-status-manager.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/06/06/lnmp-e4-b8-80-e9-94-ae-e5-ae-89-e8-a3-85/" data-id="cj4r5cqa6001rc3wys4d7pn0p" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/06/06/lnmp-e6-b7-bb-e5-8a-a0-e3-80-81-e5-88-a0-e9-99-a4-e8-99-9a-e6-8b-9f-e4-b8-bb-e6-9c-ba-e5-8f-8a-e4-bc-aa-e9-9d-99-e6-80-81-e4-bd-bf-e7-94-a8-e6-95-99-e7-a8-8b/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LNMP添加、删除虚拟主机及伪静态使用教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/06/ubuntu-e6-97-a0-e6-b3-95-e5-88-a0-e9-99-a4-deepin-media-player-deepin-music-player/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ubuntu 无法删除 deepin-media-player deepin-music-player</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

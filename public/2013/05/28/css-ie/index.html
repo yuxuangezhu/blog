@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何解决IE兼容性问题 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要：所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我… 所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我们的系统，都应该是统一的显示效果。随着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何解决IE兼容性问题">
+<meta property="og:url" content="https://itbugs.cn/2013/05/28/css-ie/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="摘要：所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我… 所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我们的系统，都应该是统一的显示效果。随着">
+<meta property="og:updated_time" content="2017-07-06T08:57:24.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何解决IE兼容性问题">
+<meta name="twitter:description" content="摘要：所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我… 所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我们的系统，都应该是统一的显示效果。随着">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-css-ie" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/28/css-ie/" class="article-date">
+  <time class="post-time" datetime="2013-05-28T04:42:16.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何解决IE兼容性问题
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>摘要：所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我…</p>
+<p>所谓的浏览器兼容性问题，是指因为不同的浏览器对同一段代码有不同的解析，造成页面显示效果不统一的情况，在大多数情况下，我们的需求是，无论用户用什么浏览器来查看我们的网站或者登陆我们的系统，都应该是统一的显示效果。随着浏览器版本的增多，解决IE浏览器兼容性显得尤为重要.</p>
+<p>一、<code>!important</code> (功能有限)</p>
+<p>随着IE7对!important的支持, !important 方法现在只针对IE6的兼容.(注意写法.记得该声明位置需要提前.)</p>
+<p>例如:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#example</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span> <span class="meta">!important</span>; <span class="comment">/* IE7+FF */</span></div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>; <span class="comment">/* IE6 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>二、<code>CSS HACK</code>的方法(新手可以看看，高手就当路过吧)</p>
+<p>首先需要知道的是：</p>
+<p>所有浏览器 通用 <code>height: 100px;</code></p>
+<p><code>IE6</code> 专用 <code>_height: 100px;</code></p>
+<p><code>IE7</code> 专用 <code>*+height: 100px;</code></p>
+<p><code>IE6、IE7</code> 共用 <code>*height: 100px;</code></p>
+<p><code>IE7、FF</code> 共用 <code>height: 100px !important;</code></p>
+<p>例如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#example</span> &#123; <span class="attribute">height</span>:<span class="number">100px</span>; &#125; <span class="comment">/* FF */</span></div><div class="line"></div><div class="line">* <span class="selector-tag">html</span> <span class="selector-id">#example</span> &#123; <span class="attribute">height</span>:<span class="number">200px</span>; &#125; <span class="comment">/* IE6 */</span></div><div class="line"></div><div class="line">*+<span class="selector-tag">html</span> <span class="selector-id">#example</span> &#123; <span class="attribute">height</span>:<span class="number">300px</span>; &#125; <span class="comment">/* IE7 */</span></div></pre></td></tr></table></figure></p>
+<p>下面的这种方法比较简单</p>
+<p>举几个例子：</p>
+<p>1、IE6 - IE7+FF<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#example</span> &#123;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>; <span class="comment">/* FF+IE7 */</span></div><div class="line">  <span class="attribute">_height</span>:<span class="number">200px</span>; <span class="comment">/* IE6 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其实这个用上面说的第一种方法也可以<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#example</span> &#123;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span> <span class="meta">!important</span>; <span class="comment">/* FF+IE7 */</span></div><div class="line">  <span class="attribute">height</span>:<span class="number">200px</span>; <span class="comment">/* IE6 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、IE6+IE7 - FF<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#example &#123;</div><div class="line">  height:100px; /* FF */</div><div class="line">  *height:200px; /* IE6+IE7 */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3、IE6+FF - IE7<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#example &#123;</div><div class="line">  height:100px; /* IE6+FF */</div><div class="line">  *+height:200px; /* IE7 */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4、IE6 IE7 FF 各不相同<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#example &#123;</div><div class="line">  height:100px; /* FF */</div><div class="line">  _height:200px; /* IE6 */</div><div class="line">  *+height:300px; /* IE7 */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#example &#123;</div><div class="line">  height:100px; /* FF */</div><div class="line">  *height:300px; /* IE7 */</div><div class="line">  _height:200px; /* IE6 */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，代码的顺序一定不能颠倒了，要不又前功尽弃了。因为浏览器在解释程序的时候，如果重名的话，会用后面的覆盖前面的，就象给变量赋值一个道理，所以我们把通用的放前面，越专用的越放后面</p>
+<p>解释一下4的代码：</p>
+<p>读代码的时候，第一行<code>height:100px;</code> 大家都通用，IE6 IE7 FF 都显示<code>100px</code></p>
+<p>到了第二行<code>*height:300px;</code> FF不认识这个属性，IE6 IE7都认，所以FF还显示<code>100px</code>，而IE6 IE7把第一行得到的<code>height</code>属性给覆盖了，都显示<code>300px</code></p>
+<p>到了第三行<code>_height:200px;</code>只有IE6认识，所以IE6就又覆盖了在第二行得到的<code>height</code>,最终显示<code>200px</code></p>
+<p>这样，三个浏览器都有自己的<code>height</code>属性了，各玩各的去吧</p>
+<p>这样说要是你还不明白，要么你去撞墙，要么我去!不过还是你去比较好。</p>
+<p>哦，差点忘了说了：</p>
+<p><code>*+html</code> 对IE7的兼容 必须保证HTML顶部有如下声明：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"　"http://www.w3.org/TR/html4/loose.dtd"&gt;</span></div></pre></td></tr></table></figure></p>
+<p>三、使用IE专用的条件注释<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--其他浏览器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"css.css"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!--[if IE 7]&gt;</span></div><div class="line">&lt;!-- 适合于IE7 --&gt;</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"ie7.css"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">![endif]--</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--[if lte IE 6]&gt;</span></div><div class="line">&lt;!-- 适合于IE6及以下 --&gt;</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"ie.css"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">![endif]--</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>貌似要编三套css，我还没用过，先粘过来再说</p>
+<p>IE的if条件Hack<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">1\. <span class="comment">&lt;!--[if !IE]&gt;&lt;!--&gt;</span> 除IE外都可识别 <span class="comment">&lt;!--&lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">2\. <span class="comment">&lt;!--[if IE]&gt; 所有的IE可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">3\. <span class="comment">&lt;!--[if IE 5.0]&gt; 只有IE5.0可以识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">4\. <span class="comment">&lt;!--[if IE 5]&gt; 仅IE5.0与IE5.5可以识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">5\. <span class="comment">&lt;!--[if gt IE 5.0]&gt; IE5.0以及IE5.0以上版本都可以识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">6\. <span class="comment">&lt;!--[if IE 6]&gt; 仅IE6可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">7\. <span class="comment">&lt;!--[if lt IE 6]&gt; IE6以及IE6以下版本可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">8\. <span class="comment">&lt;!--[if gte IE 6]&gt; IE6以及IE6以上版本可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">9\. <span class="comment">&lt;!--[if IE 7]&gt; 仅IE7可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">10\. <span class="comment">&lt;!--[if lt IE 7]&gt; IE7以及IE7以下版本可识别 &lt;![endif]--&gt;</span></div><div class="line"></div><div class="line">11\. <span class="comment">&lt;!--[if gte IE 7]&gt; IE7以及IE7以上版本可识别 &lt;![endif]--&gt;</span></div></pre></td></tr></table></figure></p>
+<p>注:<br>gt = Great Then 大于 &gt; = &gt; 大于号</p>
+<p>lt = Less Then 小于 &lt; = &lt; 小于号</p>
+<p>gte = Great Then or Equal 大于或等于</p>
+<p>lte = Less Then or Equal 小于或等于</p>
+<p>四、<code>css filter</code>的办法(据作者称是从国外某经典网站翻译过来的说)</p>
+<p>新建一个css样式如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#item</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">background</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>新建一个<code>div</code>,并使用前面定义的<code>css</code>的样式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> &gt;</span>some text here<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在<code>body</code>表现这里加入<code>lang</code>属性,中文为<code>zh</code>：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>现在对<code>div</code>元素再定义一个样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">*<span class="selector-pseudo">:lang(en)</span> <span class="selector-id">#item</span>&#123;</div><div class="line">  <span class="attribute">background</span>:green <span class="meta">!important</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样做是为了用<code>!important</code>覆盖原来的css样式,由于<code>:lang</code>选择器ie7.0并不支持,所以对这句话不会有任何作用,于是也达到了ie6.0下同样的效果,但是很不幸地的是,safari同样不支持此属性,所以需要加入以下css样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#item</span><span class="selector-pseudo">:empty</span> &#123;</div><div class="line">  <span class="attribute">background</span>: green <span class="meta">!important</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>:empty</code>选择器为<code>css3</code>的规范,尽管safari并不支持此规范,但是还是会选择此元素,不管是否此元素存在,现在绿色会现在在除ie各版本以外的浏览器上。</p>
+<p>五、<code>FLOAT</code>闭合（clearing float）</p>
+<p>网页在某些浏览器上显示错位很多时候都是因为使用了float浮动而没有真正闭合，这也是div无法自适应高度的一个原因。如果父div没有设float而其子div却设了float的话,父div无法包住整个子DIV，这种情况一般出现在一个父DIV下包含多个子DIV。解决办法：</p>
+<p>１、给父DIV也设上float(不要骂我，我知道是废话)</p>
+<p>2、在所有子DIV后新加一个空DIV(不推荐，有些浏览器可以看见空DIV产生的空隙)</p>
+<p>比如：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">  width:100px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.son1&#123;</div><div class="line">  float:left;</div><div class="line">  width:20px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.son2&#123;</div><div class="line">  float:left;</div><div class="line">  width:80px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.clear&#123;</div><div class="line">  clear:both;</div><div class="line">  margin:0;</div><div class="line">  parding0;</div><div class="line">  height:0px;</div><div class="line">  font-size:0px;</div><div class="line">&#125;</div><div class="line">``` html</div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="son1"&gt;&lt;/div&gt;</div><div class="line">  &lt;div class="son2"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>3、万能 float 闭合</p>
+<p>将以下代码加入Global CSS 中,给需要闭合的div加上 class=”clearfix” 即可,屡试不爽.</p>
+<p>代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="comment">/* Clear Fix */</span></div><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>:<span class="string">"."</span>;</div><div class="line">  <span class="attribute">display</span>:block;</div><div class="line">  <span class="attribute">height</span>:<span class="number">0</span>;</div><div class="line">  <span class="attribute">clear</span>:both;</div><div class="line">  <span class="attribute">visibility</span>:hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.clearfix</span> &#123;</div><div class="line">  <span class="attribute">display</span>:inline-block;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* Hide from IE Mac \*/</span></div><div class="line"><span class="selector-class">.clearfix</span> &#123;<span class="attribute">display</span>:block;&#125;</div><div class="line"><span class="comment">/* End hide from IE Mac */</span></div><div class="line"><span class="comment">/* end of clearfix */</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>:after</code>（伪对象）,设置在对象后发生的内容，通常和<code>content</code>配合使用，IE不支持此伪对象，非Ie 浏览器支持，所以并不影响到IE/WIN浏览器。这种的最麻烦。</p>
+<p>4、<code>overflow:auto</code>（刚看到的，极力推荐）</p>
+<p>只要在父DIV的CSS中加上<code>overflow:auto</code>就搞定。</p>
+<p>举例：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">  width:100px;</div><div class="line">  overflow:auto</div><div class="line">&#125;</div><div class="line"></div><div class="line">.son1&#123;</div><div class="line">  float:left;</div><div class="line">  width:20px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.son2&#123;</div><div class="line">  float:left;</div><div class="line">  width:80px;</div><div class="line">&#125;</div><div class="line">```html</div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="son1"&gt;&lt;/div&gt;</div><div class="line">  &lt;div class="son2"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>作者原话：原理是，外围元素之所以不能很好的延伸，问题出在了<code>overflow</code>上，因为<code>overflow</code>不可见（见W3C的解释）。现在只要将给外围元素添 加一个“<code>overflow:auto</code>”，就可以解决问题，结果是除了IE，真的可以解决。下来就要解决IE的问题了，再加上“<code>_height:1%</code>”，这个问题就完全解决了。</p>
+<p>我试了一下，其实不加”<code>_height:1%</code>“在IE下也行，留着吧。</p>
+<p>六、需要注意的一些兼容细节</p>
+<p>1, FF下给 div 设置 padding 后会导致 width 和 height 增加(DIV的实际宽度=DIV宽+Padding), 但IE不会.</p>
+<p>解决办法：给DIV设定IE、FF两个宽度，在IE的宽度前加上IE特有标记” * “号。</p>
+<p>2, 页面居中问题.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">TEXT-ALIGN</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在IE下足够了，但FF下失效。</p>
+<p>解决办法：加上”<code>MARGIN-RIGHT: auto; MARGIN-LEFT: auto;</code>“</p>
+<p>3, 有的时候在IE6上看见一些奇怪的间隙，可我们高度明明设好了呀。</p>
+<p>解决办法：试试在有空隙的DIV上加上”<code>font-size:0px;</code>“</p>
+<p>4, 关于手形光标. <code>cursor: pointer</code>. 而hand 只适用于 IE.</p>
+<p>5, 浮动IE6产生的双倍距离<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#box</span>&#123;</div><div class="line">  <span class="attribute">float</span>:left;</div><div class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种情况之下IE6会产生<code>200px</code>的距离</p>
+<p>解决办法：加上<code>display:inline</code>，使浮动忽略</p>
+<p>这里细说一下<code>block</code>,<code>inline</code>两个元素,Block元素的特点是:总是在新行上开始,高度,宽度,行高,边距都可以控制(块元素);Inline元素的特点是:和其他元素在同一行上,…不可控制(内嵌元素);<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#box&#123;</div><div class="line">  display:block; //可以为内嵌元素模拟为块元素 </div><div class="line">  display:inline; //实现同一行排列的的效果</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>6 页面的最小宽度</p>
+<p>min-width是个非常方便的CSS命令，它可以指定元素最小也不能小于某个宽度，这样就能保证排版一直正确。但IE不认得min-这个定义，但实际上它把正常的width和height当作有min的情况来使。这样问题就大了，如果只用宽度和高度，正常的浏览器里 这两个值就不会变，如果只用min-width和min-height的话，IE下面根本等于没有设置宽度和高度。比如要设置背景图片，这个宽度是比较重 要的。</p>
+<p>解决办法：为了让这一命令在IE上也能用，可以把一个<code>&lt;div&gt;</code>放到 <code>&lt;body&gt;</code> 标签下，然后为div指定一个类：</p>
+<p>然后CSS这样设计：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#container</span>&#123;</div><div class="line">  <span class="attribute">min-width</span>: <span class="number">600px</span>;</div><div class="line">  <span class="attribute">width</span>:<span class="built_in">e-xpression</span>(document.body.clientWidth &lt; 600? “600px”: “auto” );</div><div class="line">&#125;</div><div class="line"></div><div class="line">第一个<span class="selector-tag">min-width</span>是正常的；但第2行的<span class="selector-tag">width</span>使用了<span class="selector-tag">Javascript</span>，这只有<span class="selector-tag">IE</span>才认得，这也会让你的<span class="selector-tag">HTML</span>文档不太正规。它实际上通过<span class="selector-tag">Javascript</span>的判断来实现最小宽度。</div><div class="line"></div><div class="line">7、<span class="selector-tag">UL</span>和<span class="selector-tag">FORM</span>标签的<span class="selector-tag">padding</span>与<span class="selector-tag">margin</span></div><div class="line"></div><div class="line"><span class="selector-tag">ul</span>标签在<span class="selector-tag">FF</span>中默认是有<span class="selector-tag">padding</span>值的,而在<span class="selector-tag">IE</span>中只有<span class="selector-tag">margin</span>默认有值。<span class="selector-tag">FORM</span>标签在<span class="selector-tag">IE</span>中,将会自动<span class="selector-tag">margin</span>一些边距,而在<span class="selector-tag">FF</span>中<span class="selector-tag">margin</span>则是0；</div><div class="line"></div><div class="line">解决办法：<span class="selector-tag">css</span>中首先都使用这样的样式<span class="selector-tag">ul</span>,</div><div class="line">```<span class="selector-tag">css</span></div><div class="line"><span class="selector-tag">form</span>&#123;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">  <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给定义死了,后面就不会为这个头疼了.</p>
+<p>8 ,DIV浮动IE文本产生3象素的bug</p>
+<p>下面这段是我在网上粘过来的</p>
+<p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#box</span>&#123;</div><div class="line">  <span class="attribute">float</span>:left;</div><div class="line">  <span class="attribute">width</span>:<span class="number">800px</span>;&#125;</div><div class="line"><span class="selector-id">#left</span>&#123;</div><div class="line">  <span class="attribute">float</span>:left;</div><div class="line">  <span class="attribute">width</span>:<span class="number">50%</span>;&#125;</div><div class="line"><span class="selector-id">#right</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">50%</span>;</div><div class="line">&#125;</div><div class="line">*<span class="selector-tag">html</span> <span class="selector-id">#left</span>&#123;</div><div class="line">  <span class="attribute">margin-right</span>:-<span class="number">3px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>HTML代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">box</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">left</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">right</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>针对上面这段代码，下面说一下我的理解：</p>
+<p>第一、只要right定义了width属性，在FF下绝对就会两行显示</p>
+<p>第二、两个width都定义为百分比的话，就算都为100%在IE下也会一行显示。所以上面那句所谓“*html #left”根本没用，不加也在一行，除非你width定义的是数值才用得上。</p>
+<p>所以说上面这段代码其实用处不大，至少在FF下不行。其实只要只定义left的width就行了，right不定义width就不管在IE还是FF下都能成功，但这样的话父DIV BOX并没有真正的包含LEFT和RIGHT两子DIV,可以用我上面说的第5种办法解决。最简单的办法就是在RIGHT中加上float:left就OK了，真磨叽！</p>
+<p>9,截字省略号<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.hh</span> &#123;</div><div class="line">  <span class="attribute">-o-text-overflow</span>:ellipsis;</div><div class="line">  <span class="attribute">text-overflow</span>:ellipsis;</div><div class="line">  <span class="attribute">white-space</span>:</div><div class="line">  nowrapoverflow:hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个是在越出长度后会自行的截掉多出部分的文字，并以省略号结尾。技术是好技术，很多人都喜欢乱用，但注意Firefox并不支持</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2013/05/28/css-ie/" data-id="cj4rxhkzj000ezffynip0otvc" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/05/28/ie6-ie9-e5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          IE6-IE9兼容性问题列表及解决办法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/05/28/linux-e7-b3-bb-e7-bb-9f-e5-91-bd-e4-bb-a4-e5-8f-8a-e5-85-b6-e4-bd-bf-e7-94-a8-e8-af-a6-e8-a7-a3-e5-a4-a7-e5-85-a8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux 系统命令及其使用详解(大全)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

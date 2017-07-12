@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nodejs运行稳定性提高方法 | 宇轩阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在写websocket的即时通讯工具，后台用nodejs写的，测试的时候开着ssh运行着也没多大问题，但是随着项目慢慢结尾，就出现问题了，工具需要node在后台持续运行着，但是我一关闭ssh链接，过一会，node就崩了，完全没法用啊，于是请教了万能的度娘，找到了下面这个方法； 用node启动server后，发现服务器不稳定，经常crash。我是用ssh远程登录的，ssh远程通道中断，或者Ctr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs运行稳定性提高方法">
+<meta property="og:url" content="https://itbugs.cn/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/index.html">
+<meta property="og:site_name" content="宇轩阁">
+<meta property="og:description" content="最近在写websocket的即时通讯工具，后台用nodejs写的，测试的时候开着ssh运行着也没多大问题，但是随着项目慢慢结尾，就出现问题了，工具需要node在后台持续运行着，但是我一关闭ssh链接，过一会，node就崩了，完全没法用啊，于是请教了万能的度娘，找到了下面这个方法； 用node启动server后，发现服务器不稳定，经常crash。我是用ssh远程登录的，ssh远程通道中断，或者Ctr">
+<meta property="og:updated_time" content="2017-07-05T09:04:13.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs运行稳定性提高方法">
+<meta name="twitter:description" content="最近在写websocket的即时通讯工具，后台用nodejs写的，测试的时候开着ssh运行着也没多大问题，但是随着项目慢慢结尾，就出现问题了，工具需要node在后台持续运行着，但是我一关闭ssh链接，过一会，node就崩了，完全没法用啊，于是请教了万能的度娘，找到了下面这个方法； 用node启动server后，发现服务器不稳定，经常crash。我是用ssh远程登录的，ssh远程通道中断，或者Ctr">
+  
+    <link rel="alternate" href="/atom.xml" title="宇轩阁" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/" class="article-date">
+  <time class="post-time" datetime="2015-04-14T02:21:05.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nodejs运行稳定性提高方法
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术点滴/">技术点滴</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在写websocket的即时通讯工具，后台用nodejs写的，测试的时候开着ssh运行着也没多大问题，但是随着项目慢慢结尾，就出现问题了，工具需要node在后台持续运行着，但是我一关闭ssh链接，过一会，node就崩了，完全没法用啊，于是请教了万能的度娘，找到了下面这个方法；</p>
+<p>用node启动server后，发现服务器不稳定，经常crash。我是用ssh远程登录的，ssh远程通道中断，或者Ctrl+C,都会使nodejs server崩溃掉。</p>
+<p><strong>nohup的解决办法</strong></p>
+<p><strong>1，启动node server</strong></p>
+<pre>[root@yuxuan nodejs]# nohup node server.js &gt;&gt; /var/log/nodejs/server_port_8020.log &amp;</pre>
+启动node server，并放到后台执行，并且记录log日志，注意：这样记录日志，时间长了，日志文件会比较大，要自己写一个shell脚本，控制文件大小。
+<pre>[root@yuxuna nodejs]# nohup node server.js 1&gt;/dev/null 2&gt;&amp;1 &amp;   //这种方式，不记录log日志。</pre>
+注意：用nohup的方法，node server是没有守护进程的，放到后台运行，如果node server崩溃掉，web一样不能访问。
+
+**2，关闭node server**
+<pre>[root@yuxuan ~]# ps aux|grep node    //查看node server
+root     10680  0.0  0.3 826308 14556 pts/6    Sl   12:20   0:00 node server.js
+root     15765  0.0  0.7 1031248 30144 ?       Sl   Feb25   0:01 node scripts/web-server.js
+root     19648  0.0  0.0 103240   872 pts/3    S+   13:57   0:00 grep node
+
+[root@yuxuan ~]# kill 10680   //关闭10680的node server
+
+[root@hatch ~]# ps aux|grep node
+root     15765  0.0  0.7 1031248 30144 ?       Sl   Feb25   0:01 node scripts/web-server.js
+root     19653  0.0  0.0 103240   872 pts/3    S+   13:57   0:00 grep node</pre>
+**三，forever工具**
+
+**1，安装forever**
+<pre># npm install forever</pre>
+forever目前只支持到node 0.8，如果装了node 0.10的，forever工具就不能用了。安装的时候会报出 warning forever wants 0.8, but has 0.10 ，虽然能安装成功，但是用不了。
+
+**2，forever参数和用法**
+<pre># forever [start | stop | stopall | list] [options] SCRIPT [script options]</pre>
+**3，forever实例**
+<pre># forever start server.js    //启动node server
+
+# forever list                    //查看启动的node server
+  0 server.js [ 24597, 24596 ]
+
+# forever stop 0                  //停止第0个node server
+Forever stopped process:
+  0 server.js [ 24611, 24596 ]
+
+关于**forever**的安装，目测可能会出现两个错误
+1、npm ERR! Error: SSL Error: CERT_UNTRUSTED
+解决方案：升级您的版本的NPM</pre>
+
+<pre><code>&lt;span&gt;npm install npm -g --ca=&quot;&quot;&lt;/span&gt;`&lt;/pre&gt;
+&lt;pre&gt;–或–
+告诉你的当前版本的NPM使用已知的&lt;/pre&gt;
+&lt;pre&gt;`&lt;span&gt;npm config set ca &quot;&quot;
+
+2、Error: No compatible version found:×××××
+&lt;/span&gt;`&lt;/pre&gt;
+如果在Linux系统中，通过一条命令更新npm可以解决。
+&lt;pre&gt;`npm install -g npm`&lt;/pre&gt;
+在Window环境中，必须升级NPM到1.4.10以上的版本，我重新安装了node-v0.10.31-x64.msi，对应的NPM为1.4.23，再此运行npm install命令，依赖包下载运行正常。
+&lt;pre&gt;`&lt;span&gt; &lt;/span&gt;
+</code></pre><pre>
+持续运行的问题解决了，不过新的问题来了，万一node运行的时候挂了，怎么重启呢，继续挠头去。。。</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://itbugs.cn/2015/04/14/nodejs-e8-bf-90-e8-a1-8c-e7-a8-b3-e5-ae-9a-e6-80-a7-e6-8f-90-e9-ab-98-e6-96-b9-e6-b3-95/" data-id="cj4r5cqag0023c3wy4uvv18r9" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/13/sublime-e5-bf-ab-e6-8d-b7-e9-94-ae/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          sublime快捷键
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/10/window-location-e6-93-8d-e4-bd-9curl-e5-b1-9e-e6-80-a7-e7-9a-84-e5-87-bd-e6-95-b0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">window.location操作URL属性的函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">宇轩阁</h1>
+    <h2 class="blog-subtitle">心语心寻-itbugs</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://shell.itbugs.cn/images/blog/qiuzhang.jpg">
+    <h2 class="author">yuxuan</h2>
+    <h3 class="description">不靠谱学长</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>49</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>3</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/yuxuangezhu" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://weixiaochu.cn/" target="_blank" title="A1ie2">
+          A1ie2
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://tiantang-tt.github.io/" target="_blank" title="轻言">
+          轻言
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2016 - 2017 yuxuan<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
